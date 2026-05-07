@@ -9,22 +9,16 @@
     <script>
         tailwind.config = {
             theme: {
-                extend: {
-                    colors: {
-                        gpbg: '#1A1D29',
-                        gpcyan: '#00E5FF',
-                    },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] }
-                }
+                extend: { colors: { gpbg: '#1A1D29', gpcyan: '#00E5FF' }, fontFamily: { sans: ['Inter', 'sans-serif'] } }
             }
         }
     </script>
 </head>
-<body class="bg-gpbg text-gray-300 font-sans antialiased selection:bg-gpcyan selection:text-black">
+<body class="bg-gpbg text-gray-300 font-sans antialiased">
 
-    <nav class="border-b border-gray-800 bg-gpbg">
+    <nav class="border-b border-gray-800 bg-gpbg/90 sticky top-0 backdrop-blur-md">
         <div class="max-w-4xl mx-auto px-4 py-6">
-            <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition">
+            <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition font-semibold">
                 &larr; Back to Home
             </a>
         </div>
@@ -34,23 +28,30 @@
         <h1 class="text-4xl font-extrabold text-white mb-2">Privacy Policy</h1>
         <p class="text-gray-500 mb-10">Last updated: May 2026</p>
 
-        <!-- HIER KANNST DU DEINEN ECHTEN TEXT REINKOPIEREN -->
         <div class="prose prose-invert prose-cyan max-w-none space-y-6">
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">1. Data Collection</h2>
-            <p>We collect information to provide better services to our users. For example, when you scan a vehicle, the image may be processed by our AI providers to identify the casting.</p>
+            <p>Welcome to Garage Prime. I built this app to help collectors track their inventory. Your privacy is extremely important to me. This policy explains how your data is handled.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">1. Data Collection & Camera Usage</h2>
+            <p>To use the core functionality of Garage Prime, the app requires access to your device's camera. Images taken are processed securely by AI providers (such as Google Vision/Gemini API) solely for the purpose of identifying the vehicle. We do not use your images to identify individuals.</p>
 
             <h2 class="text-2xl font-bold text-white mt-8 mb-4">2. Location Data (Global Hunt Radar)</h2>
-            <p>If you choose to use the Global Hunt feature, we store coordinates of scanned items. For your privacy, we only display the city name publicly, never your exact street address.</p>
+            <p>If you choose to enable location sharing for the "Global Hunt Radar", the app will record the location where a vehicle was scanned. <strong>For your privacy:</strong> We automatically anonymize this data before displaying it on the global map. Other users will only see the city (e.g., "Los Angeles"), never your exact street address or coordinates.</p>
             
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Subscriptions & Data Deletion</h2>
-            <p>If you purchase a subscription or fuel pack, payment is processed securely via Google Play/RevenueCat. You can delete your account and all associated data at any time inside the app settings.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Accounts & Subscriptions</h2>
+            <p>When you create an account, we store your basic profile info. If you purchase a subscription or fuel pack, the payment is processed securely by Google Play and managed via RevenueCat. Garage Prime does not process or store your credit card information.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">4. Third-Party Services & Ads</h2>
+            <p>The app uses third-party services that may collect information used to identify you:
+                <ul class="list-disc pl-6 space-y-2 mt-2">
+                    <li><strong>Supabase:</strong> For secure database hosting and authentication.</li>
+                    <li><strong>Google AdMob:</strong> For displaying rewarded video ads. AdMob may use advertising IDs to serve personalized ads (unless you opt out in your device settings).</li>
+                    <li><strong>RevenueCat:</strong> For tracking purchase entitlements.</li>
+                </ul>
+            </p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">5. Account Deletion</h2>
+            <p>You have the right to request the deletion of your account and all associated data. You can do this directly within the app settings or by contacting me. Once requested, your garage data and profile will be permanently erased.</p>
         </div>
     </main>
-
-    <footer class="bg-black py-8 border-t border-gray-900 mt-20">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <p class="text-gray-600 text-sm">© 2026 Garage Prime.</p>
-        </div>
-    </footer>
 </body>
 </html>
