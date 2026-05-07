@@ -8,47 +8,114 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: { colors: { gpbg: '#1A1D29', gpcyan: '#00E5FF' }, fontFamily: { sans:['Inter', 'sans-serif'] } }
-            }
+            theme: { extend: { colors: { gpbg: '#1A1D29', gpcyan: '#00E5FF' }, fontFamily: { sans:['Inter', 'sans-serif'] } } }
         }
+
+        // Language Switcher Logic
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if(el.getAttribute('data-lang') === lang) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+            localStorage.setItem('gp_lang', lang);
+            document.getElementById('btn-en').className = lang === 'en' ? 'text-gpcyan font-bold cursor-pointer' : 'text-gray-500 hover:text-white cursor-pointer';
+            document.getElementById('btn-de').className = lang === 'de' ? 'text-gpcyan font-bold cursor-pointer' : 'text-gray-500 hover:text-white cursor-pointer';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('gp_lang') || 'en';
+            setLanguage(savedLang);
+        });
     </script>
 </head>
 <body class="bg-gpbg text-gray-300 font-sans antialiased">
 
-    <nav class="border-b border-gray-800 bg-gpbg/90 sticky top-0 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto px-4 py-6">
+    <nav class="border-b border-gray-800 bg-gpbg/90 sticky top-0 backdrop-blur-md z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition font-semibold">
-                &larr; Back to Home
+                &larr; <span data-lang="en">Back to Home</span><span data-lang="de" class="hidden">Zurück</span>
             </a>
+            <div class="flex gap-4 text-sm font-semibold tracking-wider">
+                <span id="btn-en" onclick="setLanguage('en')">EN</span>
+                <span class="text-gray-700">|</span>
+                <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-16">
-        <h1 class="text-4xl font-extrabold text-white mb-2">Terms of Service</h1>
-        <p class="text-gray-500 mb-10">Last updated: May 2026</p>
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-extrabold text-white mb-2" data-lang="en">Terms of Service</h1>
+        <h1 class="text-4xl font-extrabold text-white mb-2 hidden" data-lang="de">Nutzungsbedingungen</h1>
+        <p class="text-gray-500 mb-10" data-lang="en">Last Updated: 14.04.2026</p>
+        <p class="text-gray-500 mb-10 hidden" data-lang="de">Zuletzt aktualisiert: 14.04.2026</p>
 
         <div class="prose prose-invert prose-cyan max-w-none space-y-6">
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">1. Acceptance of Terms</h2>
-            <p>By accessing and using the Garage Prime app, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service.</p>
-
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">2. The Service</h2>
-            <p>Garage Prime is an independent enthusiast application designed to help collectors track their die-cast inventory using AI tools. We strive for accuracy, but cannot guarantee that all AI-generated car data or wiki matches are 100% correct.</p>
-
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Subscriptions & Consumables</h2>
-            <p>The app offers free functionality with daily limits, as well as premium tiers ("Prime High Octane") and consumable "Fuel Packs". 
-                <ul class="list-disc pl-6 mt-2">
-                    <li><strong>Fuel Packs:</strong> Are one-time purchases and non-refundable once consumed.</li>
-                    <li><strong>Subscriptions:</strong> Automatically renew unless canceled in your Google Play account settings at least 24 hours before the end of the current period.</li>
-                </ul>
-            </p>
             
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">4. Disclaimer of Affiliation</h2>
-            <p><strong>Garage Prime is NOT affiliated with, sponsored by, or endorsed by Mattel, Inc., Hot Wheels, or any vehicle manufacturer mentioned in the app.</strong> All trademarks, logos, and brand names are the property of their respective owners. The app uses these names solely for identification and cataloging purposes.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">1. Acceptance of Terms</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">1. Anerkennung der Bedingungen</h2>
+            <p data-lang="en">By downloading or using the "Garage Prime" app, these terms will automatically apply to you. You should make sure therefore that you read them carefully before using the app.</p>
+            <p data-lang="de" class="hidden">Durch das Herunterladen oder die Nutzung der App "Garage Prime" gelten diese Bedingungen automatisch als akzeptiert. Bitte lesen Sie diese vor der Nutzung sorgfältig durch.</p>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">5. User Conduct</h2>
-            <p>You agree not to misuse the app's scanning API, attempt to reverse engineer the application, or submit false data to the community radar map.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">2. Purpose of the App</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">2. Zweck der App</h2>
+            <p data-lang="en">"Garage Prime" is a private, non-commercial tool for Hot Wheels collectors to manage their digital inventory.</p>
+            <p data-lang="de" class="hidden">"Garage Prime" ist ein privates, nicht-kommerzielles Werkzeug für Hot Wheels Sammler zur Verwaltung ihres digitalen Inventars.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">3. AI-Generated Content & Disclaimer</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">3. KI-Inhalte & Haftungsausschluss</h2>
+            <p data-lang="en"><strong>IMPORTANT:</strong> The technical specifications (e.g., BHP, Top Speed, MSRP, engine data) and AI-generated artwork provided within the app are generated by artificial intelligence (Google Gemini).</p>
+            <p data-lang="de" class="hidden"><strong>WICHTIG:</strong> Die technischen Spezifikationen (z.B. PS, Vmax, Neupreis, Motordaten) und KI-generierten Bilder in der App werden durch künstliche Intelligenz (Google Gemini) erstellt.</p>
+            <ul class="list-disc pl-6 space-y-2 mt-2" data-lang="en">
+                <li>We do not guarantee the accuracy, completeness, or reliability of this data.</li>
+                <li>Data is provided for informational and entertainment purposes only.</li>
+                <li>The developer is not liable for any financial decisions or purchases made based on the information provided in this app.</li>
+            </ul>
+            <ul class="list-disc pl-6 space-y-2 mt-2 hidden" data-lang="de">
+                <li>Wir garantieren nicht für die Richtigkeit, Vollständigkeit oder Zuverlässigkeit dieser Daten.</li>
+                <li>Die Daten dienen ausschliesslich Informations- und Unterhaltungszwecken.</li>
+                <li>Der Entwickler haftet nicht für finanzielle Entscheidungen oder Käufe, die auf Basis der Informationen in dieser App getätigt werden.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">4. User Content</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">4. Nutzerinhalte</h2>
+            <p data-lang="en">You remain the owner of the photos you upload. However, by uploading them, you grant us the right to process them through third-party AI services (Google Gemini) for identification purposes.</p>
+            <p data-lang="de" class="hidden">Sie bleiben Eigentümer der von Ihnen hochgeladenen Fotos. Durch den Upload gewähren Sie uns jedoch das Recht, diese zur Identifizierung durch KI-Dienste von Drittanbietern (Google Gemini) verarbeiten zu lassen.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">5. Affiliate Disclosure</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">5. Affiliate-Offenlegung</h2>
+            <p data-lang="en">Some of the links within this app, such as 'Find on eBay', are affiliate links. This means that if you click on the link and make a purchase, we may receive a small commission at no extra cost to you. This helps support the development of Garage Prime.</p>
+            <p data-lang="de" class="hidden">Einige der Links innerhalb dieser App, wie zum Beispiel „Auf eBay finden“, sind sogenannte Affiliate-Links. Das bedeutet: Wenn Sie auf einen solchen Link klicken und einen Kauf tätigen, erhalte ich unter Umständen eine kleine Provision. Für Sie entstehen dadurch <strong>keine zusätzlichen Kosten</strong>. Diese Provisionen unterstützen die kontinuierliche Entwicklung von Garage Prime.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">6. Pro Features & Subscriptions</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">6. Pro-Funktionen & Abonnements</h2>
+            <p data-lang="en">Certain features may require a subscription or one-time payment. All payments are handled securely via the official Google Play Store.</p>
+            <p data-lang="de" class="hidden">Bestimmte Funktionen können in Zukunft ein Abonnement oder eine einmalige Zahlung erfordern. Alle Zahlungen werden über den offiziellen Google Play Store abgewickelt.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">7. Termination & Account Deletion</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">7. Beendigung & Löschung</h2>
+            <p data-lang="en">You can stop using the app and delete your account and all associated data at any time via the app settings. We reserve the right to terminate service for any reason without notice.</p>
+            <p data-lang="de" class="hidden">Sie können die Nutzung der App jederzeit beenden und Ihr Konto sowie alle damit verbundenen Daten über die App-Einstellungen löschen. Wir behalten uns das Recht vor, den Dienst jederzeit ohne Vorankündigung einzustellen.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">8. Limitation of Liability</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">8. Haftungsbeschränkung</h2>
+            <p data-lang="en">The app is provided "as is" without any warranties. The developer shall not be liable for any indirect or consequential damages resulting from the use of the app.</p>
+            <p data-lang="de" class="hidden">Die App wird "wie besehen" ohne jegliche Gewährleistung zur Verfügung gestellt. Der Entwickler haftet nicht für indirekte Schäden oder Folgeschäden, die aus der Nutzung der App resultieren.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">9. Governing Law</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">9. Gerichtsstand</h2>
+            <p data-lang="en">These terms are governed by the laws of Switzerland. Legal jurisdiction is Uster (Zürich), Switzerland.</p>
+            <p data-lang="de" class="hidden">Diese Bedingungen unterliegen dem schweizerischen Recht. Gerichtsstand ist Uster (Zürich), Schweiz.</p>
+
         </div>
     </main>
+
+    <footer class="bg-black py-8 border-t border-gray-900 mt-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-600 text-sm">© 2026 Garage Prime.</p>
+        </div>
+    </footer>
 </body>
 </html>
