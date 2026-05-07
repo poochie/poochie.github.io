@@ -1,16 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <title>Garage Prime - The Hot Wheels Collector App</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1A1D29; color: white; text-align: center; padding-top: 100px; }
-        h1 { color: #00E5FF; }
-        p { color: #99A1AF; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Prime | The Ultimate Collector's Companion</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#1A1D29',
+                        gpcard: '#232736',
+                        gpcyan: '#00E5FF',
+                        gporange: '#FF8904',
+                        gpyellow: '#FDC700'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <h1>Garage Prime</h1>
-    <p>The ultimate AI-powered tracking app for Hot Wheels collectors.</p>
-    <p>Coming soon to Google Play.</p>
+<body class="bg-gpbg text-white font-sans antialiased selection:bg-gpcyan selection:text-black">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-gpbg/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <!-- Platzhalter für dein Logo -->
+                    <div class="w-8 h-8 rounded bg-gpcyan shadow-[0_0_10px_rgba(0,229,255,0.8)]"></div>
+                    <span class="font-extrabold text-xl tracking-tight">GARAGE PRIME</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-300 hover:text-white transition">Features</a>
+                    <a href="#compare" class="text-gray-300 hover:text-white transition">Compare</a>
+                    <a href="#roadmap" class="text-gray-300 hover:text-gpcyan transition">Roadmap v2.0</a>
+                </div>
+                <div>
+                    <a href="#download" class="bg-transparent border border-gpcyan text-gpcyan font-bold py-2 px-6 rounded-full hover:bg-gpcyan hover:text-black hover:shadow-[0_0_15px_rgba(0,229,255,0.6)] transition-all duration-300">
+                        Get Early Access
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gpcyan/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6">
+                    Scan. Track. <span class="text-transparent bg-clip-text bg-gradient-to-r from-gpcyan to-blue-500">Hunt.</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+                    Ditch the outdated wikis. Use AI to scan carded, loose, or even real 1:1 cars and build your digital die-cast garage in seconds.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4" id="download">
+                    <button class="bg-white text-black font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 hover:bg-gray-200 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.0535-3.1362 2.6586-4.708 2.78-4.7804-.1535-2.203-2.3168-2.518-3.1492-2.5534-1.3323-.1337-2.605 1.761-3.284 1.761-.6787 0-1.7375-1.554-2.846-1.554-1.4428 0-2.7758 1.1578-3.5286 2.456-1.5352 2.6468-.3935 6.5592 1.107 8.7236.7285 1.055 1.5855 2.2307 2.721 2.1953 1.107-.0354 1.5428-.9058 2.871-.9058 1.328 0 1.7214.9058 2.871.9058 1.1786 0 1.9355-1.0667 2.664-2.1246.857-1.2407 1.2068-2.4463 1.2284-2.518-.025-.0118-2.381-.9255-2.4348-3.6055zM15.466 5.8646c.632-.767 1.0568-1.8333.9407-2.8994-.9284.0393-2.0673.6192-2.721 1.403-.5856.697-.1078 1.782-.9058 2.8128.9998.0786 2.0515-.5502 2.686-1.3164z"/></svg>
+                        App Store
+                    </button>
+                    <button class="bg-gpcard border border-gray-700 text-white font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 hover:bg-gray-800 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.0535-3.1362 2.6586-4.708 2.78-4.7804-.1535-2.203-2.3168-2.518-3.1492-2.5534-1.3323-.1337-2.605 1.761-3.284 1.761-.6787 0-1.7375-1.554-2.846-1.554-1.4428 0-2.7758 1.1578-3.5286 2.456-1.5352 2.6468-.3935 6.5592 1.107 8.7236.7285 1.055 1.5855 2.2307 2.721 2.1953 1.107-.0354 1.5428-.9058 2.871-.9058 1.328 0 1.7214.9058 2.871.9058 1.1786 0 1.9355-1.0667 2.664-2.1246.857-1.2407 1.2068-2.4463 1.2284-2.518-.025-.0118-2.381-.9255-2.4348-3.6055zM15.466 5.8646c.632-.767 1.0568-1.8333.9407-2.8994-.9284.0393-2.0673.6192-2.721 1.403-.5856.697-.1078 1.782-.9058 2.8128.9998.0786 2.0515-.5502 2.686-1.3164z"/></svg>
+                        Google Play
+                    </button>
+                </div>
+            </div>
+            <!-- MOCKUP PLACEHOLDER -->
+            <div class="lg:w-1/2 w-full flex justify-center">
+                <div class="relative w-64 h-[500px] bg-gray-900 rounded-[3rem] border-8 border-gray-800 shadow-[0_0_50px_rgba(0,229,255,0.2)] flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-gpcyan/20 to-transparent"></div>
+                    <div class="absolute top-10 left-4 right-4 h-48 border-2 border-gpcyan border-dashed rounded-xl flex items-center justify-center">
+                        <span class="text-gpcyan text-sm animate-pulse">AI Scanning...</span>
+                    </div>
+                    <div class="absolute bottom-10 left-4 right-4 h-32 bg-gpcard rounded-xl p-4">
+                        <div class="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-1/2 mb-4"></div>
+                        <div class="h-10 bg-gpcyan rounded"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-20 bg-gpcard">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2">The New Standard</h2>
+                <h3 class="text-3xl font-extrabold">Next-Gen Collecting Features</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gpbg p-8 rounded-2xl border border-gray-800 hover:border-gpcyan/50 transition">
+                    <div class="w-12 h-12 bg-gpcyan/20 rounded-lg flex items-center justify-center mb-6 text-gpcyan">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">AI-Powered Universal Scanner</h4>
+                    <p class="text-gray-400">Carded, loose, or even real life 1:1 cars. Just point your camera. Our AI identifies the casting, series, and real-world tech specs instantly.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gpbg p-8 rounded-2xl border border-gray-800 hover:border-gporange/50 transition">
+                    <div class="w-12 h-12 bg-gporange/20 rounded-lg flex items-center justify-center mb-6 text-gporange">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Global Hunt Radar</h4>
+                    <p class="text-gray-400">Don't miss the ultimate treasure. See a live, privacy-safe map of community-spotted Super Treasure Hunts (STH) and Chases around your area.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div id="compare" class="bg-gpbg p-8 rounded-2xl border border-gray-800 hover:border-gpyellow/50 transition">
+                    <div class="w-12 h-12 bg-gpyellow/20 rounded-lg flex items-center justify-center mb-6 text-gpyellow">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Car Compare (Top Trumps)</h4>
+                    <p class="text-gray-400">Settle the debate. Match up vehicles from your garage head-to-head based on BHP, top speed, and 0-100 acceleration to see who wins.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-gpbg p-8 rounded-2xl border border-gray-800 hover:border-gpcyan/50 transition">
+                    <div class="w-12 h-12 bg-gpcyan/20 rounded-lg flex items-center justify-center mb-6 text-gpcyan">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Smart Inventory & Insights</h4>
+                    <p class="text-gray-400">Never buy a duplicate by mistake again. Track quantities, condition, variants, and monitor your collection's health score on an advanced dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP (v2.0) SECTION -->
+    <section id="roadmap" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-gpcard to-gray-900 rounded-3xl p-10 md:p-16 border border-gray-800 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl font-black">v2.0</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-extrabold mb-4">The Future of Collecting <span class="text-gpcyan">(Coming Soon)</span></h2>
+                    <p class="text-gray-400 mb-8 max-w-2xl text-lg">We are building the new standard for die-cast inventory. Forget messy text wikis – the future is structured, verified, and rewarding.</p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-gpcyan/20 flex items-center justify-center text-gpcyan shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg">Community-Driven Database (Submit for Fuel)</h5>
+                                <p class="text-gray-400">Submit missing cars, verify peer entries via a 3-stage review, and earn 'Fuel' and collector ranks for curating the ultimate database.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-gpcyan/20 flex items-center justify-center text-gpcyan shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg">Advanced Gamification</h5>
+                                <p class="text-gray-400">New global leaderboards, unique digital badges, and the Mainline Completion Album.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 shrink-0">
+                                <span class="text-xs">?</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg text-gray-400">Top-Secret Collector Modes...</h5>
+                                <p class="text-gray-500">More groundbreaking features are currently in development. Stay tuned.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="font-extrabold text-lg tracking-tight text-white">GARAGE PRIME</span>
+                <p class="text-gray-600 text-sm mt-2">© 2026 Garage Prime. All rights reserved.</p>
+            </div>
+            <div class="text-gray-500 text-xs max-w-md text-center md:text-left">
+                Disclaimer: Garage Prime is an independent collector's tool and is not affiliated with, endorsed, or sponsored by Mattel, Inc., or Hot Wheels.
+            </div>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="text-sm text-gray-400 hover:text-gpcyan transition">Privacy Policy</a>
+                <a href="terms.html" class="text-sm text-gray-400 hover:text-gpcyan transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
