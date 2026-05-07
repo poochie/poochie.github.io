@@ -9,22 +9,16 @@
     <script>
         tailwind.config = {
             theme: {
-                extend: {
-                    colors: {
-                        gpbg: '#1A1D29',
-                        gpcyan: '#00E5FF',
-                    },
-                    fontFamily: { sans:['Inter', 'sans-serif'] }
-                }
+                extend: { colors: { gpbg: '#1A1D29', gpcyan: '#00E5FF' }, fontFamily: { sans:['Inter', 'sans-serif'] } }
             }
         }
     </script>
 </head>
-<body class="bg-gpbg text-gray-300 font-sans antialiased selection:bg-gpcyan selection:text-black">
+<body class="bg-gpbg text-gray-300 font-sans antialiased">
 
-    <nav class="border-b border-gray-800 bg-gpbg">
+    <nav class="border-b border-gray-800 bg-gpbg/90 sticky top-0 backdrop-blur-md">
         <div class="max-w-4xl mx-auto px-4 py-6">
-            <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition">
+            <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition font-semibold">
                 &larr; Back to Home
             </a>
         </div>
@@ -34,23 +28,27 @@
         <h1 class="text-4xl font-extrabold text-white mb-2">Terms of Service</h1>
         <p class="text-gray-500 mb-10">Last updated: May 2026</p>
 
-        <!-- HIER KANNST DU DEINEN ECHTEN TEXT REINKOPIEREN -->
         <div class="prose prose-invert prose-cyan max-w-none space-y-6">
             <h2 class="text-2xl font-bold text-white mt-8 mb-4">1. Acceptance of Terms</h2>
-            <p>By accessing and using Garage Prime, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service.</p>
+            <p>By accessing and using the Garage Prime app, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service.</p>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">2. User Accounts & Subscriptions</h2>
-            <p>Garage Prime offers free and premium tiers ("Prime High Octane", "Fuel Packs"). All purchases are final. Subscriptions automatically renew unless canceled in your Google Play settings.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">2. The Service</h2>
+            <p>Garage Prime is an independent enthusiast application designed to help collectors track their die-cast inventory using AI tools. We strive for accuracy, but cannot guarantee that all AI-generated car data or wiki matches are 100% correct.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Subscriptions & Consumables</h2>
+            <p>The app offers free functionality with daily limits, as well as premium tiers ("Prime High Octane") and consumable "Fuel Packs". 
+                <ul class="list-disc pl-6 mt-2">
+                    <li><strong>Fuel Packs:</strong> Are one-time purchases and non-refundable once consumed.</li>
+                    <li><strong>Subscriptions:</strong> Automatically renew unless canceled in your Google Play account settings at least 24 hours before the end of the current period.</li>
+                </ul>
+            </p>
             
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Disclaimer of Affiliation</h2>
-            <p>Garage Prime is an independent enthusiast application. It is NOT affiliated with, sponsored by, or endorsed by Mattel, Inc., Hot Wheels, or any car manufacturer mentioned in the app.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">4. Disclaimer of Affiliation</h2>
+            <p><strong>Garage Prime is NOT affiliated with, sponsored by, or endorsed by Mattel, Inc., Hot Wheels, or any vehicle manufacturer mentioned in the app.</strong> All trademarks, logos, and brand names are the property of their respective owners. The app uses these names solely for identification and cataloging purposes.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">5. User Conduct</h2>
+            <p>You agree not to misuse the app's scanning API, attempt to reverse engineer the application, or submit false data to the community radar map.</p>
         </div>
     </main>
-
-    <footer class="bg-black py-8 border-t border-gray-900 mt-20">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <p class="text-gray-600 text-sm">© 2026 Garage Prime.</p>
-        </div>
-    </footer>
 </body>
 </html>
