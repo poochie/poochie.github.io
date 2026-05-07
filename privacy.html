@@ -8,50 +8,114 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: { colors: { gpbg: '#1A1D29', gpcyan: '#00E5FF' }, fontFamily: { sans: ['Inter', 'sans-serif'] } }
-            }
+            theme: { extend: { colors: { gpbg: '#1A1D29', gpcyan: '#00E5FF' }, fontFamily: { sans: ['Inter', 'sans-serif'] } } }
         }
+        
+        // Language Switcher Logic
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if(el.getAttribute('data-lang') === lang) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+            localStorage.setItem('gp_lang', lang);
+            document.getElementById('btn-en').className = lang === 'en' ? 'text-gpcyan font-bold cursor-pointer' : 'text-gray-500 hover:text-white cursor-pointer';
+            document.getElementById('btn-de').className = lang === 'de' ? 'text-gpcyan font-bold cursor-pointer' : 'text-gray-500 hover:text-white cursor-pointer';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('gp_lang') || 'en';
+            setLanguage(savedLang);
+        });
     </script>
 </head>
 <body class="bg-gpbg text-gray-300 font-sans antialiased">
 
-    <nav class="border-b border-gray-800 bg-gpbg/90 sticky top-0 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto px-4 py-6">
+    <nav class="border-b border-gray-800 bg-gpbg/90 sticky top-0 backdrop-blur-md z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition font-semibold">
-                &larr; Back to Home
+                &larr; <span data-lang="en">Back to Home</span><span data-lang="de" class="hidden">Zurück</span>
             </a>
+            <div class="flex gap-4 text-sm font-semibold tracking-wider">
+                <span id="btn-en" onclick="setLanguage('en')">EN</span>
+                <span class="text-gray-700">|</span>
+                <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-16">
-        <h1 class="text-4xl font-extrabold text-white mb-2">Privacy Policy</h1>
-        <p class="text-gray-500 mb-10">Last updated: May 2026</p>
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-extrabold text-white mb-2" data-lang="en">Privacy Policy</h1>
+        <h1 class="text-4xl font-extrabold text-white mb-2 hidden" data-lang="de">Datenschutzerklärung</h1>
+        <p class="text-gray-500 mb-10" data-lang="en">Last Updated: 28.04.2026</p>
+        <p class="text-gray-500 mb-10 hidden" data-lang="de">Zuletzt aktualisiert: 28.04.2026</p>
 
         <div class="prose prose-invert prose-cyan max-w-none space-y-6">
-            <p>Welcome to Garage Prime. I built this app to help collectors track their inventory. Your privacy is extremely important to me. This policy explains how your data is handled.</p>
-
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">1. Data Collection & Camera Usage</h2>
-            <p>To use the core functionality of Garage Prime, the app requires access to your device's camera. Images taken are processed securely by AI providers (such as Google Vision/Gemini API) solely for the purpose of identifying the vehicle. We do not use your images to identify individuals.</p>
-
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">2. Location Data (Global Hunt Radar)</h2>
-            <p>If you choose to enable location sharing for the "Global Hunt Radar", the app will record the location where a vehicle was scanned. <strong>For your privacy:</strong> We automatically anonymize this data before displaying it on the global map. Other users will only see the city (e.g., "Los Angeles"), never your exact street address or coordinates.</p>
             
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Accounts & Subscriptions</h2>
-            <p>When you create an account, we store your basic profile info. If you purchase a subscription or fuel pack, the payment is processed securely by Google Play and managed via RevenueCat. Garage Prime does not process or store your credit card information.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">General Information</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Allgemeines</h2>
+            <p data-lang="en">This Privacy Policy informs you about the collection and processing of personal data when using the "Garage Prime" mobile application. This is a private, non-commercial project.</p>
+            <p data-lang="de" class="hidden">Diese Datenschutzerklärung informiert Sie über die Erhebung und Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Applikation "Garage Prime". Dies ist ein privates, nicht-kommerzielles Projekt.</p>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">4. Third-Party Services & Ads</h2>
-            <p>The app uses third-party services that may collect information used to identify you:
-                <ul class="list-disc pl-6 space-y-2 mt-2">
-                    <li><strong>Supabase:</strong> For secure database hosting and authentication.</li>
-                    <li><strong>Google AdMob:</strong> For displaying rewarded video ads. AdMob may use advertising IDs to serve personalized ads (unless you opt out in your device settings).</li>
-                    <li><strong>RevenueCat:</strong> For tracking purchase entitlements.</li>
-                </ul>
-            </p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">Controller</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Verantwortlicher</h2>
+            <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+                <p class="m-0">André Sterchi<br>Stationsstrasse 5<br>8606 Nänikon<br>Switzerland / Schweiz<br>Email: dev@garage-prime.com</p>
+            </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">5. Account Deletion</h2>
-            <p>You have the right to request the deletion of your account and all associated data. You can do this directly within the app settings or by contacting me. Once requested, your garage data and profile will be permanently erased.</p>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">Data Collection and Purpose</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Datenerhebung und Zweck</h2>
+            
+            <h3 class="text-xl font-semibold text-white mt-6 mb-2" data-lang="en">A. Account & Authentication</h3>
+            <h3 class="text-xl font-semibold text-white mt-6 mb-2 hidden" data-lang="de">A. Benutzerkonto</h3>
+            <p data-lang="en">We use Supabase Auth for registration. We collect your email address and display name to provide access to your personal digital garage.</p>
+            <p data-lang="de" class="hidden">Wir nutzen Supabase Auth für die Registrierung. Wir erfassen Ihre E-Mail-Adresse und Ihren Anzeigenamen, um den Zugriff auf Ihre persönliche digitale Garage zu ermöglichen.</p>
+
+            <h3 class="text-xl font-semibold text-white mt-6 mb-2" data-lang="en">B. Photos & AI Processing</h3>
+            <h3 class="text-xl font-semibold text-white mt-6 mb-2 hidden" data-lang="de">B. Fotos & KI-Verarbeitung</h3>
+            <p data-lang="en">When you scan a vehicle, photos are processed using the Google Gemini API to identify the car model and extract technical data. Images are uploaded to Supabase Storage.</p>
+            <p data-lang="de" class="hidden">Wenn Sie ein Fahrzeug scannen, werden Fotos über die Google Gemini API verarbeitet, um das Fahrzeugmodell zu identifizieren und technische Daten zu extrahieren. Bilder werden im Supabase Storage gespeichert.</p>
+
+            <h3 class="text-xl font-semibold text-white mt-6 mb-2" data-lang="en">C. Location Data</h3>
+            <h3 class="text-xl font-semibold text-white mt-6 mb-2 hidden" data-lang="de">C. Standortdaten</h3>
+            <p data-lang="en">To track where vehicles were found, the app collects GPS coordinates (Latitude/Longitude) and location names. These are stored only within your personal collection.</p>
+            <p data-lang="de" class="hidden">Um festzuhalten, wo Fahrzeuge gefunden wurden, erfasst die App GPS-Koordinaten (Breitengrad/Längengrad) und Ortsnamen. Diese werden ausschliesslich in Ihrer persönlichen Sammlung gespeichert.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">Third-Party Services</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Drittanbieter</h2>
+            <p data-lang="en">We share data with the following providers for technical functionality:</p>
+            <p data-lang="de" class="hidden">Wir teilen Daten mit folgenden Anbietern für die technische Funktionalität:</p>
+            <ul class="list-disc pl-6 space-y-2 mt-2">
+                <li><strong>Supabase:</strong> Data is stored on secure servers (West EU - Ireland). Supabase processes data on our behalf to provide hosting, database, and authentication.</li>
+                <li><strong>Google Gemini API:</strong> Image data is sent to Google for analysis. Google’s terms for API usage apply.</li>
+                <li><strong>Google Maps API:</strong> Used for displaying the "Hunt Map".</li>
+                <li><strong>Ebay:</strong> This app uses affiliate links. When you click these links, the respective network may place a cookie or use tracking pixels to assign the commission to us.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">AI Specifics</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Besonderheiten KI</h2>
+            <p data-lang="en">Image data sent to the Google Gemini API is used for inference only. According to current API policies, this data is not used to train Google's base models.</p>
+            <p data-lang="de" class="hidden">Bilddaten, die an die Google Gemini API gesendet werden, dienen nur der Analyse. Nach aktuellen API-Richtlinien werden diese Daten nicht zum Training der Basismodelle von Google verwendet.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">Your Rights & Data Deletion</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Ihre Rechte & Löschung</h2>
+            <p data-lang="en">You have the right to access, correct, or delete your data at any time.<br><strong>Account Deletion:</strong> You can delete your account and all associated data (including all photos and vehicle records) directly within the app's settings.</p>
+            <p data-lang="de" class="hidden">Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer Daten.<br><strong>Kontolöschung:</strong> Sie können Ihr Konto und alle damit verbundenen Daten (einschliesslich aller Fotos und Fahrzeugdatensätze) direkt in den App-Einstellungen löschen.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4" data-lang="en">Legal Basis</h2>
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4 hidden" data-lang="de">Rechtsgrundlage</h2>
+            <p data-lang="en">The processing is based on your consent and the necessity to provide the app’s services. Legal jurisdiction is Uster (Zürich), Switzerland.</p>
+            <p data-lang="de" class="hidden">Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung und der Notwendigkeit zur Erbringung der App-Dienste. Gerichtsstand ist Uster (Zürich), Schweiz.</p>
+
         </div>
     </main>
+
+    <footer class="bg-black py-8 border-t border-gray-900 mt-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-600 text-sm">© 2026 Garage Prime.</p>
+        </div>
+    </footer>
 </body>
 </html>
