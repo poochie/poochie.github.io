@@ -1,14 +1,16 @@
-[
-  {
-    "date": "May 2026",
-    "title": "Welcome to Garage Prime 1.0! 🚀",
-    "content": "The ultimate AI scanner is now live. Start building your garage and check out the new Global Hunt Radar.",
-    "is_important": true
-  },
-  {
-    "date": "Next Update",
-    "title": "Car Compare is coming! 🏎️💨",
-    "content": "Get ready for the next update where you can match up your cars head-to-head in a Top Trumps style battle.",
-    "is_important": false
-  }
-]
+{
+  "news": [
+    {
+      "date": "May 2026",
+      "title": "Welcome to Garage Prime 1.0! 🚀",
+      "content": "The ultimate AI scanner is now live. Start building your garage and check out the new Global Hunt Radar.",
+      "is_important": true
+    },
+    {
+      "date": "Next Update",
+      "title": "Car Compare is coming! 🏎️💨",
+      "content": "Get ready for the next update where you can match up your cars head-to-head in a Top Trumps style battle.",
+      "is_important": false
+    }
+  ]
+}
