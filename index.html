@@ -86,7 +86,7 @@
     <nav class="fixed w-full z-50 bg-gpbg/50 backdrop-blur-xl border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
             <div class="flex items-center gap-3">
-                <img src="Logo.png" alt="Garage Prime Logo" class="w-10 h-10 rounded-lg shadow-[0_0_15px_rgba(0,229,255,0.5)]" onerror="this.style.display='none'">
+                <img src="logo_square.png" alt="Garage Prime Logo" class="w-10 h-10 rounded-lg shadow-[0_0_15px_rgba(0,229,255,0.5)]" onerror="this.style.display='none'">
                 <span class="font-racing text-2xl tracking-widest text-white">GARAGE PRIME</span>
             </div>
             <div class="hidden md:flex space-x-8">
@@ -126,3 +126,133 @@
 
             <a href="#download" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-black bg-white rounded-full overflow-hidden transition-transform hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]">
                 <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-gpcyan via-white to-gporange opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
+                <svg class="w-6 h-6 mr-3 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186c-.131-.155-.219-.36-.219-.595V2.41c0-.236.088-.44.218-.596zm1.18.23l8.601 8.601 2.502-2.502L5.807 2.304c-.389-.22-.76-.145-1.018.04zM15.422 13.63l-2.501-2.501-8.128 8.128c.258.185.629.261 1.018.04l10.085-5.836c.64-.37.64-.972 0-1.343l-.474-.275z"/></svg>
+                Get it on Google Play
+            </a>
+        </div>
+
+        <div class="lg:w-1/2 w-full relative h-[600px] flex justify-center items-center animate-on-scroll delay-200">
+            <!-- Glassmorphic App Phone Frame -->
+            <div class="relative w-[280px] h-[580px] bg-black/40 backdrop-blur-xl rounded-[3rem] border border-white/20 shadow-2xl flex flex-col overflow-hidden">
+                <!-- Replace with your actual App Screenshot -->
+                <div class="absolute inset-0 bg-gradient-to-b from-gpcyan/10 to-transparent"></div>
+                <div class="mt-12 mx-4 h-48 border border-gpcyan/50 rounded-xl bg-gpcyan/5 flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute top-0 w-full h-1 bg-gpcyan shadow-[0_0_10px_#00E5FF] animate-[translateY_2s_infinite]"></div>
+                    <span class="text-gpcyan font-mono text-sm tracking-widest">TARGET ACQUIRED</span>
+                </div>
+                <div class="mt-auto p-6 bg-gradient-to-t from-black to-transparent">
+                    <div class="h-6 w-3/4 bg-white/20 rounded mb-3"></div>
+                    <div class="h-4 w-1/2 bg-white/10 rounded mb-6"></div>
+                    <div class="h-12 w-full bg-gporange rounded-xl"></div>
+                </div>
+            </div>
+            
+            <!-- Hovering Car Image (Needs a transparent background car image) -->
+            <!-- <img src="porsche935_transparent.png" alt="Car" class="absolute z-20 w-96 right-[-20px] bottom-20 animate-float drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] pointer-events-none"> -->
+        </div>
+    </section>
+
+    <!-- THE BENTO GRID (FEATURES) -->
+    <section id="features" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-5xl font-racing text-center mb-16 animate-on-scroll" data-lang="en">YOUR NEW DASHBOARD</h2>
+        <h2 class="text-3xl md:text-5xl font-racing text-center mb-16 hidden animate-on-scroll" data-lang="de">DEIN NEUES DASHBOARD</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+            
+            <!-- Bento 1: Scanner (Large) -->
+            <div class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-gpcard to-[#11131C] rounded-3xl p-8 border border-white/10 relative overflow-hidden group animate-on-scroll">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gpcyan/10 rounded-full blur-[80px] group-hover:bg-gpcyan/20 transition-all duration-700"></div>
+                <h3 class="text-3xl font-extrabold mb-4 text-white">Universal AI Scanner</h3>
+                <p class="text-gray-400 text-lg max-w-md leading-relaxed" data-lang="en">Scan blister packs, loose models, or even real life 1:1 cars on the street. Our AI identifies the casting, extracts text via OCR, and estimates real-world specs.</p>
+                <p class="text-gray-400 text-lg max-w-md leading-relaxed hidden" data-lang="de">Scanne OVP, ausgepackte Modelle oder echte Autos auf der Straße. Die KI erkennt das Modell und schätzt echte technische Spezifikationen.</p>
+                <!-- Decoration -->
+                <div class="absolute bottom-8 right-8 w-32 h-32 border-4 border-dashed border-gpcyan/30 rounded-full animate-[spin_10s_linear_infinite] flex items-center justify-center">
+                    <div class="w-2 h-2 bg-gpcyan rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Bento 2: Radar -->
+            <div class="bg-gradient-to-br from-gpcard to-[#11131C] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-100 relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]"></div>
+                <h3 class="text-xl font-bold mb-2 text-gporange">Global Hunt Radar</h3>
+                <p class="text-gray-400 text-sm" data-lang="en">Live, privacy-safe map. Filter for STH, TH, or Chases spotted by the community.</p>
+                <p class="text-gray-400 text-sm hidden" data-lang="de">Datenschutzfreundliche Live-Karte. Filtere nach STH, TH oder Chases in deiner Nähe.</p>
+            </div>
+
+            <!-- Bento 3: Mainline Album -->
+            <div class="bg-gradient-to-br from-gpcard to-[#11131C] rounded-3xl p-8 border border-white/10 animate-on-scroll delay-200">
+                <h3 class="text-xl font-bold mb-2 text-white">Mainline Album</h3>
+                <p class="text-gray-400 text-sm" data-lang="en">Track your yearly 1/250 progress. Fill the digital slots and complete the series.</p>
+                <p class="text-gray-400 text-sm hidden" data-lang="de">Verfolge deinen 1/250 Fortschritt. Fülle die digitalen Slots und vervollständige das Jahr.</p>
+            </div>
+
+            <!-- Bento 4: Compare -->
+            <div class="bg-gradient-to-br from-gpcard to-[#11131C] rounded-3xl p-8 border border-white/10 relative overflow-hidden group animate-on-scroll">
+                <h3 class="text-xl font-bold mb-2 text-white">Car Compare</h3>
+                <p class="text-gray-400 text-sm" data-lang="en">Top Trumps style. Match cars from your garage head-to-head based on BHP and Top Speed.</p>
+                <p class="text-gray-400 text-sm hidden" data-lang="de">Auto-Quartett! Lass Autos aus deiner Garage in PS und V-Max gegeneinander antreten.</p>
+            </div>
+
+            <!-- Bento 5: Garage Clinic (Wide) -->
+            <div class="md:col-span-2 bg-gradient-to-br from-gpcard to-[#11131C] rounded-3xl p-8 border border-white/10 animate-on-scroll delay-100 flex flex-col justify-center">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 font-bold">✚</div>
+                    <h3 class="text-2xl font-bold text-white">Garage Health Clinic</h3>
+                </div>
+                <p class="text-gray-400" data-lang="en">Missing specs on an old entry? Tap "Heal". Our AI scans your inventory and automatically researches and fills in missing BHP, Engine Type, and MSRP data.</p>
+                <p class="text-gray-400 hidden" data-lang="de">Fehlen Daten bei einem alten Eintrag? Drücke "Heilen". Die KI durchsucht dein Inventar und füllt automatisch fehlende PS-, Motor- und Preisdaten auf.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP V2.0 -->
+    <section id="roadmap" class="py-24 border-t border-white/10 bg-black relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-gpcyan font-mono text-sm tracking-widest uppercase">Classified</span>
+                <h2 class="text-4xl font-racing mt-2">ROADMAP v2.0</h2>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-800 before:to-transparent">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active animate-on-scroll">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-gporange text-black font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_#FF5500]">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gpcard p-6 rounded-2xl border border-white/10">
+                        <h4 class="font-bold text-lg mb-2">Submit for Fuel</h4>
+                        <p class="text-sm text-gray-400">Help us build the ultimate database. Submit missing cars, review peer entries, and earn Fuel and exclusive ranks for curating.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group animate-on-scroll delay-100">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-gray-800 text-gray-400 font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">?</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gpcard/50 p-6 rounded-2xl border border-white/5 border-dashed">
+                        <h4 class="font-bold text-lg mb-2 text-gray-500">Classified Features</h4>
+                        <p class="text-sm text-gray-600">More game-changing tools are in development. We keep our cards close to our chest to stay ahead of the curve.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0B0D14] py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3 text-center md:text-left">
+                <span class="font-racing text-xl tracking-widest text-white opacity-50">GARAGE PRIME</span>
+            </div>
+            <div class="text-gray-600 text-xs max-w-md text-center md:text-left leading-relaxed">
+                Garage Prime is an independent collector's tool. Not affiliated with, endorsed, or sponsored by Mattel, Inc., or Hot Wheels.
+            </div>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="text-sm font-semibold text-gray-500 hover:text-gpcyan transition">Privacy</a>
+                <a href="terms.html" class="text-sm font-semibold text-gray-500 hover:text-gpcyan transition">Terms</a>
+                <a href="imprint.html" class="text-sm font-semibold text-gray-500 hover:text-gpcyan transition">Imprint</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
