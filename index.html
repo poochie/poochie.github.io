@@ -85,6 +85,59 @@
                 observer.observe(el);
             });
         });
+
+        // Supabase Form Submit Logic
+        async function submitFeatureRequest(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const name = document.getElementById('req-name').value;
+            const email = document.getElementById('req-email').value;
+            const msg = document.getElementById('req-msg').value;
+
+            // HIER DEINE DATEN EINTRAGEN
+            const SUPABASE_URL = 'https://DEINE_URL.supabase.co';
+            const ANON_KEY = 'DEIN_ANON_PUBLIC_KEY';
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/tblFeatureRequests`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': ANON_KEY,
+                        'Authorization': `Bearer ${ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: msg
+                    })
+                });
+
+                if (response.ok) {
+                    document.getElementById('success-msg').classList.remove('hidden');
+                    document.getElementById('feature-form').reset();
+                } else {
+                    alert('Error sending request. Please try again.');
+                }
+            } catch (err) {
+                alert('Network error. Please try again.');
+            } finally {
+                btn.innerText = 'Send Idea';
+                btn.disabled = false;
+            }
+        }
+
+        // Event Listener an das Formular binden
+        document.addEventListener('DOMContentLoaded', () => {
+            // ... (Hier ist dein restlicher Code) ...
+            
+            const form = document.getElementById('feature-form');
+            if(form) form.addEventListener('submit', submitFeatureRequest);
+        });
     </script>
 </head>
 <body class="text-white font-sans antialiased overflow-x-hidden selection:bg-gporange selection:text-white">
@@ -304,7 +357,56 @@
             </div>
         </div>
     </section>
+<!-- CONTACT / FEATURE REQUEST SECTION -->
+    <section id="contact" class="py-24 bg-[#161925] border-t border-white/10 relative z-10">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2" data-lang="en">Got an idea?</h2>
+                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2 hidden" data-lang="de">Hast du eine Idee?</h2>
+                <h3 class="font-racing text-4xl text-white tracking-wide" data-lang="en">REQUEST A FEATURE</h3>
+                <h3 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">FEATURE VORSCHLAGEN</h3>
+                <p class="text-gray-400 mt-4" data-lang="en">Garage Prime is built for the community. Tell me what you want to see next!</p>
+                <p class="text-gray-400 mt-4 hidden" data-lang="de">Garage Prime wird für die Community gebaut. Lass mich wissen, was als Nächstes kommen soll!</p>
+            </div>
 
+            <div class="bg-gpcard p-8 rounded-3xl border border-white/10 shadow-2xl animate-on-scroll delay-100 relative">
+                <!-- Success Message Overlay (Hidden by default) -->
+                <div id="success-msg" class="hidden absolute inset-0 bg-gpcard/95 backdrop-blur-sm rounded-3xl flex flex-col items-center justify-center z-20">
+                    <div class="w-16 h-16 bg-gpcyan/20 rounded-full flex items-center justify-center text-gpcyan mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2" data-lang="en">Idea submitted!</h4>
+                    <h4 class="text-2xl font-bold text-white mb-2 hidden" data-lang="de">Idee gesendet!</h4>
+                    <p class="text-gray-400 text-center" data-lang="en">Thanks for helping me improve Garage Prime.</p>
+                    <p class="text-gray-400 text-center hidden" data-lang="de">Danke, dass du hilfst, Garage Prime zu verbessern.</p>
+                </div>
+
+                <form id="feature-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-400 mb-2" data-lang="en">Your Name (or Nickname)</label>
+                            <label class="block text-sm font-semibold text-gray-400 mb-2 hidden" data-lang="de">Dein Name (oder Nickname)</label>
+                            <input type="text" id="req-name" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gpcyan transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-400 mb-2" data-lang="en">Email (optional)</label>
+                            <label class="block text-sm font-semibold text-gray-400 mb-2 hidden" data-lang="de">E-Mail (optional)</label>
+                            <input type="email" id="req-email" class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gpcyan transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-400 mb-2" data-lang="en">Your Idea / Feedback</label>
+                        <label class="block text-sm font-semibold text-gray-400 mb-2 hidden" data-lang="de">Deine Idee / Feedback</label>
+                        <textarea id="req-msg" required rows="4" class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gpcyan transition resize-none"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-gporange text-black font-bold py-4 rounded-xl hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(255,85,0,0.4)] transition duration-300">
+                        <span data-lang="en">Send Idea</span>
+                        <span data-lang="de" class="hidden">Idee absenden</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
     <!-- FOOTER -->
     <footer class="bg-[#0B0D14] py-12 border-t border-white/10 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
