@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-[#0B0D14]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Prime | The Die-Cast Collector's App</title>
-    <!-- Google Fonts: Inter & Racing Sans One für sportliche Akzente -->
+    <title>Garage Prime | The Ultimate Die-Cast Collector App</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS (CDN) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        gpbg: '#12141D',     // Etwas dunkler, wie eine echte Garage
-                        gpcard: '#1F2332',
-                        gpcyan: '#00E5FF',
-                        gporange: '#FF5500', // Echtes Track-Orange
-                        gpred: '#E30022',    // Racing Red
+                        gpbg: '#0B0D14',     // Pitch Black/Navy
+                        gpcard: '#161925',   // Elevated Card Color
+                        gpcyan: '#00E5FF',   // Neon Cyan
+                        gporange: '#FF5500', // Track Orange
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        racing: ['"Racing Sans One"', 'cursive'], // Für coole Überschriften
+                        racing: ['"Racing Sans One"', 'cursive'],
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'blob': 'blob 7s infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
                         },
-                        glow: {
-                            '0%': { boxShadow: '0 0 15px rgba(255, 85, 0, 0.2)' },
-                            '100%': { boxShadow: '0 0 30px rgba(255, 85, 0, 0.6)' },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         }
                     }
                 }
@@ -48,217 +49,80 @@
                 else el.classList.add('hidden');
             });
             localStorage.setItem('gp_lang', lang);
-            document.getElementById('btn-en').className = lang === 'en' ? 'text-gporange font-bold cursor-pointer' : 'text-gray-500 hover:text-white cursor-pointer';
-            document.getElementById('btn-de').className = lang === 'de' ? 'text-gporange font-bold cursor-pointer' : 'text-gray-500 hover:text-white cursor-pointer';
+            document.getElementById('btn-en').className = lang === 'en' ? 'text-white font-bold' : 'text-gray-500 hover:text-white transition cursor-pointer';
+            document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold' : 'text-gray-500 hover:text-white transition cursor-pointer';
         }
 
+        // Scroll Animations (Fade In Up)
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('gp_lang') || 'en';
-            setLanguage(savedLang);
+            setLanguage(localStorage.getItem('gp_lang') || 'en');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
+                observer.observe(el);
+            });
         });
     </script>
 </head>
-<body class="bg-gpbg text-white font-sans antialiased selection:bg-gporange selection:text-white overflow-x-hidden">
+<body class="text-white font-sans antialiased overflow-x-hidden selection:bg-gpcyan selection:text-black">
+
+    <!-- BACKGROUND BLOBS (Neon Glow) -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-gpcyan/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[40rem] h-[40rem] bg-gporange/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[40rem] h-[40rem] bg-purple-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+    </div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 bg-gpbg/80 backdrop-blur-lg border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <!-- KLEINES NAVBAR LOGO -->
-                    <img src="Logo.png" alt="Logo" class="w-8 h-8 object-contain rounded">
-                    <span class="font-racing text-2xl tracking-wider text-white">GARAGE PRIME</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold" data-lang="en">Features</a>
-                    <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold hidden" data-lang="de">Funktionen</a>
-                    <a href="#roadmap" class="text-gray-300 hover:text-gporange transition font-semibold" data-lang="en">Roadmap</a>
-                    <a href="#roadmap" class="text-gray-300 hover:text-gporange transition font-semibold hidden" data-lang="de">Ausblick</a>
-                </div>
-                <div class="flex items-center gap-6">
-                    <div class="flex gap-3 text-sm font-bold bg-black/50 px-3 py-1 rounded-full border border-gray-800">
-                        <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                        <span class="text-gray-700">|</span>
-                        <span id="btn-de" onclick="setLanguage('de')">DE</span>
-                    </div>
+    <nav class="fixed w-full z-50 bg-gpbg/50 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <div class="flex items-center gap-3">
+                <img src="Logo.png" alt="Garage Prime Logo" class="w-10 h-10 rounded-lg shadow-[0_0_15px_rgba(0,229,255,0.5)]" onerror="this.style.display='none'">
+                <span class="font-racing text-2xl tracking-widest text-white">GARAGE PRIME</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-300 hover:text-white transition text-sm font-semibold uppercase tracking-wider" data-lang="en">Features</a>
+                <a href="#features" class="text-gray-300 hover:text-white transition text-sm font-semibold uppercase tracking-wider hidden" data-lang="de">Funktionen</a>
+                <a href="#roadmap" class="text-gray-300 hover:text-gpcyan transition text-sm font-semibold uppercase tracking-wider">v2.0</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2 text-xs font-bold bg-white/10 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
+                    <span class="text-gray-600">|</span>
+                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION (RACING VIBE) -->
-    <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 relative">
-        <!-- Dynamische Hintergrund-Farbkleckse -->
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gporange/20 blur-[150px] rounded-full pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gpcyan/10 blur-[150px] rounded-full pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-16">
-            
-            <!-- TEXT BEREICH -->
-            <div class="lg:w-1/2 text-center lg:text-left">
-                <!-- GROSSES LOGO -->
-                <img src="Logo.png" alt="Garage Prime Logo" class="w-24 h-24 object-contain rounded-2xl mb-8 mx-auto lg:mx-0 shadow-[0_0_30px_rgba(255,85,0,0.4)]">
-                
-                <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-tight uppercase" data-lang="en">
-                    Scan. Track.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpred">Hunt.</span>
-                </h1>
-                <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-tight uppercase hidden" data-lang="de">
-                    Scannen. Sammeln.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpred">Jagen.</span>
-                </h1>
-
-                <p class="text-xl text-gray-400 mb-10 leading-relaxed font-light" data-lang="en">
-                    Built by a collector, for collectors. Ditch the messy spreadsheets. Use AI to scan <strong class="text-white">Carded, Loose, or Real 1:1 Cars</strong> and organize your die-cast garage in seconds.
-                </p>
-                <p class="text-xl text-gray-400 mb-10 leading-relaxed font-light hidden" data-lang="de">
-                    Von einem Sammler, für Sammler. Vergiss unübersichtliche Tabellen. Nutze unsere KI, um <strong class="text-white">OVP, lose Modelle oder echte 1:1 Autos</strong> zu scannen und deine digitale Garage in Sekunden aufzubauen.
-                </p>
-
-                <!-- GOOGLE PLAY BUTTON -->
-                <div class="flex justify-center lg:justify-start">
-                    <a href="#" class="animate-glow bg-black border border-gporange text-white font-bold py-4 px-8 rounded-full flex items-center gap-3 hover:bg-gray-900 transition-all transform hover:scale-105">
-                        <svg class="w-7 h-7 text-gporange" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3.609 1.814L13.792 12 3.61 22.186c-.131-.155-.219-.36-.219-.595V2.41c0-.236.088-.44.218-.596zm1.18.23l8.601 8.601 2.502-2.502L5.807 2.304c-.389-.22-.76-.145-1.018.04zM15.422 13.63l-2.501-2.501-8.128 8.128c.258.185.629.261 1.018.04l10.085-5.836c.64-.37.64-.972 0-1.343l-.474-.275z"/>
-                        </svg>
-                        <div class="text-left">
-                            <div class="text-[10px] leading-tight text-gray-400">GET IT ON</div>
-                            <div class="text-lg leading-tight font-extrabold">Google Play</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- BILDER BEREICH (3D EFFEKT) -->
-            <div class="lg:w-1/2 w-full relative h-[600px] flex justify-center items-center">
-                <!-- 1. Der App Screenshot (im Hintergrund) -->
-                <img src="appScreen.png" alt="App UI" class="absolute z-10 w-64 rounded-[2.5rem] border-[6px] border-gray-800 shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition duration-500">
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURES (SAMMLER-FOKUS) -->
-    <section id="features" class="py-24 bg-[#161925] border-y border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="font-racing text-4xl text-white tracking-wide" data-lang="en">THE NEW STANDARD</h2>
-                <h2 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">DER NEUE STANDARD</h2>
-                <div class="w-24 h-1 bg-gporange mx-auto mt-4 rounded"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- Feature 1 -->
-                <div class="group bg-gpcard p-8 rounded-3xl border border-gray-800 hover:border-gporange transition duration-300 hover:-translate-y-2 shadow-lg">
-                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-gporange border border-gray-700 group-hover:bg-gporange group-hover:text-black transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3 text-white" data-lang="en">Universal AI Scanner</h4>
-                    <h4 class="text-2xl font-bold mb-3 text-white hidden" data-lang="de">Universal KI Scanner</h4>
-                    <p class="text-gray-400 leading-relaxed" data-lang="en">Point your camera at a blister pack, a loose car, or even a real vehicle on the street. The AI extracts the casting, series, and estimates real-world tech specs.</p>
-                    <p class="text-gray-400 leading-relaxed hidden" data-lang="de">Egal ob Blisterverpackung, ausgepacktes Modell oder echtes Auto auf der Straße. Die KI erkennt Modell, Serie und liefert echte technische Spezifikationen.</p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="group bg-gpcard p-8 rounded-3xl border border-gray-800 hover:border-gpcyan transition duration-300 hover:-translate-y-2 shadow-lg">
-                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-gpcyan border border-gray-700 group-hover:bg-gpcyan group-hover:text-black transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3 text-white" data-lang="en">Global Hunt Radar</h4>
-                    <h4 class="text-2xl font-bold mb-3 text-white hidden" data-lang="de">Globales Jagd-Radar</h4>
-                    <p class="text-gray-400 leading-relaxed" data-lang="en">Filter the map for Mainlines, TH, STH, or Chases. See where the community just scored a massive find (privacy-safe, displaying city only).</p>
-                    <p class="text-gray-400 leading-relaxed hidden" data-lang="de">Filtere die Karte nach Mainlines, TH, STH oder Chases. Sieh in Echtzeit, wo die Community Schätze gefunden hat (datenschutzfreundlich, nur Ortsangabe).</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div id="compare" class="group bg-gpcard p-8 rounded-3xl border border-gray-800 hover:border-gpred transition duration-300 hover:-translate-y-2 shadow-lg">
-                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-gpred border border-gray-700 group-hover:bg-gpred group-hover:text-white transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3 text-white" data-lang="en">Car Compare (Top Trumps)</h4>
-                    <h4 class="text-2xl font-bold mb-3 text-white hidden" data-lang="de">Auto-Quartett Modus</h4>
-                    <p class="text-gray-400 leading-relaxed" data-lang="en">Settle the debate. Match up vehicles from your digital garage head-to-head based on BHP, top speed, and 0-100 acceleration.</p>
-                    <p class="text-gray-400 leading-relaxed hidden" data-lang="de">Lass deine Autos gegeneinander antreten. Vergleiche PS, Höchstgeschwindigkeit und Beschleunigung wie in einem echten Auto-Quartett.</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="group bg-gpcard p-8 rounded-3xl border border-gray-800 hover:border-white transition duration-300 hover:-translate-y-2 shadow-lg">
-                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-white border border-gray-700 group-hover:bg-white group-hover:text-black transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3 text-white" data-lang="en">Smart Inventory</h4>
-                    <h4 class="text-2xl font-bold mb-3 text-white hidden" data-lang="de">Smartes Inventar</h4>
-                    <p class="text-gray-400 leading-relaxed" data-lang="en">Never buy a duplicate by mistake again. The scanner automatically detects if you already own a car and updates your quantities.</p>
-                    <p class="text-gray-400 leading-relaxed hidden" data-lang="de">Kauf nie wieder aus Versehen doppelt. Der Scanner warnt dich, wenn du ein Auto bereits besitzt, und erhöht automatisch die Stückzahl in deiner Garage.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ROADMAP (v2.0) -->
-    <section id="roadmap" class="py-24 relative overflow-hidden">
-        <!-- Blueprint Pattern Background -->
-        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="border-l-4 border-gporange pl-8 mb-16">
-                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2" data-lang="en">Under Construction</h2>
-                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2 hidden" data-lang="de">In Entwicklung</h2>
-                <h3 class="font-racing text-4xl text-white tracking-wide" data-lang="en">ROADMAP v2.0</h3>
-                <h3 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">ROADMAP v2.0</h3>
+    <!-- HERO SECTION -->
+    <section class="pt-40 pb-20 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 min-h-[90vh]">
+        <div class="lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-10 animate-on-scroll">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gporange/10 border border-gporange/30 text-gporange text-sm font-bold mb-6">
+                <span class="w-2 h-2 rounded-full bg-gporange animate-pulse"></span>
+                <span data-lang="en">The Fandom Wiki is dead.</span>
+                <span data-lang="de">Das Fandom Wiki ist tot.</span>
             </div>
             
-            <div class="space-y-8">
-                <!-- Roadmap Item 1 -->
-                <div class="flex items-start gap-6 bg-black/40 p-6 rounded-2xl border border-gray-800">
-                    <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gporange font-bold shrink-0">1</div>
-                    <div>
-                        <h5 class="font-bold text-xl text-white mb-2" data-lang="en">Submit for Fuel (The Wiki-Killer)</h5>
-                        <h5 class="font-bold text-xl text-white mb-2 hidden" data-lang="de">Submit for Fuel (Die Wiki-Ablösung)</h5>
-                        <p class="text-gray-400" data-lang="en">Help build the ultimate structured database. Submit missing cars, verify entries via a 3-stage peer review, and earn 'Fuel' and collector ranks as a reward.</p>
-                        <p class="text-gray-400 hidden" data-lang="de">Hilf mit, die größte strukturierte Datenbank zu bauen. Reiche Autos ein, prüfe Einträge anderer Sammler und verdiene dir 'Fuel' und Ränge als Belohnung.</p>
-                    </div>
-                </div>
-                <!-- Roadmap Item 2 -->
-                <div class="flex items-start gap-6 bg-black/40 p-6 rounded-2xl border border-gray-800">
-                    <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gporange font-bold shrink-0">2</div>
-                    <div>
-                        <h5 class="font-bold text-xl text-white mb-2" data-lang="en">Mainline Album & Gamification</h5>
-                        <h5 class="font-bold text-xl text-white mb-2 hidden" data-lang="de">Mainline Sammelalbum</h5>
-                        <p class="text-gray-400" data-lang="en">A visual grid tracking your yearly mainline completion (1/250). Earn exclusive digital badges and climb the global leaderboards.</p>
-                        <p class="text-gray-400 hidden" data-lang="de">Ein visuelles Raster für deine jährliche Mainline-Sammlung (1/250). Schalte exklusive Badges frei und erklimme die Rangliste.</p>
-                    </div>
-                </div>
-                <!-- Roadmap Item 3 -->
-                <div class="flex items-start gap-6 bg-gpcyan/5 p-6 rounded-2xl border border-gpcyan/30">
-                    <div class="w-10 h-10 bg-gpcyan/20 rounded-full flex items-center justify-center text-gpcyan font-bold shrink-0">?</div>
-                    <div>
-                        <h5 class="font-bold text-xl text-gpcyan mb-2" data-lang="en">Top-Secret Modes...</h5>
-                        <h5 class="font-bold text-xl text-gpcyan mb-2 hidden" data-lang="de">Streng geheime Features...</h5>
-                        <p class="text-gray-400" data-lang="en">I have a few massive, highly requested features in the pipeline that will change how you shop for cars. Stay tuned.</p>
-                        <p class="text-gray-400 hidden" data-lang="de">Ich habe einige massive Features in der Pipeline, die die Art und Weise, wie du für andere sammelst, verändern werden. Bleib dran.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-racing tracking-wide mb-6 leading-[1.1] uppercase drop-shadow-2xl">
+                Enter The <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gpcyan to-blue-600">Prime</span> Garage.
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed max-w-xl font-light" data-lang="en">
+                Scan <strong>Carded, Loose, or Real 1:1 Cars</strong> with elite AI. Track your collection, hunt globally, and battle in Top Trumps mode. Built by collectors, for collectors.
+            </p>
+            <p class="text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed max-w-xl font-light hidden" data-lang="de">
+                Scanne <strong>OVP, lose oder echte 1:1 Autos</strong> mit unserer KI. Verwalte deine Sammlung, jage global und fordere Autos im Quartett-Modus heraus.
+            </p>
 
-    <!-- FOOTER -->
-    <footer class="bg-black py-12 border-t border-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3 text-center md:text-left">
-                <!-- KLARES LOGO UNTEN -->
-                <span class="font-racing text-xl tracking-widest text-white">GARAGE PRIME</span>
-            </div>
-            <div class="text-gray-600 text-xs max-w-md text-center md:text-left leading-relaxed">
-                Disclaimer: Garage Prime is an independent collector's tool and is not affiliated with, endorsed, or sponsored by Mattel, Inc., or Hot Wheels.
-            </div>
-            <div class="flex gap-6">
-                <a href="privacy.html" class="text-sm font-semibold text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-sm font-semibold text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-sm font-semibold text-gray-500 hover:text-white transition">Imprint</a>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+            <a href="#download" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-black bg-white rounded-full overflow-hidden transition-transform hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+                <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-gpcyan via-white to-gporange opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
