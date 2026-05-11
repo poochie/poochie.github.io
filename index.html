@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#05050A]">
+<html lang="en" class="scroll-smooth bg-[#0B0D14]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +13,8 @@
             theme: {
                 extend: {
                     colors: {
-                        gpbg: '#05050A',     // Deepest Laravel-Style Black
-                        gpcard: '#0E1015',   // Slightly elevated
+                        gpbg: '#05050A',     
+                        gpcard: '#0E1015',   
                         gpcyan: '#00E5FF',   
                         gporange: '#FF5500', 
                         gpyellow: '#FDC700', 
@@ -22,15 +22,13 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         racing: ['"Racing Sans One"', 'cursive'],
-                        mono: ['"Fira Code"', 'monospace'], // Für die Terminal-Animation
+                        mono: ['"Fira Code"', 'monospace'],
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'slide-in': 'slideIn 0.3s ease-out forwards',
                         'type1': 'typing 2s steps(40, end) forwards',
                         'type2': 'typing 2s steps(40, end) 2s forwards',
-                        'type3': 'typing 2s steps(40, end) 4s forwards',
-                        'blink': 'blink 1s step-end infinite',
                     },
                     keyframes: {
                         float: {
@@ -38,24 +36,19 @@
                             '50%': { transform: 'translateY(-12px)' },
                         },
                         slideIn: {
-                            '0%': { transform: 'translateX(100%)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                            '0%': { transform: 'translateX(10px) scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'translateX(0) scale(1)', opacity: '1' },
                         },
                         typing: {
                             '0%': { width: '0', opacity: '0' },
                             '1%': { opacity: '1' },
                             '100%': { width: '100%', opacity: '1' }
-                        },
-                        blink: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0' }
                         }
                     }
                 }
             }
         }
 
-        // Language Switcher
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
                 if(el.getAttribute('data-lang') === lang) el.classList.remove('hidden');
@@ -66,29 +59,20 @@
             document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
         }
 
-        // Mobile Menu
-        function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+        function toggleFeedback() { document.getElementById('feedback-modal').classList.toggle('hidden'); }
 
-        // Modal Feedback
-        function toggleFeedback() {
-            document.getElementById('feedback-modal').classList.toggle('hidden');
-        }
-
-        // Supabase Form Submit
         async function submitFeatureRequest(e) {
             e.preventDefault();
             if (document.getElementById('website-url-bot').value !== "") return;
             const btn = document.getElementById('submit-btn');
-            btn.innerHTML = 'Sending...';
+            btn.innerText = 'Sending...';
             btn.disabled = true;
 
             const name = document.getElementById('req-name').value;
             const email = document.getElementById('req-email').value;
             const msg = document.getElementById('req-msg').value;
 
-            // !! HIER DEINEN ANON KEY EINTRAGEN !!
             const SUPABASE_URL = 'https://behaycailacyhlyrnorn.supabase.co'; 
             const ANON_KEY = 'DEIN_ANON_PUBLIC_KEY'; 
 
@@ -102,18 +86,13 @@
                 if (response.ok) {
                     document.getElementById('feature-form').classList.add('hidden');
                     document.getElementById('success-msg').classList.remove('hidden');
-                } else {
-                    alert('Error sending request.');
-                }
-            } catch (err) {
-                alert('Network error.');
-            } finally {
+                } else { alert('Error sending request.'); }
+            } catch (err) { alert('Network error.'); } finally {
                 btn.innerText = 'Send';
                 btn.disabled = false;
             }
         }
 
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(localStorage.getItem('gp_lang') || 'en');
             const form = document.getElementById('feature-form');
@@ -123,42 +102,41 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('opacity-100', 'translate-y-0');
-                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
                     }
                 });
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-                el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000', 'ease-out');
+                el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-1000', 'ease-out');
                 observer.observe(el);
             });
         });
     </script>
 </head>
-<body class="text-white font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
+<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
 
-    <!-- LARAVEL-STYLE BACKGROUND GLOW -->
+    <!-- BACKGROUND GLOWS -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <!-- Subtiles Grid -->
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-        <!-- Die riesigen Lichtkugeln (Halos) -->
-        <div class="absolute top-[-20%] left-[-10%] w-[50rem] h-[50rem] bg-gpcyan/10 rounded-full blur-[120px]"></div>
-        <div class="absolute top-[40%] right-[-20%] w-[50rem] h-[50rem] bg-gporange/5 rounded-full blur-[150px]"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-gpcyan/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-gporange/10 rounded-full blur-[150px]"></div>
     </div>
 
-    <!-- NAVBAR (Ultra-thin Glassmorphism) -->
-    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5">
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-[#05050A]/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-            <div class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
+            <div class="flex items-center gap-3">
+                <img src="Logo.png" alt="Logo" class="w-8 h-8 object-contain rounded" onerror="this.style.display='none'">
                 <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
             </div>
             
             <div class="hidden md:flex space-x-8">
-                <a href="story.html" class="text-gray-400 hover:text-white transition font-medium text-xs tracking-widest uppercase">The Story</a>
-                <a href="#features" class="text-gray-400 hover:text-white transition font-medium text-xs tracking-widest uppercase" data-lang="en">Features</a>
-                <a href="#features" class="text-gray-400 hover:text-white transition font-medium text-xs tracking-widest uppercase hidden" data-lang="de">Funktionen</a>
-                <a href="faq.html" class="text-gray-400 hover:text-white transition font-medium text-xs tracking-widest uppercase">FAQ</a>
-                <a href="#roadmap" class="text-gray-400 hover:text-gpcyan transition font-medium text-xs tracking-widest uppercase">v2.0</a>
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors uppercase tracking-wider">The Story</a>
+                <a href="#features" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors uppercase tracking-wider" data-lang="en">Features</a>
+                <a href="#features" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors uppercase tracking-wider hidden" data-lang="de">Funktionen</a>
+                <a href="faq.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors uppercase tracking-wider">FAQ</a>
+                <a href="#roadmap" class="text-sm font-semibold text-gray-400 hover:text-gpcyan transition-colors uppercase tracking-wider">v2.0</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -173,7 +151,6 @@
             </div>
         </div>
 
-        <!-- MOBILE MENU -->
         <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 flex flex-col items-center py-6 space-y-5 shadow-2xl">
             <a href="story.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest">The Story</a>
             <a href="#features" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">Features</a>
@@ -183,185 +160,178 @@
         </div>
     </nav>
 
-    <!-- FLOATING FEEDBACK MODAL -->
-    <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end">
-        <div id="feedback-modal" class="hidden mb-3 bg-[#0E1015] border border-white/10 shadow-2xl rounded-xl w-72 p-5 origin-bottom-right animate-slide-in backdrop-blur-md">
+    <!-- FLOATING FEATURE REQUEST (KOMPAKT OBEN RECHTS) -->
+    <div class="fixed top-24 right-4 z-50 flex flex-col items-end">
+        <button onclick="toggleFeedback()" class="bg-gpcard border border-white/10 hover:border-gpcyan/50 text-gpcyan hover:text-white rounded-full px-4 py-2 shadow-2xl transition-all flex items-center gap-2 backdrop-blur-md mb-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <span class="text-xs font-bold uppercase tracking-wider">Idea?</span>
+        </button>
+
+        <div id="feedback-modal" class="hidden bg-gpcard/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] rounded-2xl w-72 p-5 origin-top-right animate-slide-in">
             <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-gporange animate-pulse"></div>
-                    <h3 class="font-semibold text-white text-sm">Feedback & Ideas</h3>
-                </div>
-                <button onclick="toggleFeedback()" class="text-gray-500 hover:text-white">&times;</button>
+                <h3 class="font-bold text-white text-sm">Request a Feature</h3>
+                <button onclick="toggleFeedback()" class="text-gray-500 hover:text-white transition">&times;</button>
             </div>
             <div id="success-msg" class="hidden text-center py-4">
-                <p class="font-bold text-white text-sm">Submitted!</p>
+                <p class="font-bold text-gpcyan text-sm">Submitted!</p>
+                <p class="text-xs text-gray-400 mt-1">Thanks for the input.</p>
             </div>
             <form id="feature-form" class="space-y-3">
                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" id="website-url-bot"></div>
-                <input type="text" id="req-name" required placeholder="Nickname" class="w-full bg-black/50 border border-white/5 rounded-md px-3 py-2 text-xs text-white focus:border-gporange focus:ring-1 focus:ring-gporange/30 outline-none transition">
-                <input type="email" id="req-email" placeholder="Email (optional)" class="w-full bg-black/50 border border-white/5 rounded-md px-3 py-2 text-xs text-white focus:border-gporange focus:ring-1 focus:ring-gporange/30 outline-none transition">
-                <textarea id="req-msg" required rows="2" placeholder="I'd love a feature that..." class="w-full bg-black/50 border border-white/5 rounded-md px-3 py-2 text-xs text-white focus:border-gporange focus:ring-1 focus:ring-gporange/30 outline-none resize-none transition"></textarea>
-                <button type="submit" id="submit-btn" class="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition text-xs">Send</button>
+                <input type="text" id="req-name" required placeholder="Nickname" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:border-gpcyan outline-none transition">
+                <input type="email" id="req-email" placeholder="Email (optional)" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:border-gpcyan outline-none transition">
+                <textarea id="req-msg" required rows="3" placeholder="I'd love to see a feature that..." class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:border-gpcyan outline-none resize-none transition"></textarea>
+                <button type="submit" id="submit-btn" class="w-full bg-white text-black font-bold py-2 rounded-lg hover:bg-gray-200 transition text-xs">Send Idea</button>
             </form>
         </div>
-        <button onclick="toggleFeedback()" class="bg-gpcard border border-white/10 hover:border-white/30 text-gray-400 hover:text-white rounded-full p-3 shadow-2xl transition transform hover:scale-105 backdrop-blur-md">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-        </button>
     </div>
 
     <!-- HERO SECTION -->
-    <section class="pt-24 pb-12 lg:pt-32 lg:pb-16 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 min-h-[85vh] relative">
-        
-        <!-- Central Glow behind phones -->
-        <div class="absolute top-1/2 right-[10%] w-[500px] h-[500px] bg-gpcyan/10 rounded-full blur-[100px] pointer-events-none"></div>
-
+    <section class="pt-32 pb-16 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 min-h-[85vh]">
         <div class="lg:w-[45%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 animate-on-scroll">
-            <img src="Logo.png" alt="Garage Prime Logo" class="w-24 h-auto mb-8 mx-auto lg:mx-0" onerror="this.style.display='none'">
             
-            <h1 class="text-5xl lg:text-6xl font-racing tracking-wide mb-6 leading-[1.05] uppercase text-white drop-shadow-md" data-lang="en">
-                GARAGE PRIME - THE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">COLLECTOR</span> APP.
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold mb-6 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-gporange animate-pulse"></span>
+                <span class="text-gray-300" data-lang="en">The Next Generation of Collecting</span>
+                <span class="text-gray-300 hidden" data-lang="de">Die nächste Generation des Sammelns</span>
+            </div>
+
+            <!-- GIGANTISCHES LOGO -->
+            <img src="Logo.png" alt="Garage Prime Logo" class="w-48 sm:w-64 h-auto mb-6 mx-auto lg:mx-0 drop-shadow-[0_0_50px_rgba(0,229,255,0.4)]" onerror="this.style.display='none'">
+            
+            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.05] uppercase text-white" data-lang="en">
+                THE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange via-[#ff8800] to-gpyellow">COLLECTOR</span> APP.
             </h1>
-            <h1 class="text-5xl lg:text-6xl font-racing tracking-wide mb-6 leading-[1.05] uppercase text-white drop-shadow-md hidden" data-lang="de">
-                GARAGE PRIME - DIE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">SAMMLER</span> APP.
+            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.05] uppercase hidden" data-lang="de">
+                DIE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange via-[#ff8800] to-gpyellow">SAMMLER</span> APP.
             </h1>
             
-            <p class="text-base text-gray-400 mb-8 max-w-md font-light leading-relaxed" data-lang="en">
-                Scan <strong class="text-white font-medium">Carded, Loose, or Real Cars</strong> with elite AI. Track your inventory, hunt globally for Super Treasure Hunts, and battle in Top Trumps mode.
+            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light max-w-md" data-lang="en">
+                Built by a collector, for collectors. The ultimate AI-powered app to scan <strong class="text-white font-medium">Carded, Loose, or Real 1:1 Cars</strong> and organize your die-cast garage in seconds.
             </p>
-            <p class="text-base text-gray-400 mb-8 max-w-md font-light leading-relaxed hidden" data-lang="de">
-                Scanne <strong class="text-white font-medium">OVP, lose oder echte Autos</strong> mit der besten KI. Verwalte dein Inventar, jage Super Treasure Hunts auf dem Radar und vergleiche Specs im Auto-Quartett.
+            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light max-w-md hidden" data-lang="de">
+                Von einem Sammler, für Sammler. Die ultimative KI-App, um <strong class="text-white font-medium">OVP, lose oder echte 1:1 Autos</strong> in Sekunden zu scannen und deine Sammlung zu verwalten.
             </p>
 
-            <div class="flex items-center gap-4">
-                <a href="#" class="transition-transform hover:scale-105 hover:opacity-80">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-14">
-                </a>
-            </div>
+            <a href="#" class="group transition-transform hover:scale-105">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-16 shadow-[0_10px_30px_rgba(0,0,0,0.5)] rounded-lg group-hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] transition-shadow">
+            </a>
         </div>
 
-        <!-- 3D PHONE ARRAY -->
-        <div class="lg:w-[55%] w-full relative h-[400px] sm:h-[450px] lg:h-[550px] flex justify-center items-center animate-on-scroll mt-8 lg:mt-0">
-            <!-- Left -->
-            <img src="2.png" alt="Map View" class="absolute z-10 w-36 sm:w-44 lg:w-52 rounded-[1.8rem] shadow-2xl opacity-40 border border-white/10 transition-all duration-500 hover:opacity-100 hover:z-40" style="transform: perspective(1000px) rotateY(15deg) rotateZ(-3deg) translateX(-35%) scale(0.85);" onerror="this.style.display='none'">
-            <!-- Right -->
-            <img src="3.png" alt="Compare View" class="absolute z-10 w-36 sm:w-44 lg:w-52 rounded-[1.8rem] shadow-2xl opacity-40 border border-white/10 transition-all duration-500 hover:opacity-100 hover:z-40" style="transform: perspective(1000px) rotateY(-15deg) rotateZ(3deg) translateX(35%) scale(0.85);" onerror="this.style.display='none'">
-            <!-- Center -->
-            <img src="1.png" alt="Scanner View" class="absolute z-30 w-44 sm:w-52 lg:w-60 rounded-[1.8rem] shadow-[0_30px_60px_rgba(0,0,0,0.9)] border-[2px] border-white/10 animate-float" onerror="this.style.display='none'">
+        <!-- 3D PHONE ARRAY (JPGs) -->
+        <div class="lg:w-[55%] w-full relative h-[450px] lg:h-[600px] flex justify-center items-center animate-on-scroll delay-200 mt-12 lg:mt-0 perspective-[1200px]">
+            <!-- Links (Scanner) -->
+            <img src="4.jpg" alt="Scanner View" class="absolute z-10 w-44 sm:w-52 lg:w-60 rounded-[2rem] shadow-2xl opacity-50 border-[5px] border-gray-800 transition-all duration-500 hover:opacity-100 hover:z-40" style="transform: rotateY(15deg) rotateZ(-6deg) translateX(-45%) scale(0.85);" onerror="this.style.display='none'">
+            <!-- Rechts (Compare) -->
+            <img src="6.jpg" alt="Compare View" class="absolute z-10 w-44 sm:w-52 lg:w-60 rounded-[2rem] shadow-2xl opacity-50 border-[5px] border-gray-800 transition-all duration-500 hover:opacity-100 hover:z-40" style="transform: rotateY(-15deg) rotateZ(6deg) translateX(45%) scale(0.85);" onerror="this.style.display='none'">
+            <!-- Mitte (Dashboard) -->
+            <div class="absolute z-30 transform -translate-y-4 animate-float shadow-[0_40px_80px_rgba(0,0,0,0.9)] rounded-[2rem] border-[5px] border-gray-700 bg-black overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20 pointer-events-none"></div>
+                <img src="1.jpg" alt="Dashboard View" class="w-52 sm:w-[280px] lg:w-[320px] h-auto object-cover relative z-10" onerror="this.style.display='none'">
+            </div>
         </div>
     </section>
 
-    <!-- THE BENTO GRID (FEATURES) -->
-    <section id="features" class="py-24 relative z-10">
+    <!-- FEATURES (THE BENTO GRID WITH IMAGES) -->
+    <section id="features" class="py-24 bg-[#0E1015] border-y border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
-                <h3 class="font-racing text-3xl md:text-4xl text-white tracking-wide mb-3" data-lang="en">YOUR NEW DASHBOARD</h3>
-                <h3 class="font-racing text-3xl md:text-4xl text-white tracking-wide mb-3 hidden" data-lang="de">DEIN NEUES DASHBOARD</h3>
-                <p class="text-gray-500 text-sm" data-lang="en">Engineered for die-cast enthusiasts.</p>
-                <p class="text-gray-500 text-sm hidden" data-lang="de">Entwickelt für Die-Cast Enthusiasten.</p>
+                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-2" data-lang="en">Engineered for Collectors</h2>
+                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-2 hidden" data-lang="de">Entwickelt für Sammler</h2>
+                <h3 class="font-racing text-4xl md:text-5xl text-white tracking-wide" data-lang="en">POWER UNDER THE HOOD</h3>
+                <h3 class="font-racing text-4xl md:text-5xl text-white tracking-wide hidden" data-lang="de">DIE FUNKTIONEN</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 auto-rows-[240px]">
+            <!-- Complex Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px]">
                 
-                <!-- Scanner (Mit Terminal Animation!) -->
-                <div class="md:col-span-2 md:row-span-2 bg-[#0E1015] rounded-3xl p-8 border border-white/5 relative overflow-hidden group animate-on-scroll hover:border-white/10 transition-all">
-                    <!-- Glow -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-gpcyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-6 text-gpcyan bg-gpcyan/10 border border-gpcyan/20">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v-2a2 2 0 012-2h2m10 0h2a2 2 0 012 2v2m0 10v2a2 2 0 01-2 2h-2m-10 0h-2a2 2 0 01-2-2v-2m7-10v.01M12 12v.01M16 12v.01M12 16v.01"></path></svg>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold mb-3 text-white relative z-10" data-lang="en">Universal AI Scanner</h3>
-                    <h3 class="text-2xl font-bold mb-3 text-white hidden relative z-10" data-lang="de">Universal KI Scanner</h3>
-                    <p class="text-gray-400 text-sm max-w-sm relative z-10 mb-8" data-lang="en">Scan blister packs, loose models, or real life cars. Our OCR & AI identifies the casting, Toy ID, and estimates real-world tech specs instantly.</p>
-                    <p class="text-gray-400 text-sm max-w-sm hidden relative z-10 mb-8" data-lang="de">Scanne OVP, lose Modelle oder echte Autos. Die KI erkennt das Modell, die Toy ID und schätzt echte technische Spezifikationen.</p>
-
-                    <!-- LARAVEL STYLE TERMINAL ANIMATION -->
-                    <div class="mt-auto bg-black/50 border border-white/5 rounded-xl p-4 font-mono text-xs text-gpcyan shadow-inner relative z-10">
-                        <div class="flex gap-1.5 mb-3">
-                            <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
-                            <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
-                            <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+                <!-- Feature 1: Scanner (Wide, Text Left, Image Right) -->
+                <div class="md:col-span-8 bg-gpcard rounded-3xl p-8 lg:p-10 border border-white/5 relative overflow-hidden group animate-on-scroll transition-colors hover:border-white/10 flex flex-col justify-center">
+                    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gpcyan/5 rounded-full blur-[100px] group-hover:bg-gpcyan/10 transition-colors duration-700"></div>
+                    <div class="relative z-10 md:w-3/5">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-gpcyan bg-gpcyan/10 border border-gpcyan/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v-2a2 2 0 012-2h2m10 0h2a2 2 0 012 2v2m0 10v2a2 2 0 01-2 2h-2m-10 0h-2a2 2 0 01-2-2v-2m7-10v.01M12 12v.01M16 12v.01M12 16v.01"></path></svg>
                         </div>
-                        <div class="overflow-hidden whitespace-nowrap opacity-0 animate-type1 w-0">> Analyzing casting...</div>
-                        <div class="overflow-hidden whitespace-nowrap opacity-0 animate-type2 w-0 text-white mt-1">> Match found: Porsche 935</div>
-                        <div class="overflow-hidden whitespace-nowrap opacity-0 animate-type3 w-0 text-gray-500 mt-1">> Extracting Specs: 700 BHP <span class="animate-blink text-white">|</span></div>
+                        <h3 class="text-3xl font-extrabold mb-4 text-white" data-lang="en">Universal AI Scanner</h3>
+                        <h3 class="text-3xl font-extrabold mb-4 text-white hidden" data-lang="de">Universal KI Scanner</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6" data-lang="en">Our proprietary AI doesn't just read barcodes. It uses advanced OCR to read blister packs, analyzes the casting of loose models, and can even identify real 1:1 vehicles on the street. Instantly matching your car against a global database to prevent duplicate purchases.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 hidden" data-lang="de">Unsere KI liest nicht nur Barcodes. Sie nutzt fortschrittliche OCR für OVP-Modelle, analysiert lose Castings und erkennt sogar echte Autos auf der Straße. Jedes Auto wird sofort mit der globalen Datenbank abgeglichen, um Doppelkauf zu vermeiden.</p>
                     </div>
+                    <!-- Mockup Image peeking from bottom right -->
+                    <img src="5.jpg" alt="Scanner Detail" class="absolute -bottom-10 -right-10 w-64 md:w-80 rounded-tl-2xl shadow-2xl border-t-4 border-l-4 border-gray-800 transform transition-transform duration-500 group-hover:-translate-y-4 group-hover:-translate-x-4" onerror="this.style.display='none'">
                 </div>
 
-                <!-- Radar -->
-                <div class="bg-[#0E1015] rounded-3xl p-6 border border-white/5 hover:border-white/10 transition-colors animate-on-scroll group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-gporange/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl"></div>
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-gporange bg-gporange/10 border border-gporange/20 relative z-10">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <!-- Feature 2: Radar (Tall) -->
+                <div class="md:col-span-4 bg-gpcard rounded-3xl p-8 border border-white/5 hover:border-white/10 group animate-on-scroll delay-100 relative overflow-hidden flex flex-col">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-30"></div>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-gporange bg-gporange/10 border border-gporange/20 relative z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-1 text-white relative z-10" data-lang="en">Global Hunt Radar</h3>
-                    <h3 class="text-lg font-bold mb-1 text-white hidden relative z-10" data-lang="de">Globales Radar</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed relative z-10" data-lang="en">Filter for STH, TH, or Chases spotted by the community on a privacy-safe map.</p>
-                    <p class="text-gray-500 text-xs leading-relaxed hidden relative z-10" data-lang="de">Filtere die Live-Karte nach STH, TH oder Chases in deiner Nähe.</p>
+                    <h3 class="text-2xl font-bold mb-3 text-white relative z-10" data-lang="en">Global Hunt Radar</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-white hidden relative z-10" data-lang="de">Globales Radar</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed relative z-10" data-lang="en">See live drops on the map. Filter for Treasure Hunts, Super Treasure Hunts, or Chases near your location safely and anonymously.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed hidden relative z-10" data-lang="de">Sieh Live-Funde auf der Karte. Filtere nach Treasure Hunts oder Chases in deiner Nähe, sicher und anonym.</p>
                 </div>
 
-                <!-- Album -->
-                <div class="bg-[#0E1015] rounded-3xl p-6 border border-white/5 hover:border-white/10 transition-colors animate-on-scroll delay-100 group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl"></div>
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-white bg-white/5 border border-white/10 relative z-10">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2z"></path></svg>
+                <!-- Feature 3: Tech Specs & Details (Tall) -->
+                <div class="md:col-span-4 bg-gpcard rounded-3xl p-8 border border-white/5 hover:border-white/10 group animate-on-scroll relative overflow-hidden flex flex-col">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-white bg-white/5 border border-white/10 relative z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-1 text-white relative z-10">Mainline Album</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed relative z-10" data-lang="en">Track your yearly 1/250 progress. Fill the digital slots.</p>
-                    <p class="text-gray-500 text-xs leading-relaxed hidden relative z-10" data-lang="de">Verfolge deinen 1/250 Fortschritt und fülle dein Jahrbuch.</p>
+                    <h3 class="text-2xl font-bold mb-3 text-white relative z-10" data-lang="en">Deep Tech Specs</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-white hidden relative z-10" data-lang="de">Tiefe Technik-Daten</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed relative z-10 mb-8" data-lang="en">Go beyond the toy. Garage Prime automatically fetches real-world technical specifications—including horsepower, top speed, and original MSRP.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed hidden relative z-10 mb-8" data-lang="de">Garage Prime lädt automatisch echte technische Daten aus der realen Welt herunter – inklusive PS, V-Max und originalem Neupreis.</p>
+                    <img src="3.jpg" alt="Specs" class="absolute -bottom-16 -right-4 w-48 rounded-xl shadow-xl border-2 border-gray-800 transform transition-transform duration-500 group-hover:-translate-y-4" onerror="this.style.display='none'">
                 </div>
 
-                <!-- Compare -->
-                <div class="bg-[#0E1015] rounded-3xl p-6 border border-white/5 hover:border-white/10 transition-colors animate-on-scroll group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-gpyellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl"></div>
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-gpyellow bg-gpyellow/10 border border-gpyellow/20 relative z-10">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <!-- Feature 4: Compare & Album (Wide) -->
+                <div class="md:col-span-8 bg-gpcard rounded-3xl p-8 lg:p-10 border border-white/5 hover:border-white/10 relative overflow-hidden group animate-on-scroll delay-100 flex flex-col justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-r from-gpyellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="relative z-10 md:w-1/2">
+                        <div class="flex gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-gpyellow bg-gpyellow/10 border border-gpyellow/20">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-extrabold mb-4 text-white" data-lang="en">Top Trumps Mode & Albums</h3>
+                        <h3 class="text-3xl font-extrabold mb-4 text-white hidden" data-lang="de">Auto-Quartett & Alben</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-lang="en">Settle the ultimate debate. Put any two vehicles from your garage head-to-head based on speed and power. Plus, track your yearly 1/250 Mainline progress with visual missing-slots albums.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed hidden" data-lang="de">Lass zwei Fahrzeuge aus deiner Garage in PS und Geschwindigkeit gegeneinander antreten. Verfolge zudem deinen 1/250 Mainline-Fortschritt im digitalen Sammelalbum.</p>
                     </div>
-                    <h3 class="text-lg font-bold mb-1 text-white relative z-10">Car Compare</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed relative z-10" data-lang="en">Top Trumps style. Match cars from your garage head-to-head.</p>
-                    <p class="text-gray-500 text-xs leading-relaxed hidden relative z-10" data-lang="de">Auto-Quartett! Lass Autos aus deiner Garage antreten.</p>
-                </div>
-
-                <!-- Clinic -->
-                <div class="md:col-span-2 bg-[#0E1015] rounded-3xl p-8 border border-white/5 hover:border-white/10 animate-on-scroll delay-100 flex flex-col justify-center relative overflow-hidden group transition-colors">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div class="flex items-center gap-3 mb-2 relative z-10">
-                        <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white text-sm font-bold">✚</div>
-                        <h3 class="text-xl font-bold text-white">Garage Health Clinic</h3>
-                    </div>
-                    <p class="text-gray-500 text-sm max-w-lg leading-relaxed relative z-10" data-lang="en">Missing specs on an old entry? Tap "Heal". Our AI scans your inventory and automatically fills in missing technical data.</p>
-                    <p class="text-gray-500 text-sm max-w-lg leading-relaxed hidden relative z-10" data-lang="de">Fehlen Daten? Drücke "Heilen". Die KI füllt automatisch fehlende Daten in deiner Garage auf.</p>
+                    <!-- Double Images Peeking -->
+                    <img src="6.jpg" alt="Compare" class="absolute -bottom-8 right-32 w-48 rounded-t-xl shadow-2xl border-t-2 border-x-2 border-gray-800 transform transition-transform duration-500 group-hover:-translate-y-4" onerror="this.style.display='none'">
+                    <img src="7.jpg" alt="Mainline" class="absolute -bottom-16 -right-4 w-48 rounded-tl-xl shadow-2xl border-t-2 border-l-2 border-gray-800 transform transition-transform duration-500 group-hover:-translate-y-8 z-10" onerror="this.style.display='none'">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ROADMAP -->
-    <section id="roadmap" class="py-24 border-t border-white/5 relative">
+    <!-- ROADMAP V2.0 -->
+    <section id="roadmap" class="py-24 bg-[#05050A] relative z-10 border-t border-white/5">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
-                <span class="text-gpcyan font-mono text-[10px] tracking-[0.2em] uppercase border border-gpcyan/20 bg-gpcyan/5 px-3 py-1 rounded-full">Coming Soon</span>
-                <h2 class="text-3xl font-racing mt-6 text-white tracking-wide">ROADMAP v2.0</h2>
+                <span class="text-gpcyan font-mono text-[10px] tracking-[0.2em] uppercase border border-gpcyan/20 bg-gpcyan/5 px-3 py-1 rounded-full">In Development</span>
+                <h2 class="text-4xl font-racing mt-6 text-white">ROADMAP v2.0</h2>
             </div>
             
             <div class="space-y-4">
-                <div class="flex items-center gap-5 bg-[#0E1015] p-5 rounded-2xl border border-white/5 animate-on-scroll hover:border-white/10 transition-colors">
-                    <div class="w-10 h-10 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center text-white font-bold shrink-0">1</div>
+                <div class="flex items-start gap-5 bg-gpcard/50 p-6 rounded-2xl border border-white/5 animate-on-scroll">
+                    <div class="w-10 h-10 bg-white/10 rounded-xl border border-white/10 flex items-center justify-center text-white font-bold shrink-0">1</div>
                     <div>
-                        <h4 class="font-bold text-sm mb-1 text-white" data-lang="en">Submit for Fuel (The Wiki Killer)</h4>
-                        <h4 class="font-bold text-sm mb-1 text-white hidden" data-lang="de">Submit for Fuel (Wiki Ablösung)</h4>
-                        <p class="text-xs text-gray-500" data-lang="en">Submit missing cars, review peer entries, and earn Fuel.</p>
-                        <p class="text-xs text-gray-500 hidden" data-lang="de">Reiche Autos ein, prüfe andere Einträge und verdiene 'Fuel'.</p>
+                        <h4 class="font-bold text-lg mb-2 text-white" data-lang="en">The Ultimate Community Database</h4>
+                        <h4 class="font-bold text-lg mb-2 text-white hidden" data-lang="de">Die ultimative Community-Datenbank</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed" data-lang="en">We are building the new standard for die-cast inventory. Submit missing cars, verify peer entries via a 3-stage review, and earn 'Fuel' and exclusive collector ranks for curating the ultimate library.</p>
+                        <p class="text-sm text-gray-400 leading-relaxed hidden" data-lang="de">Wir bauen den neuen Standard für Die-Cast Datenbanken. Reiche fehlende Autos ein, prüfe andere Einträge und verdiene 'Fuel' und exklusive Ränge als Belohnung.</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-5 bg-transparent p-5 rounded-2xl border border-white/5 border-dashed animate-on-scroll delay-100">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-700 font-bold shrink-0">?</div>
+                <div class="flex items-start gap-5 bg-transparent p-6 rounded-2xl border border-white/5 border-dashed animate-on-scroll delay-100">
+                    <div class="w-10 h-10 rounded-xl border-2 border-gray-700 flex items-center justify-center text-gray-600 font-bold shrink-0">?</div>
                     <div>
-                        <h4 class="font-bold text-sm mb-1 text-gray-600" data-lang="en">Top-Secret Features</h4>
-                        <h4 class="font-bold text-sm mb-1 text-gray-600 hidden" data-lang="de">Geheime Features</h4>
-                        <p class="text-xs text-gray-700" data-lang="en">More game-changing tools are in development.</p>
-                        <p class="text-xs text-gray-700 hidden" data-lang="de">Weitere bahnbrechende Funktionen sind in Entwicklung.</p>
+                        <h4 class="font-bold text-lg mb-2 text-gray-600" data-lang="en">Classified Features</h4>
+                        <h4 class="font-bold text-lg mb-2 text-gray-600 hidden" data-lang="de">Geheime Features</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed" data-lang="en">More game-changing tools are in development. We keep our cards close to our chest to stay ahead of the curve.</p>
+                        <p class="text-sm text-gray-700 leading-relaxed hidden" data-lang="de">Weitere bahnbrechende Funktionen sind in Entwicklung. Wir halten unsere Karten verdeckt, um der Konkurrenz voraus zu sein.</p>
                     </div>
                 </div>
             </div>
@@ -369,17 +339,18 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#05050A] py-10 border-t border-white/5">
+    <footer class="bg-black py-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
-                Garage Prime is an independent collector's tool. Not affiliated with Mattel, Inc.
+            <div class="text-gray-700 text-[10px] text-center md:text-left max-w-sm leading-relaxed">
+                Garage Prime is an independent collector's tool.<br>Not affiliated with, endorsed, or sponsored by Mattel, Inc.
             </div>
             <div class="flex flex-wrap justify-center gap-x-5 gap-y-2">
-                <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
-                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Imprint</a>
+                <a href="story.html" class="text-xs font-semibold text-gray-500 hover:text-white transition">The Story</a>
+                <a href="faq.html" class="text-xs font-semibold text-gray-500 hover:text-white transition">FAQ</a>
+                <span class="text-gray-800 hidden md:inline">|</span>
+                <a href="privacy.html" class="text-xs font-semibold text-gray-500 hover:text-gpcyan transition">Privacy Policy</a>
+                <a href="terms.html" class="text-xs font-semibold text-gray-500 hover:text-gpcyan transition">Terms of Service</a>
+                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-gpcyan transition">Imprint</a>
             </div>
         </div>
     </footer>
