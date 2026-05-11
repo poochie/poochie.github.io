@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Prime | The Ultimate Die-Cast Collector App</title>
+    <title>Garage Prime | The 1:64 Collector App</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
@@ -15,9 +15,9 @@
                     colors: {
                         gpbg: '#0B0D14',     // Pitch Black/Navy
                         gpcard: '#161925',   // Elevated Card Color
-                        gpcyan: '#00E5FF',   // Neon Cyan
-                        gporange: '#FF5500', // Track Orange
-                        gpred: '#E30022',    // Racing Red
+                        gpcyan: '#00E5FF',   // Tech Cyan
+                        gporange: '#FF5500', // Hot Wheels Track Orange
+                        gpyellow: '#FDC700', // Treasure Hunt Gold
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -25,23 +25,16 @@
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'blob': 'blob 7s infinite',
-                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'slide-in': 'slideIn 0.3s ease-out forwards',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         },
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 15px rgba(255, 85, 0, 0.2)' },
-                            '100%': { boxShadow: '0 0 30px rgba(255, 85, 0, 0.6)' },
+                        slideIn: {
+                            '0%': { transform: 'translateX(100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
                         }
                     }
                 }
@@ -59,18 +52,64 @@
             document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-500 hover:text-white transition cursor-pointer';
         }
 
-        // Mobile Menu Logic
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        // Modal Logic (Feature Request)
+        function toggleFeedback() {
+            const modal = document.getElementById('feedback-modal');
+            modal.classList.toggle('hidden');
         }
 
-        // Scroll Animations (Fade In Up)
+        // Supabase Form Submit
+        async function submitFeatureRequest(e) {
+            e.preventDefault();
+            
+            // Honeypot Check (Bot Protection)
+            if (document.getElementById('website-url-bot').value !== "") return;
+
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const name = document.getElementById('req-name').value;
+            const email = document.getElementById('req-email').value;
+            const msg = document.getElementById('req-msg').value;
+
+            // !! HIER DEINE SUPABASE DATEN EINTRAGEN !!
+            const SUPABASE_URL = 'https://behaycailacyhlyrnorn.supabase.co'; 
+            const ANON_KEY = 'DEIN_ANON_PUBLIC_KEY'; // Den Public Key eintragen!
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/tblfeaturerequests`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': ANON_KEY,
+                        'Authorization': `Bearer ${ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ name: name, email: email, message: msg })
+                });
+
+                if (response.ok) {
+                    document.getElementById('feature-form').classList.add('hidden');
+                    document.getElementById('success-msg').classList.remove('hidden');
+                } else {
+                    alert('Error sending request. Check Supabase RLS.');
+                }
+            } catch (err) {
+                alert('Network error. Please try again.');
+            } finally {
+                btn.innerText = 'Send';
+                btn.disabled = false;
+            }
+        }
+
+        // Init
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(localStorage.getItem('gp_lang') || 'en');
-            
-            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMenu);
+            const form = document.getElementById('feature-form');
+            if(form) form.addEventListener('submit', submitFeatureRequest);
 
+            // Scroll Animation Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -85,333 +124,223 @@
                 observer.observe(el);
             });
         });
-
-        // Supabase Form Submit Logic
-        async function submitFeatureRequest(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = 'Sending...';
-            btn.disabled = true;
-
-            const name = document.getElementById('req-name').value;
-            const email = document.getElementById('req-email').value;
-            const msg = document.getElementById('req-msg').value;
-
-            // HIER DEINE DATEN EINTRAGEN
-            const SUPABASE_URL = 'https://behaycailacyhlyrnorn.supabase.co';
-            const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlaGF5Y2FpbGFjeWhseXJub3JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTE0MDEsImV4cCI6MjA4Mzg4NzQwMX0.mg9OdDgYGQmsjGl307f7KBQEIEgcL1ukdyM6c2jmNLk';
-
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/tblfeaturerequests`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': ANON_KEY,
-                        'Authorization': `Bearer ${ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: msg
-                    })
-                });
-
-                if (response.ok) {
-                    document.getElementById('success-msg').classList.remove('hidden');
-                    document.getElementById('feature-form').reset();
-                } else {
-                    alert('Error sending request. Please try again.');
-                }
-            } catch (err) {
-                alert('Network error. Please try again.');
-            } finally {
-                btn.innerText = 'Send Idea';
-                btn.disabled = false;
-            }
-        }
-
-        // Event Listener an das Formular binden
-        document.addEventListener('DOMContentLoaded', () => {
-            // ... (Hier ist dein restlicher Code) ...
-            
-            const form = document.getElementById('feature-form');
-            if(form) form.addEventListener('submit', submitFeatureRequest);
-        });
     </script>
 </head>
 <body class="text-white font-sans antialiased overflow-x-hidden selection:bg-gporange selection:text-white">
 
-    <!-- BACKGROUND BLOBS (Neon Glow) -->
-    <div class="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-gpcyan/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-[40rem] h-[40rem] bg-gporange/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-[40rem] h-[40rem] bg-purple-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+    <!-- RACING STRIPE BACKGROUND -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] opacity-20">
+        <div class="absolute h-full w-4 bg-gporange left-[10%] transform -skew-x-12"></div>
+        <div class="absolute h-full w-1 bg-white left-[11%] transform -skew-x-12"></div>
     </div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 bg-gpbg/80 backdrop-blur-lg border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                
-                <!-- LOGO -->
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <img src="Logo.png" alt="Logo" class="w-8 h-8 object-contain rounded" onerror="this.style.display='none'">
-                    <span class="font-racing text-2xl tracking-widest text-white">GARAGE PRIME</span>
-                </div>
-
-                <!-- DESKTOP LINKS -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold tracking-wider uppercase text-sm" data-lang="en">Features</a>
-                    <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold tracking-wider uppercase text-sm hidden" data-lang="de">Funktionen</a>
-                    <a href="#roadmap" class="text-gray-300 hover:text-gpcyan transition font-semibold tracking-wider uppercase text-sm" data-lang="en">Roadmap</a>
-                    <a href="#roadmap" class="text-gray-300 hover:text-gpcyan transition font-semibold tracking-wider uppercase text-sm hidden" data-lang="de">Ausblick</a>
-                </div>
-
-                <!-- LANGUAGE & MOBILE MENU BUTTON -->
-                <div class="flex items-center gap-4">
-                    <div class="flex gap-2 text-xs font-bold bg-white/10 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
-                        <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                        <span class="text-gray-600">|</span>
-                        <span id="btn-de" onclick="setLanguage('de')">DE</span>
-                    </div>
-                    
-                    <!-- HAMBURGER ICON (Nur Mobile sichtbar) -->
-                    <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
+    <nav class="fixed w-full z-40 bg-gpbg/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <div class="flex items-center gap-3">
+                <span class="font-racing text-2xl tracking-widest text-white">GARAGE PRIME</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold tracking-wider uppercase text-sm" data-lang="en">Features</a>
+                <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold tracking-wider uppercase text-sm hidden" data-lang="de">Funktionen</a>
+                <a href="#roadmap" class="text-gray-300 hover:text-gpcyan transition font-semibold tracking-wider uppercase text-sm">v2.0</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2 text-xs font-bold bg-white/10 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
+                    <span class="text-gray-600">|</span>
+                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
                 </div>
             </div>
-        </div>
-
-        <!-- MOBILE DROPDOWN MENU -->
-        <div id="mobile-menu" class="md:hidden hidden bg-gpbg/95 backdrop-blur-md border-b border-gray-800 absolute w-full left-0 top-20 flex flex-col items-center py-6 space-y-6 shadow-2xl transition-all">
-            <a href="#features" onclick="toggleMenu()" class="text-xl font-bold text-white hover:text-gporange" data-lang="en">Features</a>
-            <a href="#features" onclick="toggleMenu()" class="text-xl font-bold text-white hidden" data-lang="de">Funktionen</a>
-            <a href="#roadmap" onclick="toggleMenu()" class="text-xl font-bold text-white hover:text-gpcyan" data-lang="en">Roadmap</a>
-            <a href="#roadmap" onclick="toggleMenu()" class="text-xl font-bold text-white hidden" data-lang="de">Ausblick</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION (RACING VIBE) -->
-    <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-16 min-h-[85vh]">
+    <!-- FLOATING FEATURE REQUEST BUTTON & MODAL -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- MODAL -->
+        <div id="feedback-modal" class="hidden mb-4 bg-gpcard border border-gray-700 shadow-2xl rounded-2xl w-80 p-5 origin-bottom-right animate-slide-in">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-racing text-xl text-gporange">Idea? Bug?</h3>
+                <button onclick="toggleFeedback()" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
             
-            <!-- TEXT BEREICH -->
-            <div class="lg:w-1/2 text-center lg:text-left animate-on-scroll">
-                <!-- GROSSES LOGO -->
-                <img src="Logo.png" alt="Garage Prime Logo" class="w-24 h-24 object-contain rounded-2xl mb-8 mx-auto lg:mx-0 shadow-[0_0_30px_rgba(255,85,0,0.4)]" onerror="this.style.display='none'">
-                
-                <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-tight uppercase" data-lang="en">
-                    Scan. Track.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpred">Hunt.</span>
-                </h1>
-                <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-tight uppercase hidden" data-lang="de">
-                    Scannen. Sammeln.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpred">Jagen.</span>
-                </h1>
-
-                <p class="text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed font-light" data-lang="en">
-                    Built by a collector, for collectors. Ditch the messy spreadsheets. Use AI to scan <strong class="text-white">Carded, Loose, or Real 1:1 Cars</strong> and organize your die-cast garage in seconds.
-                </p>
-                <p class="text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed font-light hidden" data-lang="de">
-                    Von einem Sammler, für Sammler. Vergiss unübersichtliche Tabellen. Nutze unsere KI, um <strong class="text-white">OVP, lose Modelle oder echte 1:1 Autos</strong> zu scannen und deine digitale Garage in Sekunden aufzubauen.
-                </p>
-
-                <!-- GOOGLE PLAY BUTTON -->
-                <div class="flex justify-center lg:justify-start">
-                    <a href="#" class="animate-glow bg-black border border-gporange text-white font-bold py-4 px-8 rounded-full flex items-center gap-3 hover:bg-gray-900 transition-all transform hover:scale-105">
-                        <svg class="w-7 h-7 text-gporange" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3.609 1.814L13.792 12 3.61 22.186c-.131-.155-.219-.36-.219-.595V2.41c0-.236.088-.44.218-.596zm1.18.23l8.601 8.601 2.502-2.502L5.807 2.304c-.389-.22-.76-.145-1.018.04zM15.422 13.63l-2.501-2.501-8.128 8.128c.258.185.629.261 1.018.04l10.085-5.836c.64-.37.64-.972 0-1.343l-.474-.275z"/>
-                        </svg>
-                        <div class="text-left">
-                            <div class="text-[10px] leading-tight text-gray-400">GET IT ON</div>
-                            <div class="text-lg leading-tight font-extrabold">Google Play</div>
-                        </div>
-                    </a>
-                </div>
+            <div id="success-msg" class="hidden text-center py-6">
+                <div class="text-3xl mb-2">🏁</div>
+                <p class="font-bold text-white">Submitted!</p>
+                <p class="text-sm text-gray-400">Thanks for building the ultimate garage with me.</p>
             </div>
 
-            <!-- BILDER BEREICH (3D EFFEKT) -->
-            <div class="lg:w-1/2 w-full relative h-[500px] lg:h-[600px] flex justify-center items-center animate-on-scroll delay-200">
-                <!-- Der App Screenshot (im Hintergrund) -->
-                <div class="absolute z-10 w-64 h-[500px] bg-black/40 backdrop-blur-xl rounded-[2.5rem] border-[4px] border-gray-800 shadow-2xl transform rotate-[-5deg] flex flex-col overflow-hidden">
-                    <img src="app_screenshot.png" alt="" class="absolute inset-0 w-full h-full object-cover opacity-50" onerror="this.style.display='none'">
-                    <div class="mt-12 mx-4 h-48 border-2 border-gpcyan/50 border-dashed rounded-xl bg-gpcyan/5 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute top-0 w-full h-1 bg-gpcyan shadow-[0_0_10px_#00E5FF] animate-[translateY_2s_infinite]"></div>
-                        <span class="text-gpcyan font-mono text-xs tracking-widest text-center">AI TARGET<br>ACQUIRED</span>
-                    </div>
+            <form id="feature-form" class="space-y-3">
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                    <input type="text" id="website-url-bot" name="website-url-bot" tabindex="-1" autocomplete="off">
                 </div>
-                
-                <!-- Das schwebende Auto (im Vordergrund) -->
-                <img src="car_transparent.png" alt="Hot Wheels Car" class="absolute z-20 w-80 lg:w-[400px] right-0 lg:right-[-20px] bottom-10 animate-float drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] pointer-events-none" onerror="this.style.display='none'">
-            </div>
+                <input type="text" id="req-name" required placeholder="Nickname" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-gporange outline-none">
+                <input type="email" id="req-email" placeholder="Email (optional)" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-gporange outline-none">
+                <textarea id="req-msg" required rows="3" placeholder="I'd love to see a feature that..." class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-gporange outline-none resize-none"></textarea>
+                <button type="submit" id="submit-btn" class="w-full bg-gporange text-black font-bold py-2 rounded-lg hover:bg-orange-600 transition">Send</button>
+            </form>
+        </div>
+        
+        <!-- FAB BUTTON -->
+        <button onclick="toggleFeedback()" class="bg-gporange hover:bg-orange-600 text-black rounded-full p-4 shadow-[0_0_20px_rgba(255,85,0,0.5)] transition transform hover:scale-110 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-20 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 min-h-[90vh]">
+        
+        <!-- TEXT BEREICH -->
+        <div class="lg:w-[45%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 animate-on-scroll">
+            
+            <!-- GROSSES LOGO -->
+            <img src="Logo.png" alt="Garage Prime Logo" class="w-40 h-auto mb-8 mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,85,0,0.3)]">
+            
+            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.1] uppercase" data-lang="en">
+                THE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpyellow">COLLECTOR</span> APP.
+            </h1>
+            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.1] uppercase hidden" data-lang="de">
+                DIE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpyellow">SAMMLER</span> APP.
+            </h1>
+            
+            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light" data-lang="en">
+                Scan <strong>Carded, Loose, or Real Cars</strong> with elite AI. Track your inventory, hunt globally for Super Treasure Hunts, and battle in Top Trumps mode.
+            </p>
+            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light hidden" data-lang="de">
+                Scanne <strong>OVP, lose oder echte Autos</strong> mit der besten KI. Verwalte dein Inventar, jage Super Treasure Hunts auf dem Radar und vergleiche Specs.
+            </p>
+
+            <!-- OFFIZIELLES GOOGLE PLAY BADGE -->
+            <a href="#" class="transition-transform hover:scale-105 hover:drop-shadow-[0_0_20px_rgba(0,229,255,0.4)]">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-16">
+            </a>
+        </div>
+
+        <!-- 3D PHONE ARRAY -->
+        <div class="lg:w-[55%] w-full relative h-[600px] flex justify-center items-center animate-on-scroll delay-200 perspective-1000">
+            <!-- Handy Links (Hinten) -->
+            <img src="2.png" alt="App Screen" class="absolute z-10 w-48 sm:w-56 rounded-[2rem] shadow-2xl transform -rotate-12 -translate-x-24 sm:-translate-x-32 scale-90 opacity-80 border-4 border-gray-800" onerror="this.style.display='none'">
+            
+            <!-- Handy Rechts (Hinten) -->
+            <img src="3.png" alt="App Screen" class="absolute z-10 w-48 sm:w-56 rounded-[2rem] shadow-2xl transform rotate-12 translate-x-24 sm:translate-x-32 scale-90 opacity-80 border-4 border-gray-800" onerror="this.style.display='none'">
+            
+            <!-- Handy Mitte (Vorne) -->
+            <img src="1.png" alt="App Screen" class="absolute z-30 w-56 sm:w-64 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.8)] transform -translate-y-4 animate-float border-4 border-gray-700" onerror="this.style.display='none'">
         </div>
     </section>
 
-    <!-- FEATURES (THE BENTO GRID) -->
-    <section id="features" class="py-24 bg-[#161925] border-y border-gray-800 relative z-10">
+    <!-- THE BENTO GRID (FEATURES) -->
+    <section id="features" class="py-24 bg-[#0F111A] border-y border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2" data-lang="en">Your New Dashboard</h2>
-                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2 hidden" data-lang="de">Dein Neues Dashboard</h2>
-                <h3 class="font-racing text-4xl text-white tracking-wide" data-lang="en">NEXT-GEN COLLECTING</h3>
-                <h3 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">COLLECTING DER NÄCHSTEN GENERATION</h3>
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-2" data-lang="en">Built for the Hunt</h2>
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-2 hidden" data-lang="de">Gemacht für die Jagd</h2>
+                <h3 class="font-racing text-4xl text-white tracking-wide" data-lang="en">YOUR NEW DASHBOARD</h3>
+                <h3 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">DEIN NEUES DASHBOARD</h3>
             </div>
 
-            <!-- Bento Box Grid Layout -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
                 
-                <!-- Bento 1: Scanner (Large, 2x2) -->
-                <div class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-gpbg to-[#11131C] rounded-3xl p-8 border border-white/10 relative overflow-hidden group animate-on-scroll">
+                <!-- Bento 1: Scanner -->
+                <div class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 relative overflow-hidden group animate-on-scroll">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-gpcyan/10 rounded-full blur-[80px] group-hover:bg-gpcyan/20 transition-all duration-700"></div>
-                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-gpcyan border border-gray-700 group-hover:bg-gpcyan group-hover:text-black transition z-10 relative">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-gpcyan border border-gray-700">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
                     </div>
                     <h3 class="text-3xl font-extrabold mb-4 text-white relative z-10" data-lang="en">Universal AI Scanner</h3>
                     <h3 class="text-3xl font-extrabold mb-4 text-white hidden relative z-10" data-lang="de">Universal KI Scanner</h3>
-                    <p class="text-gray-400 text-lg max-w-md leading-relaxed relative z-10" data-lang="en">Scan blister packs, loose models, or even real life 1:1 cars on the street. Our AI identifies the casting, extracts text via OCR, and estimates real-world tech specs instantly.</p>
-                    <p class="text-gray-400 text-lg max-w-md leading-relaxed hidden relative z-10" data-lang="de">Scanne OVP, ausgepackte Modelle oder echte Autos auf der Straße. Die KI erkennt das Modell, liest OCR und schätzt echte technische Spezifikationen.</p>
+                    <p class="text-gray-400 text-lg max-w-md leading-relaxed relative z-10" data-lang="en">Scan blister packs, loose models, or even real life cars. Our OCR & AI identifies the casting, Toy ID, and estimates real-world tech specs instantly.</p>
+                    <p class="text-gray-400 text-lg max-w-md leading-relaxed hidden relative z-10" data-lang="de">Scanne OVP, lose Modelle oder echte Autos. Die KI erkennt das Modell, die Toy ID und schätzt echte technische Spezifikationen.</p>
                 </div>
 
-                <!-- Bento 2: Radar (1x1) -->
-                <div class="bg-gradient-to-br from-gpbg to-[#11131C] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-100 relative overflow-hidden">
-                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-gporange border border-gray-700 group-hover:bg-gporange group-hover:text-black transition">
+                <!-- Bento 2: Radar -->
+                <div class="bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-100 relative overflow-hidden">
+                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-gporange border border-gray-700">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-white" data-lang="en">Global Hunt Radar</h3>
                     <h3 class="text-xl font-bold mb-2 text-white hidden" data-lang="de">Globales Radar</h3>
-                    <p class="text-gray-400 text-sm" data-lang="en">Live, privacy-safe map. Filter for STH, TH, or Chases spotted by the community.</p>
-                    <p class="text-gray-400 text-sm hidden" data-lang="de">Datenschutzfreundliche Live-Karte. Filtere nach STH, TH oder Chases in deiner Nähe.</p>
+                    <p class="text-gray-400 text-sm" data-lang="en">Filter for STH, TH, or Chases spotted by the community on a privacy-safe map.</p>
+                    <p class="text-gray-400 text-sm hidden" data-lang="de">Filtere die Live-Karte nach STH, TH oder Chases in deiner Nähe.</p>
                 </div>
 
-                <!-- Bento 3: Mainline Album (1x1) -->
-                <div class="bg-gradient-to-br from-gpbg to-[#11131C] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-200">
-                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-white border border-gray-700 group-hover:bg-white group-hover:text-black transition">
+                <!-- Bento 3: Mainline Album -->
+                <div class="bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-200">
+                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-white border border-gray-700">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-white">Mainline Album</h3>
                     <p class="text-gray-400 text-sm" data-lang="en">Track your yearly 1/250 progress. Fill the digital slots and complete the series.</p>
-                    <p class="text-gray-400 text-sm hidden" data-lang="de">Verfolge deinen 1/250 Fortschritt. Fülle die digitalen Slots und vervollständige das Jahr.</p>
+                    <p class="text-gray-400 text-sm hidden" data-lang="de">Verfolge deinen 1/250 Fortschritt und vervollständige dein digitales Jahrbuch.</p>
                 </div>
 
-                <!-- Bento 4: Compare (1x1) -->
-                <div class="bg-gradient-to-br from-gpbg to-[#11131C] rounded-3xl p-8 border border-white/10 group animate-on-scroll">
-                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-gpred border border-gray-700 group-hover:bg-gpred group-hover:text-white transition">
+                <!-- Bento 4: Compare -->
+                <div class="bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 group animate-on-scroll">
+                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-gpyellow border border-gray-700">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-white">Car Compare</h3>
-                    <p class="text-gray-400 text-sm" data-lang="en">Top Trumps style. Match cars from your garage head-to-head based on BHP and Top Speed.</p>
-                    <p class="text-gray-400 text-sm hidden" data-lang="de">Auto-Quartett! Lass Autos aus deiner Garage in PS und V-Max gegeneinander antreten.</p>
+                    <p class="text-gray-400 text-sm" data-lang="en">Top Trumps style. Match cars from your garage head-to-head based on BHP and Speed.</p>
+                    <p class="text-gray-400 text-sm hidden" data-lang="de">Auto-Quartett! Lass Autos aus deiner Garage gegeneinander antreten.</p>
                 </div>
 
-                <!-- Bento 5: Garage Clinic (Wide 2x1) -->
-                <div class="md:col-span-2 bg-gradient-to-br from-gpbg to-[#11131C] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-100 flex flex-col justify-center relative overflow-hidden">
-                    <div class="absolute bottom-[-20%] right-[-10%] w-40 h-40 bg-purple-500/10 rounded-full blur-[40px]"></div>
-                    <div class="flex items-center gap-4 mb-4 relative z-10">
-                        <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-purple-500 font-bold border border-gray-700 group-hover:bg-purple-500 group-hover:text-white transition">✚</div>
+                <!-- Bento 5: Clinic -->
+                <div class="md:col-span-2 bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 animate-on-scroll delay-100 flex flex-col justify-center">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 font-bold">✚</div>
                         <h3 class="text-2xl font-bold text-white">Garage Health Clinic</h3>
                     </div>
-                    <p class="text-gray-400 relative z-10" data-lang="en">Missing specs on an old entry? Tap "Heal". Our AI scans your inventory, researches, and automatically fills in missing BHP, Engine Type, and MSRP data.</p>
-                    <p class="text-gray-400 hidden relative z-10" data-lang="de">Fehlen Daten bei einem alten Eintrag? Drücke "Heilen". Die KI durchsucht dein Inventar und füllt automatisch fehlende PS-, Motor- und Preisdaten auf.</p>
+                    <p class="text-gray-400" data-lang="en">Missing specs on an old entry? Tap "Heal". Our AI scans your inventory and automatically fills in missing technical data.</p>
+                    <p class="text-gray-400 hidden" data-lang="de">Fehlen Daten? Drücke "Heilen". Die KI füllt automatisch fehlende technische Daten in deiner Garage auf.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ROADMAP V2.0 -->
-    <section id="roadmap" class="py-24 border-t border-white/10 bg-black relative z-10 overflow-hidden">
-        <!-- Blueprint Pattern Background -->
-        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-        
+    <section id="roadmap" class="py-24 bg-gpbg border-t border-white/10 relative z-10 overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 animate-on-scroll">
-                <span class="text-gpcyan font-mono text-sm tracking-widest uppercase">Classified</span>
                 <h2 class="text-4xl font-racing mt-2">ROADMAP v2.0</h2>
             </div>
-
-            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-800 before:to-transparent">
-                
+            <div class="space-y-8">
                 <!-- Timeline Item 1 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active animate-on-scroll">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-gporange text-black font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_#FF5500]">1</div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gpcard p-6 rounded-2xl border border-white/10 hover:border-gporange/50 transition">
-                        <h4 class="font-bold text-lg mb-2" data-lang="en">Submit for Fuel (The Wiki-Killer)</h4>
-                        <h4 class="font-bold text-lg mb-2 hidden" data-lang="de">Submit for Fuel (Die Wiki-Ablösung)</h4>
-                        <p class="text-sm text-gray-400" data-lang="en">Help build the ultimate structured database. Submit missing cars, review peer entries, and earn Fuel and exclusive ranks for curating.</p>
-                        <p class="text-sm text-gray-400 hidden" data-lang="de">Reiche fehlende Autos ein, prüfe Einträge anderer Sammler und verdiene dir 'Fuel' und Ränge als Belohnung für deine Hilfe.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group animate-on-scroll delay-100">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-gray-800 text-gray-400 font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">?</div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gpcard/50 p-6 rounded-2xl border border-white/5 border-dashed">
-                        <h4 class="font-bold text-lg mb-2 text-gray-500" data-lang="en">Classified Features</h4>
-                        <h4 class="font-bold text-lg mb-2 text-gray-500 hidden" data-lang="de">Streng geheime Features</h4>
-                        <p class="text-sm text-gray-600" data-lang="en">More game-changing tools are in development. We keep our cards close to our chest to stay ahead of the curve.</p>
-                        <p class="text-sm text-gray-600 hidden" data-lang="de">Weitere bahnbrechende Funktionen sind in Entwicklung. Wir halten unsere Karten verdeckt, um der Konkurrenz voraus zu sein.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-<!-- CONTACT / FEATURE REQUEST SECTION -->
-    <section id="contact" class="py-24 bg-[#161925] border-t border-white/10 relative z-10">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2" data-lang="en">Got an idea?</h2>
-                <h2 class="text-sm font-bold text-gpcyan uppercase tracking-widest mb-2 hidden" data-lang="de">Hast du eine Idee?</h2>
-                <h3 class="font-racing text-4xl text-white tracking-wide" data-lang="en">REQUEST A FEATURE</h3>
-                <h3 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">FEATURE VORSCHLAGEN</h3>
-                <p class="text-gray-400 mt-4" data-lang="en">Garage Prime is built for the community. Tell me what you want to see next!</p>
-                <p class="text-gray-400 mt-4 hidden" data-lang="de">Garage Prime wird für die Community gebaut. Lass mich wissen, was als Nächstes kommen soll!</p>
-            </div>
-
-            <div class="bg-gpcard p-8 rounded-3xl border border-white/10 shadow-2xl animate-on-scroll delay-100 relative">
-                <!-- Success Message Overlay (Hidden by default) -->
-                <div id="success-msg" class="hidden absolute inset-0 bg-gpcard/95 backdrop-blur-sm rounded-3xl flex flex-col items-center justify-center z-20">
-                    <div class="w-16 h-16 bg-gpcyan/20 rounded-full flex items-center justify-center text-gpcyan mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-2" data-lang="en">Idea submitted!</h4>
-                    <h4 class="text-2xl font-bold text-white mb-2 hidden" data-lang="de">Idee gesendet!</h4>
-                    <p class="text-gray-400 text-center" data-lang="en">Thanks for helping me improve Garage Prime.</p>
-                    <p class="text-gray-400 text-center hidden" data-lang="de">Danke, dass du hilfst, Garage Prime zu verbessern.</p>
-                </div>
-
-                <form id="feature-form" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-400 mb-2" data-lang="en">Your Name (or Nickname)</label>
-                            <label class="block text-sm font-semibold text-gray-400 mb-2 hidden" data-lang="de">Dein Name (oder Nickname)</label>
-                            <input type="text" id="req-name" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gpcyan transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-400 mb-2" data-lang="en">Email (optional)</label>
-                            <label class="block text-sm font-semibold text-gray-400 mb-2 hidden" data-lang="de">E-Mail (optional)</label>
-                            <input type="email" id="req-email" class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gpcyan transition">
-                        </div>
-                    </div>
+                <div class="flex items-start gap-6 bg-gpcard p-6 rounded-2xl border border-white/10 shadow-xl animate-on-scroll">
+                    <div class="w-12 h-12 bg-gporange rounded-full flex items-center justify-center text-black font-extrabold shrink-0 shadow-[0_0_15px_rgba(255,85,0,0.5)]">1</div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-400 mb-2" data-lang="en">Your Idea / Feedback</label>
-                        <label class="block text-sm font-semibold text-gray-400 mb-2 hidden" data-lang="de">Deine Idee / Feedback</label>
-                        <textarea id="req-msg" required rows="4" class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gpcyan transition resize-none"></textarea>
+                        <h4 class="font-bold text-xl mb-2" data-lang="en">Submit for Fuel (Wiki Killer)</h4>
+                        <h4 class="font-bold text-xl mb-2 hidden" data-lang="de">Submit for Fuel (Wiki Ablösung)</h4>
+                        <p class="text-gray-400" data-lang="en">Help build the ultimate structured database. Submit missing cars, review peer entries, and earn Fuel and exclusive ranks.</p>
+                        <p class="text-gray-400 hidden" data-lang="de">Reiche fehlende Autos ein, prüfe Einträge anderer Sammler und verdiene dir 'Fuel' und Ränge als Belohnung.</p>
                     </div>
-                    <button type="submit" id="submit-btn" class="w-full bg-gporange text-black font-bold py-4 rounded-xl hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(255,85,0,0.4)] transition duration-300">
-                        <span data-lang="en">Send Idea</span>
-                        <span data-lang="de" class="hidden">Idee absenden</span>
-                    </button>
-                </form>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="flex items-start gap-6 bg-gpcard/50 p-6 rounded-2xl border border-white/5 border-dashed animate-on-scroll delay-100">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 font-bold shrink-0">?</div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-2 text-gray-500" data-lang="en">Classified Features</h4>
+                        <h4 class="font-bold text-xl mb-2 text-gray-500 hidden" data-lang="de">Streng geheime Features</h4>
+                        <p class="text-gray-600" data-lang="en">More game-changing tools are in development. We keep our cards close to our chest to stay ahead of the curve.</p>
+                        <p class="text-gray-600 hidden" data-lang="de">Weitere bahnbrechende Funktionen sind in Entwicklung. Wir halten unsere Karten verdeckt, um der Konkurrenz voraus zu sein.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     <!-- FOOTER -->
-    <footer class="bg-[#0B0D14] py-12 border-t border-white/10 relative z-10">
+    <footer class="bg-[#05060A] py-10 border-t border-gray-900 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3 text-center md:text-left">
-                <span class="font-racing text-xl tracking-widest text-white opacity-50">GARAGE PRIME</span>
-            </div>
-            <div class="text-gray-600 text-xs max-w-md text-center md:text-left leading-relaxed">
+            <div class="text-gray-600 text-xs text-center md:text-left max-w-md">
                 Garage Prime is an independent collector's tool. Not affiliated with, endorsed, or sponsored by Mattel, Inc., or Hot Wheels.
+            </div>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="text-xs font-semibold text-gray-500 hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="text-xs font-semibold text-gray-500 hover:text-white transition">Terms of Service</a>
+                <a href="imprint.html" class="text-xs font-semibold text-gray-500 hover:text-white transition">Imprint</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
