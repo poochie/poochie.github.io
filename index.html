@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#0B0D14]">
+<html lang="en" class="scroll-smooth bg-[#08090D]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garage Prime | The 1:64 Collector App</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,8 +13,8 @@
             theme: {
                 extend: {
                     colors: {
-                        gpbg: '#0B0D14',     
-                        gpcard: '#161925',   
+                        gpbg: '#08090D',     
+                        gpcard: '#12141D',   
                         gpcyan: '#00E5FF',   
                         gporange: '#FF5500', 
                         gpyellow: '#FDC700', 
@@ -24,24 +24,25 @@
                         racing: ['"Racing Sans One"', 'cursive'],
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'slide-in': 'slideIn 0.3s ease-out forwards',
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-delayed': 'float 8s ease-in-out 2s infinite',
+                        'slide-in': 'slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
+                            '50%': { transform: 'translateY(-12px)' },
                         },
                         slideIn: {
-                            '0%': { transform: 'translateX(100%)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                            '0%': { transform: 'translateX(100%) scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'translateX(0) scale(1)', opacity: '1' },
                         }
                     }
                 }
             }
         }
 
-        // Language Switcher Logic
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
                 if(el.getAttribute('data-lang') === lang) el.classList.remove('hidden');
@@ -52,35 +53,30 @@
             document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-500 hover:text-white transition cursor-pointer';
         }
 
-        // Mobile Menu Logic
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // Modal Logic (Feature Request)
         function toggleFeedback() {
             const modal = document.getElementById('feedback-modal');
             modal.classList.toggle('hidden');
         }
 
-        // Supabase Form Submit
         async function submitFeatureRequest(e) {
             e.preventDefault();
-            
             if (document.getElementById('website-url-bot').value !== "") return;
 
             const btn = document.getElementById('submit-btn');
-            btn.innerText = 'Sending...';
+            btn.innerHTML = '<svg class="animate-spin h-5 w-5 mx-auto text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
             btn.disabled = true;
 
             const name = document.getElementById('req-name').value;
             const email = document.getElementById('req-email').value;
             const msg = document.getElementById('req-msg').value;
 
-            // !! HIER DEINE SUPABASE DATEN EINTRAGEN !!
             const SUPABASE_URL = 'https://behaycailacyhlyrnorn.supabase.co'; 
-            const ANON_KEY = 'DEIN_ANON_PUBLIC_KEY'; // Den Public Key eintragen!
+            const ANON_KEY = 'DEIN_ANON_PUBLIC_KEY'; 
 
             try {
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/tblfeaturerequests`, {
@@ -98,17 +94,16 @@
                     document.getElementById('feature-form').classList.add('hidden');
                     document.getElementById('success-msg').classList.remove('hidden');
                 } else {
-                    alert('Error sending request. Check Supabase RLS.');
+                    alert('Error sending request.');
                 }
             } catch (err) {
-                alert('Network error. Please try again.');
+                alert('Network error.');
             } finally {
                 btn.innerText = 'Send';
                 btn.disabled = false;
             }
         }
 
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(localStorage.getItem('gp_lang') || 'en');
             const form = document.getElementById('feature-form');
@@ -118,216 +113,254 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('opacity-100', 'translate-y-0');
-                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
                     }
                 });
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-                el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
+                el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-1000', 'ease-out');
                 observer.observe(el);
             });
         });
     </script>
 </head>
-<body class="text-white font-sans antialiased overflow-x-hidden selection:bg-gporange selection:text-white">
+<body class="text-gray-300 font-sans antialiased overflow-x-hidden selection:bg-gporange selection:text-white">
 
-    <!-- RACING STRIPE BACKGROUND -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] opacity-20">
-        <div class="absolute h-full w-4 bg-gporange left-[10%] transform -skew-x-12"></div>
-        <div class="absolute h-full w-1 bg-white left-[11%] transform -skew-x-12"></div>
-    </div>
+    <!-- SUBTLE BACKGROUND MESH -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
 
-    <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 bg-gpbg/80 backdrop-blur-lg border-b border-white/10">
+    <!-- NAVBAR (Glassmorphism) -->
+    <nav class="fixed w-full z-40 bg-gpbg/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
             <div class="flex items-center gap-3">
-                <span class="font-racing text-2xl tracking-widest text-white">GARAGE PRIME</span>
+                <span class="font-racing text-2xl tracking-widest text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
             </div>
             
             <!-- DESKTOP LINKS -->
-            <div class="hidden md:flex space-x-8">
-                <a href="story.html" class="text-gray-300 hover:text-white transition font-semibold tracking-wider uppercase text-sm">The Story</a>
-                <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold tracking-wider uppercase text-sm" data-lang="en">Features</a>
-                <a href="#features" class="text-gray-300 hover:text-gporange transition font-semibold tracking-wider uppercase text-sm hidden" data-lang="de">Funktionen</a>
-                <a href="faq.html" class="text-gray-300 hover:text-white transition font-semibold tracking-wider uppercase text-sm">FAQ</a>
-                <a href="#roadmap" class="text-gray-300 hover:text-gpcyan transition font-semibold tracking-wider uppercase text-sm">v2.0</a>
+            <div class="hidden md:flex space-x-10">
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors">The Story</a>
+                <a href="#features" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">Features</a>
+                <a href="#features" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Funktionen</a>
+                <a href="faq.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors">FAQ</a>
+                <a href="#roadmap" class="text-sm font-semibold text-gray-400 hover:text-gpcyan transition-colors">v2.0</a>
             </div>
 
-            <!-- LANGUAGE & MOBILE MENU BUTTON -->
+            <!-- LANGUAGE & MOBILE MENU -->
             <div class="flex items-center gap-4">
-                <div class="flex gap-2 text-xs font-bold bg-white/10 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+                <div class="flex gap-3 text-xs font-semibold bg-white/5 px-4 py-1.5 rounded-full border border-white/10 hover:bg-white/10 transition">
                     <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                    <span class="text-gray-600">|</span>
+                    <span class="text-gray-700">|</span>
                     <span id="btn-de" onclick="setLanguage('de')">DE</span>
                 </div>
-                <!-- HAMBURGER ICON -->
                 <button onclick="toggleMenu()" class="md:hidden text-white p-2 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
 
-        <!-- MOBILE DROPDOWN MENU -->
-        <div id="mobile-menu" class="md:hidden hidden bg-gpbg/95 backdrop-blur-md border-b border-gray-800 absolute w-full left-0 top-20 flex flex-col items-center py-6 space-y-6 shadow-2xl transition-all">
-            <a href="story.html" class="text-xl font-bold text-white hover:text-gporange uppercase tracking-wider">The Story</a>
-            <a href="#features" onclick="toggleMenu()" class="text-xl font-bold text-white hover:text-gporange uppercase tracking-wider" data-lang="en">Features</a>
-            <a href="#features" onclick="toggleMenu()" class="text-xl font-bold text-white hidden uppercase tracking-wider" data-lang="de">Funktionen</a>
-            <a href="faq.html" class="text-xl font-bold text-white hover:text-gporange uppercase tracking-wider">FAQ</a>
-            <a href="#roadmap" onclick="toggleMenu()" class="text-xl font-bold text-white hover:text-gpcyan uppercase tracking-wider" data-lang="en">Roadmap</a>
-            <a href="#roadmap" onclick="toggleMenu()" class="text-xl font-bold text-white hidden uppercase tracking-wider" data-lang="de">Ausblick</a>
+        <!-- MOBILE DROPDOWN -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gpcard/95 backdrop-blur-xl border-b border-white/10 absolute w-full left-0 top-20 flex flex-col items-center py-8 space-y-6 shadow-2xl">
+            <a href="story.html" class="text-lg font-semibold text-white hover:text-gporange">The Story</a>
+            <a href="#features" onclick="toggleMenu()" class="text-lg font-semibold text-white hover:text-gporange" data-lang="en">Features</a>
+            <a href="#features" onclick="toggleMenu()" class="text-lg font-semibold text-white hidden" data-lang="de">Funktionen</a>
+            <a href="faq.html" class="text-lg font-semibold text-white hover:text-gporange">FAQ</a>
+            <a href="#roadmap" onclick="toggleMenu()" class="text-lg font-semibold text-gpcyan" data-lang="en">Roadmap</a>
         </div>
     </nav>
 
-    <!-- FLOATING FEATURE REQUEST BUTTON & MODAL -->
+    <!-- FLOATING FEATURE REQUEST (Linear/Stripe Style) -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-        <div id="feedback-modal" class="hidden mb-4 bg-gpcard border border-gray-700 shadow-2xl rounded-2xl w-80 p-5 origin-bottom-right animate-slide-in">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-racing text-xl text-gporange">Idea? Bug?</h3>
-                <button onclick="toggleFeedback()" class="text-gray-400 hover:text-white">&times;</button>
+        <div id="feedback-modal" class="hidden mb-4 bg-gpcard/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] rounded-2xl w-80 p-6 origin-bottom-right animate-slide-in">
+            <div class="flex justify-between items-center mb-5">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-gporange animate-pulse"></div>
+                    <h3 class="font-semibold text-white">Feedback & Ideas</h3>
+                </div>
+                <button onclick="toggleFeedback()" class="text-gray-500 hover:text-white transition">&times;</button>
             </div>
             
             <div id="success-msg" class="hidden text-center py-6">
-                <div class="text-3xl mb-2">🏁</div>
-                <p class="font-bold text-white">Submitted!</p>
-                <p class="text-sm text-gray-400">Thanks for building the ultimate garage with me.</p>
+                <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <p class="font-bold text-white mb-1">Submitted!</p>
+                <p class="text-xs text-gray-400">Thanks for building with me.</p>
             </div>
 
-            <form id="feature-form" class="space-y-3">
-                <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                    <input type="text" id="website-url-bot" name="website-url-bot" tabindex="-1" autocomplete="off">
-                </div>
-                <input type="text" id="req-name" required placeholder="Nickname" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-gporange outline-none">
-                <input type="email" id="req-email" placeholder="Email (optional)" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-gporange outline-none">
-                <textarea id="req-msg" required rows="3" placeholder="I'd love to see a feature that..." class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-gporange outline-none resize-none"></textarea>
-                <button type="submit" id="submit-btn" class="w-full bg-gporange text-black font-bold py-2 rounded-lg hover:bg-orange-600 transition">Send</button>
+            <form id="feature-form" class="space-y-4">
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" id="website-url-bot"></div>
+                <input type="text" id="req-name" required placeholder="Your Name" class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:border-gporange focus:ring-1 focus:ring-gporange/30 outline-none transition">
+                <input type="email" id="req-email" placeholder="Email (optional)" class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:border-gporange focus:ring-1 focus:ring-gporange/30 outline-none transition">
+                <textarea id="req-msg" required rows="3" placeholder="I'd love to see a feature that..." class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:border-gporange focus:ring-1 focus:ring-gporange/30 outline-none resize-none transition"></textarea>
+                <button type="submit" id="submit-btn" class="w-full bg-white text-black font-semibold py-2.5 rounded-lg hover:bg-gray-200 transition shadow-lg">Send Idea</button>
             </form>
         </div>
         
-        <button onclick="toggleFeedback()" class="bg-gporange hover:bg-orange-600 text-black rounded-full p-4 shadow-[0_0_20px_rgba(255,85,0,0.5)] transition transform hover:scale-110 flex items-center justify-center">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+        <button onclick="toggleFeedback()" class="group bg-gpcard border border-white/10 hover:border-gporange/50 text-white rounded-full p-4 shadow-xl transition-all hover:shadow-[0_0_20px_rgba(255,85,0,0.3)] flex items-center justify-center backdrop-blur-md">
+            <svg class="w-6 h-6 text-gray-400 group-hover:text-gporange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
         </button>
     </div>
 
     <!-- HERO SECTION -->
-    <section class="pt-32 pb-20 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 min-h-[90vh]">
+    <section class="pt-32 pb-20 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 min-h-[95vh] relative">
         
+        <!-- Ambient Glow -->
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-gporange/10 rounded-full blur-[100px] pointer-events-none"></div>
+
         <div class="lg:w-[45%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 animate-on-scroll">
-            <img src="Logo.png" alt="Garage Prime Logo" class="w-40 h-auto mb-8 mx-auto lg:mx-0 drop-shadow-[0_0_30px_rgba(255,85,0,0.3)]" onerror="this.style.display='none'">
             
-            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.1] uppercase" data-lang="en">
-                THE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpyellow">COLLECTOR</span> APP.
+            <!-- Hero Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold mb-8 backdrop-blur-md">
+                <span class="bg-gporange text-black px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">V 1.0</span>
+                <span class="text-gray-300" data-lang="en">The Early Access is live</span>
+                <span class="text-gray-300 hidden" data-lang="de">Der Early Access ist live</span>
+            </div>
+
+            <!-- GIGANTISCHES LOGO -->
+            <img src="Logo.png" alt="Garage Prime Logo" class="w-48 lg:w-56 h-auto mb-10 mx-auto lg:mx-0 drop-shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+            
+            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.05] uppercase text-white" data-lang="en">
+                THE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange via-[#ff8800] to-gpyellow">COLLECTOR</span> APP.
             </h1>
-            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.1] uppercase hidden" data-lang="de">
-                DIE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange to-gpyellow">SAMMLER</span> APP.
+            <h1 class="text-5xl lg:text-7xl font-racing tracking-wide mb-6 leading-[1.05] uppercase hidden" data-lang="de">
+                DIE 1:64 <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gporange via-[#ff8800] to-gpyellow">SAMMLER</span> APP.
             </h1>
             
-            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light" data-lang="en">
-                Scan <strong>Carded, Loose, or Real Cars</strong> with elite AI. Track your inventory, hunt globally for Super Treasure Hunts, and battle in Top Trumps mode.
+            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light max-w-md" data-lang="en">
+                Scan <strong class="text-white">Carded, Loose, or Real Cars</strong> with elite AI. Track your inventory, hunt globally for Super Treasure Hunts, and battle in Top Trumps mode.
             </p>
-            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light hidden" data-lang="de">
-                Scanne <strong>OVP, lose oder echte Autos</strong> mit der besten KI. Verwalte dein Inventar, jage Super Treasure Hunts auf dem Radar und vergleiche Specs.
+            <p class="text-lg text-gray-400 mb-10 leading-relaxed font-light max-w-md hidden" data-lang="de">
+                Scanne <strong class="text-white">OVP, lose oder echte Autos</strong> mit der besten KI. Verwalte dein Inventar, jage Super Treasure Hunts auf dem Radar und vergleiche Specs.
             </p>
 
-            <a href="#" class="transition-transform hover:scale-105 hover:drop-shadow-[0_0_20px_rgba(0,229,255,0.4)]">
-                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-16">
+            <a href="#" class="group transition-all duration-300 hover:scale-[1.02]">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-16 shadow-[0_10px_30px_rgba(0,0,0,0.5)] rounded-lg group-hover:shadow-[0_0_25px_rgba(0,229,255,0.3)] transition-shadow">
             </a>
         </div>
 
         <!-- 3D PHONE ARRAY -->
-        <div class="lg:w-[55%] w-full relative h-[600px] flex justify-center items-center animate-on-scroll delay-200 perspective-1000">
-            <img src="2.png" alt="App Screen" class="absolute z-10 w-48 sm:w-56 rounded-[2rem] shadow-2xl transform -rotate-12 -translate-x-24 sm:-translate-x-32 scale-90 opacity-80 border-4 border-gray-800" onerror="this.style.display='none'">
-            <img src="3.png" alt="App Screen" class="absolute z-10 w-48 sm:w-56 rounded-[2rem] shadow-2xl transform rotate-12 translate-x-24 sm:translate-x-32 scale-90 opacity-80 border-4 border-gray-800" onerror="this.style.display='none'">
-            <img src="1.png" alt="App Screen" class="absolute z-30 w-56 sm:w-64 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.8)] transform -translate-y-4 animate-float border-4 border-gray-700" onerror="this.style.display='none'">
+        <div class="lg:w-[55%] w-full relative h-[600px] flex justify-center items-center animate-on-scroll delay-200 perspective-[1200px]">
+            <!-- Phone 1 (Back Left) -->
+            <img src="2.png" alt="Map View" class="absolute z-10 w-48 sm:w-56 rounded-[2rem] shadow-2xl transform -rotate-y-12 -rotate-z-6 -translate-x-28 sm:-translate-x-40 scale-90 opacity-60 border-[5px] border-gray-800 animate-float-delayed" onerror="this.style.display='none'">
+            
+            <!-- Phone 3 (Back Right) -->
+            <img src="3.png" alt="Compare View" class="absolute z-10 w-48 sm:w-56 rounded-[2rem] shadow-2xl transform rotate-y-12 rotate-z-6 translate-x-28 sm:translate-x-40 scale-90 opacity-60 border-[5px] border-gray-800 animate-float" onerror="this.style.display='none'">
+            
+            <!-- Phone 2 (Center Hero) -->
+            <div class="absolute z-30 transform -translate-y-4 animate-float shadow-[0_30px_60px_rgba(0,0,0,0.8)] rounded-[2rem] border-[5px] border-gray-700 bg-black overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-20 pointer-events-none"></div>
+                <img src="1.png" alt="Scanner View" class="w-56 sm:w-[280px] h-auto object-cover relative z-10" onerror="this.style.display='none'">
+                <!-- Glare Effect -->
+                <div class="absolute top-0 left-[-100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 group-hover:left-[200%] transition-all duration-1000 ease-in-out z-30"></div>
+            </div>
         </div>
     </section>
 
-    <!-- THE BENTO GRID (FEATURES) -->
-    <section id="features" class="py-24 bg-[#0F111A] border-y border-white/5 relative z-10">
+    <!-- BENTO GRID (FEATURES) -->
+    <section id="features" class="py-32 bg-[#0B0D14] relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-2" data-lang="en">Built for the Hunt</h2>
-                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-2 hidden" data-lang="de">Gemacht für die Jagd</h2>
-                <h3 class="font-racing text-4xl text-white tracking-wide" data-lang="en">YOUR NEW DASHBOARD</h3>
-                <h3 class="font-racing text-4xl text-white tracking-wide hidden" data-lang="de">DEIN NEUES DASHBOARD</h3>
+            <div class="mb-16 animate-on-scroll">
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-3 flex items-center gap-3" data-lang="en">
+                    <span class="w-8 h-px bg-gporange"></span> Engineered for Collectors
+                </h2>
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-3 flex items-center gap-3 hidden" data-lang="de">
+                    <span class="w-8 h-px bg-gporange"></span> Entwickelt für Sammler
+                </h2>
+                <h3 class="font-racing text-4xl md:text-5xl text-white tracking-wide" data-lang="en">YOUR NEW DASHBOARD</h3>
+                <h3 class="font-racing text-4xl md:text-5xl text-white tracking-wide hidden" data-lang="de">DEIN NEUES DASHBOARD</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
+                
                 <!-- Scanner -->
-                <div class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 relative overflow-hidden group animate-on-scroll">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-gpcyan/10 rounded-full blur-[80px] group-hover:bg-gpcyan/20 transition-all duration-700"></div>
-                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6 text-gpcyan border border-gray-700">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                <div class="md:col-span-2 md:row-span-2 bg-gpcard/50 backdrop-blur-sm rounded-3xl p-10 border border-white/5 hover:border-white/10 relative overflow-hidden group animate-on-scroll transition-colors">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-gpcyan/5 rounded-full blur-[100px] group-hover:bg-gpcyan/10 transition-colors duration-700"></div>
+                    <!-- Lucide Icon: Scan -->
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-8 text-gpcyan bg-gpcyan/10 border border-gpcyan/20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v-2a2 2 0 012-2h2m10 0h2a2 2 0 012 2v2m0 10v2a2 2 0 01-2 2h-2m-10 0h-2a2 2 0 01-2-2v-2m7-10v.01M12 12v.01M16 12v.01M12 16v.01"></path></svg>
                     </div>
                     <h3 class="text-3xl font-extrabold mb-4 text-white relative z-10" data-lang="en">Universal AI Scanner</h3>
                     <h3 class="text-3xl font-extrabold mb-4 text-white hidden relative z-10" data-lang="de">Universal KI Scanner</h3>
                     <p class="text-gray-400 text-lg max-w-md leading-relaxed relative z-10" data-lang="en">Scan blister packs, loose models, or even real life cars. Our OCR & AI identifies the casting, Toy ID, and estimates real-world tech specs instantly.</p>
                     <p class="text-gray-400 text-lg max-w-md leading-relaxed hidden relative z-10" data-lang="de">Scanne OVP, lose Modelle oder echte Autos. Die KI erkennt das Modell, die Toy ID und schätzt echte technische Spezifikationen.</p>
                 </div>
+
                 <!-- Radar -->
-                <div class="bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-100 relative overflow-hidden">
-                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-gporange border border-gray-700">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                <div class="bg-gpcard/50 backdrop-blur-sm rounded-3xl p-8 border border-white/5 hover:border-white/10 group animate-on-scroll delay-100 transition-colors">
+                    <!-- Lucide Icon: Map Pin -->
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6 text-gporange bg-gporange/10 border border-gporange/20">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-white" data-lang="en">Global Hunt Radar</h3>
                     <h3 class="text-xl font-bold mb-2 text-white hidden" data-lang="de">Globales Radar</h3>
-                    <p class="text-gray-400 text-sm" data-lang="en">Filter for STH, TH, or Chases spotted by the community on a privacy-safe map.</p>
-                    <p class="text-gray-400 text-sm hidden" data-lang="de">Filtere die Live-Karte nach STH, TH oder Chases in deiner Nähe.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-lang="en">Filter for STH, TH, or Chases spotted by the community on a privacy-safe map.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed hidden" data-lang="de">Filtere die Live-Karte nach STH, TH oder Chases in deiner Nähe.</p>
                 </div>
+
                 <!-- Mainline Album -->
-                <div class="bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 group animate-on-scroll delay-200">
-                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-white border border-gray-700">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <div class="bg-gpcard/50 backdrop-blur-sm rounded-3xl p-8 border border-white/5 hover:border-white/10 group animate-on-scroll delay-200 transition-colors">
+                    <!-- Lucide Icon: Grid -->
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6 text-white bg-white/10 border border-white/20">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-white">Mainline Album</h3>
-                    <p class="text-gray-400 text-sm" data-lang="en">Track your yearly 1/250 progress. Fill the digital slots and complete the series.</p>
-                    <p class="text-gray-400 text-sm hidden" data-lang="de">Verfolge deinen 1/250 Fortschritt und vervollständige dein digitales Jahrbuch.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-lang="en">Track your yearly 1/250 progress. Fill the digital slots and complete the series.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed hidden" data-lang="de">Verfolge deinen 1/250 Fortschritt und vervollständige dein digitales Jahrbuch.</p>
                 </div>
+
                 <!-- Compare -->
-                <div class="bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 group animate-on-scroll">
-                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center mb-4 text-gpyellow border border-gray-700">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div class="bg-gpcard/50 backdrop-blur-sm rounded-3xl p-8 border border-white/5 hover:border-white/10 group animate-on-scroll transition-colors">
+                    <!-- Lucide Icon: Swords / Compare -->
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6 text-gpyellow bg-gpyellow/10 border border-gpyellow/20">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-white">Car Compare</h3>
-                    <p class="text-gray-400 text-sm" data-lang="en">Top Trumps style. Match cars from your garage head-to-head based on BHP and Speed.</p>
-                    <p class="text-gray-400 text-sm hidden" data-lang="de">Auto-Quartett! Lass Autos aus deiner Garage gegeneinander antreten.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-lang="en">Top Trumps style. Match cars from your garage head-to-head based on BHP and Speed.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed hidden" data-lang="de">Auto-Quartett! Lass Autos aus deiner Garage gegeneinander antreten.</p>
                 </div>
+
                 <!-- Clinic -->
-                <div class="md:col-span-2 bg-gradient-to-br from-gpcard to-[#0B0D14] rounded-3xl p-8 border border-white/10 animate-on-scroll delay-100 flex flex-col justify-center">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 font-bold">✚</div>
+                <div class="md:col-span-2 bg-gpcard/50 backdrop-blur-sm rounded-3xl p-8 border border-white/5 hover:border-white/10 animate-on-scroll delay-100 flex flex-col justify-center relative overflow-hidden transition-colors">
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 font-bold">✚</div>
                         <h3 class="text-2xl font-bold text-white">Garage Health Clinic</h3>
                     </div>
-                    <p class="text-gray-400" data-lang="en">Missing specs on an old entry? Tap "Heal". Our AI scans your inventory and automatically fills in missing technical data.</p>
-                    <p class="text-gray-400 hidden" data-lang="de">Fehlen Daten? Drücke "Heilen". Die KI füllt automatisch fehlende technische Daten in deiner Garage auf.</p>
+                    <p class="text-gray-400 max-w-lg leading-relaxed relative z-10" data-lang="en">Missing specs on an old entry? Tap "Heal". Our AI scans your inventory and automatically fills in missing technical data.</p>
+                    <p class="text-gray-400 max-w-lg leading-relaxed hidden relative z-10" data-lang="de">Fehlen Daten? Drücke "Heilen". Die KI füllt automatisch fehlende technische Daten in deiner Garage auf.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ROADMAP V2.0 -->
-    <section id="roadmap" class="py-24 bg-gpbg border-t border-white/10 relative z-10 overflow-hidden">
+    <section id="roadmap" class="py-32 bg-[#0B0D14] border-t border-white/5 relative z-10 overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-4xl font-racing mt-2">ROADMAP v2.0</h2>
+            <div class="text-center mb-20 animate-on-scroll">
+                <span class="text-gray-500 font-semibold text-sm tracking-[0.2em] uppercase border border-gray-800 px-4 py-1.5 rounded-full">Classified</span>
+                <h2 class="text-5xl font-racing mt-6 text-white tracking-wide">ROADMAP v2.0</h2>
             </div>
-            <div class="space-y-8">
-                <div class="flex items-start gap-6 bg-gpcard p-6 rounded-2xl border border-white/10 shadow-xl animate-on-scroll">
-                    <div class="w-12 h-12 bg-gporange rounded-full flex items-center justify-center text-black font-extrabold shrink-0 shadow-[0_0_15px_rgba(255,85,0,0.5)]">1</div>
+            
+            <div class="space-y-6">
+                <!-- Timeline Item 1 -->
+                <div class="flex flex-col sm:flex-row items-start gap-6 bg-gpcard/30 p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors animate-on-scroll">
+                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-black font-extrabold shrink-0 shadow-[0_0_20px_rgba(255,255,255,0.2)]">1</div>
                     <div>
-                        <h4 class="font-bold text-xl mb-2" data-lang="en">Submit for Fuel (Wiki Killer)</h4>
-                        <h4 class="font-bold text-xl mb-2 hidden" data-lang="de">Submit for Fuel (Wiki Ablösung)</h4>
-                        <p class="text-gray-400" data-lang="en">Help build the ultimate structured database. Submit missing cars, review peer entries, and earn Fuel and exclusive ranks.</p>
-                        <p class="text-gray-400 hidden" data-lang="de">Reiche fehlende Autos ein, prüfe Einträge anderer Sammler und verdiene dir 'Fuel' und Ränge als Belohnung.</p>
+                        <h4 class="font-bold text-2xl mb-3 text-white" data-lang="en">Submit for Fuel (Wiki Killer)</h4>
+                        <h4 class="font-bold text-2xl mb-3 text-white hidden" data-lang="de">Submit for Fuel (Wiki Ablösung)</h4>
+                        <p class="text-gray-400 leading-relaxed" data-lang="en">Help build the ultimate structured database. Submit missing cars, review peer entries, and earn Fuel and exclusive ranks for curating the ultimate 1:64 library.</p>
+                        <p class="text-gray-400 leading-relaxed hidden" data-lang="de">Hilf uns, die ultimative Datenbank aufzubauen. Reiche fehlende Autos ein, prüfe andere Einträge und verdiene dir 'Fuel' und Ränge.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-6 bg-gpcard/50 p-6 rounded-2xl border border-white/5 border-dashed animate-on-scroll delay-100">
-                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 font-bold shrink-0">?</div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="flex flex-col sm:flex-row items-start gap-6 bg-transparent p-8 rounded-3xl border border-white/5 border-dashed animate-on-scroll delay-100">
+                    <div class="w-12 h-12 bg-transparent border-2 border-gray-700 rounded-2xl flex items-center justify-center text-gray-600 font-bold shrink-0">?</div>
                     <div>
-                        <h4 class="font-bold text-xl mb-2 text-gray-500" data-lang="en">Classified Features</h4>
-                        <h4 class="font-bold text-xl mb-2 text-gray-500 hidden" data-lang="de">Streng geheime Features</h4>
-                        <p class="text-gray-600" data-lang="en">More game-changing tools are in development. We keep our cards close to our chest to stay ahead of the curve.</p>
-                        <p class="text-gray-600 hidden" data-lang="de">Weitere bahnbrechende Funktionen sind in Entwicklung. Wir halten unsere Karten verdeckt, um der Konkurrenz voraus zu sein.</p>
+                        <h4 class="font-bold text-2xl mb-3 text-gray-600" data-lang="en">Top-Secret Features</h4>
+                        <h4 class="font-bold text-2xl mb-3 text-gray-600 hidden" data-lang="de">Streng geheime Features</h4>
+                        <p class="text-gray-600 leading-relaxed" data-lang="en">More game-changing tools are in development. We keep our cards close to our chest to stay ahead of the curve.</p>
+                        <p class="text-gray-600 leading-relaxed hidden" data-lang="de">Weitere bahnbrechende Funktionen sind in Entwicklung. Wir halten unsere Karten verdeckt, um der Konkurrenz voraus zu sein.</p>
                     </div>
                 </div>
             </div>
@@ -335,18 +368,21 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#05060A] py-10 border-t border-gray-900 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-gray-600 text-xs text-center md:text-left max-w-md">
+    <footer class="bg-[#05060A] py-12 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3 text-center md:text-left">
+                <span class="font-racing text-xl tracking-widest text-white/30">GARAGE PRIME</span>
+            </div>
+            <div class="text-gray-600 text-xs max-w-md text-center md:text-left leading-relaxed">
                 Garage Prime is an independent collector's tool. Not affiliated with, endorsed, or sponsored by Mattel, Inc., or Hot Wheels.
             </div>
             <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-sm font-semibold text-gray-400 hover:text-white transition">FAQ</a>
-                <span class="text-gray-700 hidden md:inline">|</span>
-                <a href="privacy.html" class="text-sm font-semibold text-gray-500 hover:text-gpcyan transition">Privacy</a>
-                <a href="terms.html" class="text-sm font-semibold text-gray-500 hover:text-gpcyan transition">Terms</a>
-                <a href="imprint.html" class="text-sm font-semibold text-gray-500 hover:text-gpcyan transition">Imprint</a>
+                <a href="story.html" class="text-sm font-medium text-gray-500 hover:text-white transition-colors">The Story</a>
+                <a href="faq.html" class="text-sm font-medium text-gray-500 hover:text-white transition-colors">FAQ</a>
+                <span class="text-gray-800 hidden md:inline">|</span>
+                <a href="privacy.html" class="text-sm font-medium text-gray-500 hover:text-gpcyan transition-colors">Privacy</a>
+                <a href="terms.html" class="text-sm font-medium text-gray-500 hover:text-gpcyan transition-colors">Terms</a>
+                <a href="imprint.html" class="text-sm font-medium text-gray-500 hover:text-gpcyan transition-colors">Imprint</a>
             </div>
         </div>
     </footer>
