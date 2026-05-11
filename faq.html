@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Garage Prime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { gpbg: '#0B0D14', gpcard: '#161925', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans: ['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+        }
+
+        // Accordion Logic
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.icon');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.innerHTML = '+';
+                icon.classList.remove('text-gpcyan');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.innerHTML = '−';
+                icon.classList.add('text-gpcyan');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gpbg text-gray-300 font-sans antialiased selection:bg-gporange selection:text-white">
+
+    <nav class="border-b border-white/10 bg-gpbg/90 sticky top-0 backdrop-blur-md z-50">
+        <div class="max-w-4xl mx-auto px-4 py-6">
+            <a href="index.html" class="text-gpcyan hover:text-white flex items-center gap-2 transition font-semibold">
+                &larr; Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-16">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4">Frequently Asked Questions</h1>
+            <p class="text-gray-400">Everything you need to know about Garage Prime, the AI, and your collection.</p>
+        </div>
+
+        <div class="space-y-12">
+            
+            <!-- Category 1 -->
+            <div>
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-4 border-b border-white/10 pb-2">Capturing Cars & Identification</h2>
+                
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">How can I add a car to my garage?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">There are three ways: 1. Live OCR Scan: The camera reads the text on the card. 2. AI Image Scan: The AI analyzes a photo of the casting. 3. Manual Reference: Search the global database and add it with one click.</p>
+                    </div>
+                </div>
+
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">Why is my car recognized incorrectly?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">Identifying these cars is incredibly difficult. Many models have been re-released over decades with different codes. While the AI is smart, there is still room for improvement, especially with Premium models and special editions. Optimal results require good lighting and a highly readable blister card without heavy glare.</p>
+                    </div>
+                </div>
+
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">Why is the Toy ID so important?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">The Toy ID (e.g., JKY53) is the unique fingerprint of the car. It is the most critical attribute in the entire system to determine the exact release year, variation, and series.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div>
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-4 border-b border-white/10 pb-2">Technical Specs & AI Art</h2>
+                
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">Are the technical specs (BHP, Top Speed) accurate?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">They are a Best Guess. For real-world licensed cars, the AI fetches realistic data. For Fantasy toy cars, the AI estimates specs based on engine type and design. No claim to 100% accuracy; it's built for the fun factor!</p>
+                    </div>
+                </div>
+
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">The generated AI image looks wrong. Why?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">The images generated under AI Art are fake. The AI tries to create a cool artistic interpretation based on the visual prompt, but it can generate bad or completely wrong images (e.g., wrong spoilers, weird decals).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div>
+                <h2 class="text-sm font-bold text-gporange uppercase tracking-widest mb-4 border-b border-white/10 pb-2">App Features & Tools</h2>
+                
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">What is the Real Cars feature?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">I added this feature so you can track actual 1:1 scale vehicles (like your daily driver or dream car). Because it is incredibly fun to put your real car into the app and compare its specs against your 1:64 scale toy legends.</p>
+                    </div>
+                </div>
+
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">What is the Car Compare feature?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">This is the Top Trumps mode. You can select any two cars from your garage and put them head-to-head to compare their horsepower, speed, and weight to see which machine wins.</p>
+                    </div>
+                </div>
+
+                <div class="mb-3 border border-gray-800 rounded-xl bg-gpcard overflow-hidden transition hover:border-gray-600">
+                    <button class="w-full flex justify-between items-center p-5 focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-white text-left">What are the eBay links for?</span>
+                        <span class="icon text-2xl font-light text-gray-500 transition">+</span>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/20">
+                        <p class="p-5 text-gray-400 text-sm leading-relaxed border-t border-gray-800">On vehicle detail pages (especially for cars you are missing), I provide direct links to eBay. These are pre-filtered to help you easily find and purchase the exact model you need.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
