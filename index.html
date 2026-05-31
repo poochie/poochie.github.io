@@ -267,18 +267,21 @@
                     </div>
                 </div>
 
-                <!-- 3. Compare -->
+          <!-- 3. Compare (Kompakter & Crash-Sicher) -->
                 <div class="md:col-span-4 bg-gpcard rounded-3xl p-8 border border-white/5 hover:border-white/10 group animate-on-scroll relative overflow-hidden flex flex-col justify-between">
-                    <div>
+                    <div class="relative z-10">
                         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-gpyellow bg-gpyellow/10 border border-gpyellow/20">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white" data-lang="en">Top Trumps Mode</h3>
-                        <h3 class="text-2xl font-bold mb-3 text-white hidden" data-lang="de">Auto-Quartett Modus</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6" data-lang="en">Settle the debate. Match cars from your garage head-to-head based on BHP, Weight, and Top Speed.</p>
-                        <p class="text-gray-400 text-sm leading-relaxed hidden mb-6" data-lang="de">Lass Autos aus deiner Garage in PS, Gewicht und V-Max gegeneinander antreten.</p>
+                        <h3 class="text-2xl font-bold mb-3 text-white" data-lang="en">Head-to-Head Compare</h3>
+                        <h3 class="text-2xl font-bold mb-3 text-white hidden" data-lang="de">Auto-Duell Modus</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6" data-lang="en">Settle the debate. Match cars head-to-head based on stats.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed hidden mb-6" data-lang="de">Lass Autos aus deiner Garage gegeneinander antreten.</p>
                     </div>
-                    <img src="6.jpg" alt="Compare" class="absolute -bottom-8 -right-4 w-48 rounded-tl-xl shadow-2xl border-t-2 border-l-2 border-gray-800 transform transition-transform duration-500 group-hover:-translate-y-4" onerror="this.style.display='none'">
+                    <!-- Bild jetzt in einem Container mit fester Höhe, der den Text nicht mehr überlagert -->
+                    <div class="h-32 w-full relative">
+                        <img src="6.jpg" alt="Compare" class="absolute -bottom-8 -right-4 w-40 object-cover rounded-tl-xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-2" onerror="this.style.display='none'">
+                    </div>
                 </div>
 
                 <!-- 4. Mainline Album -->
