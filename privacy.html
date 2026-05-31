@@ -66,8 +66,8 @@
     <main class="max-w-4xl mx-auto px-4 pt-32 pb-16 min-h-screen">
         <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase" data-lang="en">Privacy Policy</h1>
         <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase hidden" data-lang="de">Datenschutzerklärung</h1>
-        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: 28.04.2026</p>
-        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: 28.04.2026</p>
+        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: 31.05.2026</p>
+        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: 31.05.2026</p>
 
         <div class="prose prose-invert prose-cyan max-w-none space-y-8 text-gray-400">
             
@@ -95,10 +95,17 @@
             <p data-lang="en" class="text-sm">When you scan a vehicle, photos are processed using the Google Gemini API to identify the car model and extract technical data. Images are uploaded to Supabase Storage.</p>
             <p data-lang="de" class="text-sm hidden">Wenn Sie ein Fahrzeug scannen, werden Fotos über die Google Gemini API verarbeitet, um das Fahrzeugmodell zu identifizieren und technische Daten zu extrahieren. Bilder werden im Supabase Storage gespeichert.</p>
 
+            <!-- SEKTION C AKTUALISIERT (ANONYMISIERUNGS-SCHILD EINGEBAUT) -->
             <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">C. Location Data</h3>
             <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">C. Standortdaten</h3>
-            <p data-lang="en" class="text-sm">To track where vehicles were found, the app collects GPS coordinates (Latitude/Longitude) and location names. These are stored only within your personal collection.</p>
-            <p data-lang="de" class="text-sm hidden">Um festzuhalten, wo Fahrzeuge gefunden wurden, erfasst die App GPS-Koordinaten (Breitengrad/Längengrad) und Ortsnamen. Diese werden ausschliesslich in Ihrer persönlichen Sammlung gespeichert.</p>
+            <p data-lang="en" class="text-sm">To track where vehicles were found, the app collects GPS coordinates (Latitude/Longitude) and location names. While exact coordinate details are kept private and visible only within your personal collection, any location data used in public features (such as the Global Hunt Map or the public Race Strip feed) is strictly and automatically anonymised to the city or region level only (exact street names and house numbers are discarded before publication).</p>
+            <p data-lang="de" class="text-sm hidden">Um festzuhalten, wo fahrzeuge gefunden wurden, erfasst die App GPS-Koordinaten (Breitengrad/Längengrad) und Ortsnamen. Während genaue Koordinatendetails privat gehalten und nur innerhalb Ihrer persönlichen Sammlung sichtbar sind, werden alle Standortdaten, die in öffentlichen Funktionen (wie der Global Hunt Map oder dem öffentlichen Race Strip-Feed) verwendet werden, streng und automatisch ausschließlich auf Stadt- oder Regionalebene anonymisiert (genaue Straßennamen und Hausnummern werden vor der Veröffentlichung entfernt).</p>
+
+            <!-- SEKTION D NEU (COMMUNITY / PROFILE / KOMMENTARE) -->
+            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">D. Community Interaction & User Content</h3>
+            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">D. Interaktion der Gemeinschaft & Nutzerinhalte</h3>
+            <p data-lang="en" class="text-sm">If you interact with other collectors by posting comments or likes on the global feed, or by enabling your public profile settings, your chosen display name, avatar photo, and submitted comments will be visible to other registered users of the app.</p>
+            <p data-lang="de" class="text-sm hidden">Wenn Sie mit anderen Sammlern interagieren, indem Sie Kommentare oder Likes im globalen Feed hinterlassen oder Ihr öffentliches Profil aktivieren, sind Ihr gewählter Anzeigename, Ihr Profilbild und Ihre verfassten Kommentare für andere registrierte Nutzer der App sichtbar.</p>
 
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Third-Party Services</h2>
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Drittanbieter</h2>
@@ -108,6 +115,8 @@
                 <li><strong class="text-gray-300">Supabase:</strong> Data is stored on secure servers (West EU - Ireland). Supabase processes data on our behalf to provide hosting, database, and authentication.</li>
                 <li><strong class="text-gray-300">Google Gemini API:</strong> Image data is sent to Google for analysis. Google’s terms for API usage apply.</li>
                 <li><strong class="text-gray-300">Google Maps API:</strong> Used for displaying the "Hunt Map".</li>
+                <!-- ONESIGNAL NEU HINZUGEFÜGT -->
+                <li><strong class="text-gray-300">OneSignal:</strong> Used to securely deliver push notifications to your mobile device. OneSignal processes push tokens and notification payloads under their privacy policies.</li>
                 <li><strong class="text-gray-300">Ebay:</strong> This app uses affiliate links. When you click these links, the respective network may place a cookie or use tracking pixels to assign the commission to us.</li>
             </ul>
 
