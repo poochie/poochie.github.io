@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#0B0D14]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Support | Garage Prime</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { gpbg: '#05050A', gpcard: '#0E1015', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans: ['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+        }
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if(el.getAttribute('data-lang') === lang) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+            localStorage.setItem('gp_lang', lang);
+            document.getElementById('btn-en').className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+        }
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+        
+        async function submitContactForm(e) {
+            e.preventDefault();
+            // Honeypot Check (Bot-Schutz)
+            if (document.getElementById('website-url-bot').value !== "") return;
+            
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const name = document.getElementById('req-name').value;
+            const email = document.getElementById('req-email').value;
+            const topic = document.getElementById('req-topic').value;
+            const rawMsg = document.getElementById('req-msg').value;
+            
+            // Verbindet Thema und Nachricht, damit deine aktuelle DB-Tabelle nicht geändert werden muss
+            const formattedMsg = `[${topic}] ${rawMsg}`;
+
+            const SUPABASE_URL = 'https://behaycailacyhlyrnorn.supabase.co'; 
+            const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlaGF5Y2FpbGFjeWhseXJub3JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTE0MDEsImV4cCI6MjA4Mzg4NzQwMX0.mg9OdDgYGQmsjGl307f7KBQEIEgcL1ukdyM6c2jmNLk'; 
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/tblfeaturerequests`, {
+                    method: 'POST',
+                    headers: { 'apikey': ANON_KEY, 'Authorization': `Bearer ${ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+                    body: JSON.stringify({ name: name, email: email, message: formattedMsg })
+                });
+
+                if (response.ok) {
+                    document.getElementById('contact-form').classList.add('hidden');
+                    document.getElementById('success-msg').classList.remove('hidden');
+                } else { 
+                    alert('Error sending request. Please try again.'); 
+                }
+            } catch (err) { 
+                alert('Network error. Please check your connection.'); 
+            } finally {
+                btn.innerText = 'Send Message';
+                btn.disabled = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(localStorage.getItem('gp_lang') || 'en');
+            const form = document.getElementById('contact-form');
+            if(form) form.addEventListener('submit', submitContactForm);
+        });
+    </script>
+</head>
+<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
+
+    <!-- BACKGROUND GLOW -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
+        <div class="absolute top-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-gpcyan/5 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
+                    <img src="Logo.png" alt="Logo" class="w-7 h-7 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
+                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2 text-[10px] font-bold bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
+                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
+                    <span class="text-gray-700">|</span>
+                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
+                </div>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 flex flex-col items-center py-6 space-y-5 shadow-2xl">
+            <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
+            <a href="index.html" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="max-w-2xl mx-auto px-4 pt-32 pb-16 min-h-screen">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4" data-lang="en">Contact & Support</h1>
+            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4 hidden" data-lang="de">Kontakt & Support</h1>
+            <p class="text-gray-500" data-lang="en">Got an idea, found a bug, or need help? Send me a message.</p>
+            <p class="text-gray-500 hidden" data-lang="de">Hast du eine Idee, einen Bug gefunden oder brauchst Hilfe? Schreib mir.</p>
+        </div>
+
+        <div class="bg-gpcard border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+            <!-- Decorative Glow -->
+            <div class="absolute top-[-50px] right-[-50px] w-48 h-48 bg-gpcyan/10 rounded-full blur-[80px]"></div>
+
+            <div id="success-msg" class="hidden text-center py-16">
+                <div class="w-20 h-20 bg-gpcyan/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-gpcyan/30">
+                    <svg class="w-10 h-10 text-gpcyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2" data-lang="en">Message Sent!</h2>
+                <h2 class="text-2xl font-bold text-white mb-2 hidden" data-lang="de">Nachricht gesendet!</h2>
+                <p class="text-gray-400" data-lang="en">Thanks for reaching out. I'll get back to you as soon as possible.</p>
+                <p class="text-gray-400 hidden" data-lang="de">Danke für deine Nachricht. Ich melde mich so schnell wie möglich bei dir.</p>
+                <button onclick="location.reload()" class="mt-8 text-sm text-gpcyan hover:text-white transition" data-lang="en">&larr; Send another message</button>
+                <button onclick="location.reload()" class="mt-8 text-sm text-gpcyan hover:text-white transition hidden" data-lang="de">&larr; Weitere Nachricht senden</button>
+            </div>
+
+            <form id="contact-form" class="space-y-6 relative z-10">
+                <!-- Honeypot -->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" id="website-url-bot"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Name / Nickname</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Name / Nickname</label>
+                        <input type="text" id="req-name" required class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Email Address</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">E-Mail Adresse</label>
+                        <input type="email" id="req-email" required class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Topic</label>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Thema</label>
+                    <select id="req-topic" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none transition appearance-none">
+                        <option value="Feature Request" data-lang="en">Idea / Feature Request</option>
+                        <option value="Feature Request" data-lang="de" class="hidden">Idee / Feature Request</option>
+                        <option value="Bug Report" data-lang="en">Bug Report / Issue</option>
+                        <option value="Bug Report" data-lang="de" class="hidden">Fehler / Problem melden</option>
+                        <option value="Support" data-lang="en">Account Support</option>
+                        <option value="Support" data-lang="de" class="hidden">Account Support</option>
+                        <option value="General" data-lang="en">General Question</option>
+                        <option value="General" data-lang="de" class="hidden">Allgemeine Frage</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Your Message</label>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Deine Nachricht</label>
+                    <textarea id="req-msg" required rows="5" placeholder="How can I help you?" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none resize-none transition"></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-gray-200 transition text-sm flex justify-center items-center gap-2">
+                    <span data-lang="en">Send Message</span>
+                    <span data-lang="de" class="hidden">Nachricht senden</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="mt-8 text-center">
+            <p class="text-sm text-gray-500" data-lang="en">Prefer email? Contact me directly at <a href="mailto:dev@garage-prime.com" class="text-gpcyan hover:underline">dev@garage-prime.com</a></p>
+            <p class="text-sm text-gray-500 hidden" data-lang="de">Lieber per E-Mail? Schreibe mir direkt an <a href="mailto:dev@garage-prime.com" class="text-gpcyan hover:underline">dev@garage-prime.com</a></p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#05050A] py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
+                &copy; <span id="year"></span> Garage Prime. All rights reserved.<br>
+                Garage Prime is an independent collector's tool and not affiliated with Mattel, Inc.
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+                <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
+                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
+                <a href="contact.html" class="text-xs font-medium text-gpcyan hover:text-white transition">Contact</a>
+                <span class="text-gray-800 hidden md:inline">|</span>
+                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
+                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
+                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Imprint</a>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
