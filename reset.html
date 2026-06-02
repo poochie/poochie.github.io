@@ -33,38 +33,39 @@
             <p class="text-gray-500 text-sm">You can now close this window and log in to the Garage Prime app on your phone.</p>
         </div>
     </div>
+<script>
+    // Initialisierung
+    const { createClient } = supabase;
+    const _supabase = createClient('https://behaycailacyhlyrnorn.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlaGF5Y2FpbGFjeWhseXJub3JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTE0MDEsImV4cCI6MjA4Mzg4NzQwMX0.mg9OdDgYGQmsjGl307f7KBQEIEgcL1ukdyM6c2jmNLk');
 
-    <script>
-        // !! DEINE DATEN HIER EINTRAGEN !!
-        const supabase = supabase.createClient('https://behaycailacyhlyrnorn.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlaGF5Y2FpbGFjeWhseXJub3JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTE0MDEsImV4cCI6MjA4Mzg4NzQwMX0.mg9OdDgYGQmsjGl307f7KBQEIEgcL1ukdyM6c2jmNLk');
+    async function updatePassword() {
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('submit-btn');
+        const msg = document.getElementById('msg');
 
-        async function updatePassword() {
-            const password = document.getElementById('password').value;
-            const btn = document.getElementById('submit-btn');
-            const msg = document.getElementById('msg');
-
-            if (password.length < 6) {
-                msg.innerText = "Password too short (min 6 chars)";
-                msg.style.color = "#FF5500";
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerText = "Processing...";
-
-            // Supabase nutzt das Token automatisch aus der URL
-            const { error } = await supabase.auth.updateUser({ password: password });
-
-            if (error) {
-                msg.innerText = "Error: Link expired or invalid.";
-                msg.style.color = "#FF5500";
-                btn.disabled = false;
-                btn.innerText = "Update Password";
-            } else {
-                document.getElementById('reset-form').classList.add('hidden');
-                document.getElementById('success-msg').classList.remove('hidden');
-            }
+        if (password.length < 6) {
+            msg.innerText = "Password too short (min 6 chars)";
+            msg.style.color = "#FF5500";
+            return;
         }
-    </script>
-</body>
+
+        btn.disabled = true;
+        btn.innerText = "Processing...";
+
+        // SCHRITT 1: Supabase erkennt das Token aus dem URL-Hash automatisch
+        // SCHRITT 2: Passwort-Update ausführen
+        const { error } = await _supabase.auth.updateUser({ password: password });
+
+        if (error) {
+            console.error("Reset Error:", error);
+            msg.innerText = "Error: Link expired or invalid. Please request a new one in the app.";
+            msg.style.color = "#FF5500";
+            btn.disabled = false;
+            btn.innerText = "Update Password";
+        } else {
+            document.getElementById('reset-form').classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('hidden');
+        }
+    }
+</script></body>
 </html>
