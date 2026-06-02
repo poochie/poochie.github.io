@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password | Garage Prime</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #05050A; font-family: 'Inter', sans-serif; color: #E5E7EB; }
+        .font-racing { font-family: 'Racing Sans One', cursive; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="max-w-md w-full bg-[#0E1015] border border-white/5 p-8 rounded-3xl shadow-2xl">
+        <div class="text-center mb-8">
+            <h1 class="font-racing text-3xl text-white tracking-widest uppercase">GARAGE PRIME</h1>
+            <p class="text-xs text-[#00E5FF] mt-2 font-bold tracking-widest uppercase">Security Terminal</p>
+        </div>
+
+        <div id="reset-form">
+            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">New Password</label>
+            <input type="password" id="password" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#00E5FF] outline-none transition mb-6">
+            
+            <button onclick="updatePassword()" id="submit-btn" class="w-full bg-[#00E5FF] text-black font-bold py-4 rounded-xl hover:bg-white transition uppercase text-sm tracking-widest">Update Password</button>
+            <p id="msg" class="mt-4 text-center text-xs font-bold"></p>
+        </div>
+
+        <div id="success-msg" class="hidden text-center">
+            <div class="text-green-400 text-4xl mb-4">✓</div>
+            <h2 class="text-white font-bold mb-2">Password Updated!</h2>
+            <p class="text-gray-500 text-sm">You can now close this window and log in to the Garage Prime app on your phone.</p>
+        </div>
+    </div>
+
+    <script>
+        // !! DEINE DATEN HIER EINTRAGEN !!
+        const supabase = supabase.createClient('https://behaycailacyhlyrnorn.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlaGF5Y2FpbGFjeWhseXJub3JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTE0MDEsImV4cCI6MjA4Mzg4NzQwMX0.mg9OdDgYGQmsjGl307f7KBQEIEgcL1ukdyM6c2jmNLk');
+
+        async function updatePassword() {
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('submit-btn');
+            const msg = document.getElementById('msg');
+
+            if (password.length < 6) {
+                msg.innerText = "Password too short (min 6 chars)";
+                msg.style.color = "#FF5500";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            // Supabase nutzt das Token automatisch aus der URL
+            const { error } = await supabase.auth.updateUser({ password: password });
+
+            if (error) {
+                msg.innerText = "Error: Link expired or invalid.";
+                msg.style.color = "#FF5500";
+                btn.disabled = false;
+                btn.innerText = "Update Password";
+            } else {
+                document.getElementById('reset-form').classList.add('hidden');
+                document.getElementById('success-msg').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
