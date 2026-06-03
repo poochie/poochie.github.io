@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Prime | Engine Started</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #05050A;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.1);
+            max-width: 400px;
+        }
+        h1 {
+            font-family: 'Racing Sans One', cursive;
+            font-size: 2.5rem;
+            color: #00E5FF;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+            margin-bottom: 10px;
+        }
+        p { color: #99A1AF; line-height: 1.6; margin-bottom: 30px; }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00E5FF 0%, #FF5500 100%);
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            padding: 18px 40px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(255, 85, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VERIFIED!</h1>
+        <p>Dein Account wurde erfolgreich aktiviert.<br>Die Boxengasse ist bereit.</p>
+        <!-- Deep Link zur App -->
+        <a href="garageprime://confirm" class="btn">START ENGINES</a>
+    </div>
+</body>
+</html>
