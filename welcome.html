@@ -37,18 +37,19 @@
         <p>Restricted Access.<br>Please use the link from your verification email.</p>
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const hasHash = window.location.hash.includes('access_token');
+  <script>
+    // Prüfe Query-Params (?) UND den Hash (#)
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasTokenInHash = window.location.hash.includes('access_token');
+    const isVerified = urlParams.get('status') === 'verified' || hasTokenInHash;
+
+    if (isVerified) {
+        document.getElementById('verified-content').style.display = 'block';
+        document.getElementById('error-content').style.display = 'none';
         
-        if (urlParams.get('status') === 'verified' || hasHash) {
-            const email = urlParams.get('email');
-            if (email) {
-                document.getElementById('display-email').textContent = email;
-            }
-            document.getElementById('verified-content').style.display = 'block';
-            document.getElementById('error-content').style.display = 'none';
-        }
-    </script>
+        // Optional: Wenn du die Mail anzeigen willst, Supabase schickt sie leider nicht im Hash mit.
+        // Du könntest sie nur anzeigen, wenn sie im Link via Template explizit übergeben wurde.
+    }
+</script>
 </body>
 </html>
