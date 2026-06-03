@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Prime | Verified</title>
+    <title>Garage Prime | Engine Started</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <style>
         body { background-color: #05050A; color: #FFFFFF; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #verified-content { display: none; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 24px; max-width: 400px; }
-        .logo { width: 140px; height: 140px; margin-bottom: 20px; }
-        h1 { font-family: 'Racing Sans One', cursive; font-size: 3rem; color: #00E5FF; margin: 0 0 15px 0; }
-        .user-mail { color: #FF5500; font-weight: 900; }
-        .btn { display: inline-block; background: linear-gradient(135deg, #00E5FF 0%, #FF5500 100%); color: #000; text-decoration: none; font-weight: 900; padding: 18px 45px; border-radius: 12px; text-transform: uppercase; margin-top: 30px; }
+        #verified-content { display: none; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 28px; max-width: 420px; box-shadow: 0 0 50px rgba(0, 229, 255, 0.1); }
+        #error-content { text-align: center; display: block; padding: 20px; }
+        .logo { width: 140px; height: 140px; margin-bottom: 25px; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.3)); }
+        h1 { font-family: 'Racing Sans One', cursive; font-size: 3rem; color: #00E5FF; margin: 0 0 10px 0; line-height: 1; }
+        p { color: #99A1AF; font-size: 1.1rem; line-height: 1.5; margin: 10px 0; }
+        .user-mail { color: #FF5500; font-weight: 900; display: block; margin: 5px 0; }
+        .btn { display: inline-block; background: linear-gradient(135deg, #00E5FF 0%, #FF5500 100%); color: #000; text-decoration: none; font-weight: 900; padding: 18px 45px; border-radius: 12px; text-transform: uppercase; margin-top: 30px; letter-spacing: 1px; transition: transform 0.2s; box-shadow: 0 10px 20px rgba(255, 85, 0, 0.2); }
+        .btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
+    <!-- Sichtbarer Teil nach erfolgreichem Redirect -->
     <div id="verified-content">
-        <img src="https://behaycailacyhlyrnorn.supabase.co/storage/v1/object/public/garage_images/logos/Logo_Square_Trans.png" class="logo">
+        <img src="https://behaycailacyhlyrnorn.supabase.co/storage/v1/object/public/garage_images/logos/Logo_Square_Trans.png" class="logo" alt="Logo">
         <h1>VERIFIED!</h1>
-        <p>The account for <span id="display-email" class="user-mail"></span> is now active.</p>
-        <a href="garageprime://confirm" class="btn">LAUNCH APP</a>
+        <p>The account for <span id="display-email" class="user-mail">your email</span> is now active.</p>
+        <p>You can now return to the app and join the race.</p>
+        <a href="garageprime://auth1" class="btn">LAUNCH APP</a>
+    </div>
+
+    <!-- Fallback/Sicherheits-Meldung -->
+    <div id="error-content">
+        <h1 style="color: #FF5500; font-family: 'Racing Sans One';">403</h1>
+        <p>Restricted Access.<br>Please use the link from your verification email.</p>
     </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        // Wenn ein Email-Parameter oder ein Access-Token (im Hash) da ist, zeigen wir den Inhalt
-        if (urlParams.has('email') || window.location.hash.includes('access_token')) {
-            document.getElementById('display-email').textContent = urlParams.get('email') || "your email";
+        // Wir prüfen ob wir einen Email-Parameter haben ODER ob ein Token im Hash steckt (Supabase Default)
+        const hasEmail = urlParams.has('email');
+        const hasAuth = window.location.hash.includes('access_token');
+
+        if (hasEmail || hasAuth) {
+            if(hasEmail) {
+                document.getElementById('display-email').textContent = urlParams.get('email');
+            }
             document.getElementById('verified-content').style.display = 'block';
+            document.getElementById('error-content').style.display = 'none';
         }
     </script>
 </body>
