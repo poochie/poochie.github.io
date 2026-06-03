@@ -3,36 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Prime | Engine Started</title>
+    <title>Garage Prime | Verified</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <style>
         body { background-color: #05050A; color: #FFFFFF; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #verified-content { display: none; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 24px; max-width: 400px; }
-        #error-content { text-align: center; color: #FF5500; }
-        h1 { font-family: 'Racing Sans One', cursive; font-size: 2.8rem; color: #00E5FF; margin-bottom: 10px; }
-        .btn { display: inline-block; background: linear-gradient(135deg, #00E5FF 0%, #FF5500 100%); color: #000; text-decoration: none; font-weight: 900; padding: 18px 40px; border-radius: 12px; text-transform: uppercase; margin-top: 20px; transition: transform 0.2s; }
+        #verified-content { display: none; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 24px; max-width: 400px; box-shadow: 0 0 50px rgba(0, 229, 255, 0.1); }
+        #error-content { text-align: center; display: block; }
+        h1 { font-family: 'Racing Sans One', cursive; font-size: 3rem; color: #00E5FF; margin-bottom: 15px; }
+        p { color: #99A1AF; font-size: 1.1rem; line-height: 1.5; }
+        /* Stil für die angezeigte E-Mail */
+        .user-mail { color: #FFFFFF; font-weight: 900; display: block; margin-top: 5px; font-size: 1rem; opacity: 0.8; }
+        .btn { display: inline-block; background: linear-gradient(135deg, #00E5FF 0%, #FF5500 100%); color: #000; text-decoration: none; font-weight: 900; padding: 18px 45px; border-radius: 12px; text-transform: uppercase; margin-top: 30px; letter-spacing: 1px; transition: transform 0.2s; box-shadow: 0 10px 20px rgba(255, 85, 0, 0.2); }
         .btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
-    <!-- Wird nur angezeigt, wenn verifiziert -->
     <div id="verified-content">
         <h1>VERIFIED!</h1>
-        <p style="color: #99A1AF;">Your account is active. The pit lane is open for you.</p>
-        <a href="garageprime://confirm" class="btn">START ENGINES</a>
+        <p>The account for: <span id="display-email" class="user-mail">...</span> is now active.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Return to the app and start the engine.</p>
+        <a href="garageprime://confirm" class="btn">LAUNCH APP</a>
     </div>
 
-    <!-- Fallback für direkten Aufruf ohne Token -->
     <div id="error-content">
-        <h1>404</h1>
-        <p>Access Denied. Please use the link in your email.</p>
+        <h1 style="color: #FF5500;">403</h1>
+        <p>Restricted Access.<br>Please use the link from your verification email.</p>
     </div>
 
     <script>
-        // Check ob der Parameter status=verified in der URL ist
         const urlParams = new URLSearchParams(window.location.search);
-        // Supabase hängt den Token oft nach einem # an, wir prüfen beides:
-        if (urlParams.get('status') === 'verified' || window.location.hash.includes('access_token')) {
+        const hasHash = window.location.hash.includes('access_token');
+        
+        if (urlParams.get('status') === 'verified' || hasHash) {
+            // E-Mail aus den Parametern auslesen
+            const email = urlParams.get('email');
+            if (email) {
+                document.getElementById('display-email').textContent = email;
+            }
+
             document.getElementById('verified-content').style.display = 'block';
             document.getElementById('error-content').style.display = 'none';
         }
