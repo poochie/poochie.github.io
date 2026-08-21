@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Garage Prime - Fahrzeugdetails</title>
+  <title>Garage Prime - Vehicle Details</title>
   
   <!-- Google Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -154,7 +154,7 @@
   </div>
 
   <div class="img-container" id="imgBox">
-    <div class="loading" id="loader">Lade Fahrzeugdaten...</div>
+    <div class="loading" id="loader">Loading telemetry...</div>
     <img id="carImg" style="display: none;" alt="Car Preview" />
   </div>
 
@@ -164,7 +164,7 @@
 
     <div class="stats-grid">
       <div class="stat-box">
-        <div class="stat-label">Leistung</div>
+        <div class="stat-label">Power</div>
         <div class="stat-val" id="statHp">---</div>
       </div>
       <div class="stat-box">
@@ -172,13 +172,13 @@
         <div class="stat-val" id="statSpeed">---</div>
       </div>
       <div class="stat-box">
-        <div class="stat-label">Jahr</div>
+        <div class="stat-label">Year</div>
         <div class="stat-val" id="statYear">---</div>
       </div>
     </div>
 
     <a href="https://play.google.com/store/apps/details?id=com.garageprime.app" class="btn-playstore">
-      👉 IN DER APP ÖFFNEN / DOWNLOAD
+      👉 OPEN IN APP / GET ON GOOGLE PLAY
     </a>
   </div>
 </div>
@@ -192,7 +192,7 @@
 
   async function loadCar() {
     if (!carId) {
-      document.getElementById('loader').innerText = 'Keine Fahrzeug-ID angegeben.';
+      document.getElementById('loader').innerText = 'No vehicle ID specified.';
       return;
     }
 
@@ -203,15 +203,15 @@
       const data = await response.json();
       
       if (!data || data.length === 0) {
-        document.getElementById('loader').innerText = 'Fahrzeug nicht gefunden.';
+        document.getElementById('loader').innerText = 'Vehicle not found.';
         return;
       }
 
       const car = data[0];
-      document.getElementById('carTitle').innerText = car.modell_name || 'Hot Wheels Modell';
+      document.getElementById('carTitle').innerText = car.modell_name || 'Hot Wheels Casting';
       document.getElementById('carSeries').innerText = (car.marke_name ? car.marke_name + ' • ' : '') + (car.sub_series || 'Collection');
       
-      if (car.tech_ps) document.getElementById('statHp').innerText = car.tech_ps + ' PS';
+      if (car.tech_ps) document.getElementById('statHp').innerText = car.tech_ps + ' HP';
       if (car.tech_vmax) document.getElementById('statSpeed').innerText = car.tech_vmax + ' km/h';
       if (car.jahr_release) document.getElementById('statYear').innerText = car.jahr_release;
 
@@ -221,12 +221,12 @@
         img.style.display = 'block';
         document.getElementById('loader').style.display = 'none';
       } else {
-        document.getElementById('loader').innerText = 'Kein Foto hinterlegt';
+        document.getElementById('loader').innerText = 'No photo available';
       }
 
       document.getElementById('mainContent').style.display = 'block';
     } catch (e) {
-      document.getElementById('loader').innerText = 'Fehler beim Laden der Daten.';
+      document.getElementById('loader').innerText = 'Error loading vehicle telemetry.';
     }
   }
 
