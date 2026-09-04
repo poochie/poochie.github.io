@@ -163,18 +163,18 @@
         
         <!-- HEADER -->
         <div class="text-center mb-10">
-            <span class="text-xs font-mono uppercase tracking-widest text-cyan-800 bg-cyan-50 border border-cyan-200 px-3.5 py-1 rounded-full font-medium inline-block" data-lang="en">20 Collector Questions &bull; Knowledge Base</span>
-            <span class="text-xs font-mono uppercase tracking-widest text-cyan-800 bg-cyan-50 border border-cyan-200 px-3.5 py-1 rounded-full font-medium inline-block hidden" data-lang="de">20 Sammler-Fragen &bull; Wissensdatenbank</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-cyan-800 bg-cyan-50 border border-cyan-200 px-3.5 py-1 rounded-full font-medium inline-block" data-lang="en">34 Collector Topics &bull; Knowledge Base</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-cyan-800 bg-cyan-50 border border-cyan-200 px-3.5 py-1 rounded-full font-medium inline-block hidden" data-lang="de">34 Sammler-Themen &bull; Wissensdatenbank</span>
             <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-4 mb-3 uppercase" data-lang="en">Frequently Asked Questions</h1>
             <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-4 mb-3 uppercase hidden" data-lang="de">H&auml;ufig gestellte Fragen (FAQ)</h1>
-            <p class="text-sm sm:text-base text-gray-500 max-w-xl mx-auto" data-lang="en">Everything you need to know about the onboarding, scanner workflow, duplicate protection, Cool Wall, Case Mixes, and trading.</p>
-            <p class="text-sm sm:text-base text-gray-500 max-w-xl mx-auto hidden" data-lang="de">Alle Antworten rund um Onboarding, Scanner-Workflow, Dubletten-Schutz, Cool Wall, Case-Mixe und den Sammler-Tausch.</p>
+            <p class="text-sm sm:text-base text-gray-500 max-w-xl mx-auto" data-lang="en">Everything you need to know about scanner tools, market data, profile settings, GPS privacy, COTD, Daily Quests, and fair trading.</p>
+            <p class="text-sm sm:text-base text-gray-500 max-w-xl mx-auto hidden" data-lang="de">Alle Antworten rund um Scanner-Tools, Marktdaten, Profileinstellungen, GPS-Datenschutz, COTD, Daily Quests und fairen Tausch.</p>
         </div>
 
         <!-- SEARCH BAR -->
         <div class="max-w-2xl mx-auto mb-8 relative">
             <div class="relative">
-                <input type="text" id="faq-search" placeholder="Search 23 topics (e.g., unrecognized model, variants, wiki, account, glare, batch, 1/250, sth, ko-fi)..." data-placeholder-en="Search 23 topics (e.g., unrecognized model, variants, wiki, account, glare, batch, 1/250, sth, ko-fi)..." data-placeholder-de="23 Themen durchsuchen (z. B. nicht erkannt, Varianten, Wiki, Konto, Spiegelung, Batch, 1/250, STH, Ko-fi)..." class="w-full bg-white border border-gray-200/90 rounded-2xl pl-11 pr-4 py-3.5 text-sm text-gray-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition shadow-sm">
+                <input type="text" id="faq-search" placeholder="Search 34 topics (e.g., cotd, daily quest, profile settings, disable gps, market data, news, compare, sth)..." data-placeholder-en="Search 34 topics (e.g., cotd, daily quest, profile settings, disable gps, market data, news, compare, sth)..." data-placeholder-de="34 Themen durchsuchen (z. B. COTD, Daily Quest, Profileinstellungen, GPS deaktivieren, Marktdaten, News, Compare)..." class="w-full bg-white border border-gray-200/90 rounded-2xl pl-11 pr-4 py-3.5 text-sm text-gray-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition shadow-sm">
                 <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
         </div>
@@ -182,32 +182,32 @@
         <!-- CATEGORY PILLS -->
         <div class="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-3xl mx-auto">
             <button onclick="filterCategory('all', this)" class="cat-btn bg-orange-600 text-white border border-orange-600 px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition">
-                <span data-lang="en">All (23)</span><span data-lang="de" class="hidden">Alle (23)</span>
+                <span data-lang="en">All (34)</span><span data-lang="de" class="hidden">Alle (34)</span>
             </button>
             <button onclick="filterCategory('onboarding', this)" class="cat-btn bg-white text-gray-600 border border-gray-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:border-gray-300 transition">
-                🟢 <span data-lang="en">Onboarding & Data</span><span data-lang="de" class="hidden">Einstieg & Daten</span>
+                🟢 <span data-lang="en">Onboarding & Settings</span><span data-lang="de" class="hidden">Einstieg & Einstellungen</span>
             </button>
             <button onclick="filterCategory('scanner', this)" class="cat-btn bg-white text-gray-600 border border-gray-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:border-gray-300 transition">
-                📷 <span data-lang="en">Scanner & Blister</span><span data-lang="de" class="hidden">Scanner & Blister</span>
+                📷 <span data-lang="en">Scanner Tools</span><span data-lang="de" class="hidden">Scanner-Werkzeuge</span>
             </button>
             <button onclick="filterCategory('garage', this)" class="cat-btn bg-white text-gray-600 border border-gray-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:border-gray-300 transition">
-                🏎️ <span data-lang="en">Garage & PDF</span><span data-lang="de" class="hidden">Garage & PDF</span>
+                🏎️ <span data-lang="en">Garage & Market Data</span><span data-lang="de" class="hidden">Garage & Marktdaten</span>
             </button>
             <button onclick="filterCategory('coolwall', this)" class="cat-btn bg-white text-gray-600 border border-gray-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:border-gray-300 transition">
-                🏆 <span data-lang="en">Cool Wall & Duels</span><span data-lang="de" class="hidden">Cool Wall & Duelle</span>
+                🏆 <span data-lang="en">Cool Wall & Quests</span><span data-lang="de" class="hidden">Cool Wall & Quests</span>
             </button>
             <button onclick="filterCategory('cases', this)" class="cat-btn bg-white text-gray-600 border border-gray-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:border-gray-300 transition">
-                📦 <span data-lang="en">Cases (A-Q) & Radar</span><span data-lang="de" class="hidden">Cases & Radar</span>
+                📦 <span data-lang="en">Cases & Newsfeed</span><span data-lang="de" class="hidden">Cases & Newsfeed</span>
             </button>
             <button onclick="filterCategory('community', this)" class="cat-btn bg-white text-gray-600 border border-gray-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:border-gray-300 transition">
-                🤝 <span data-lang="en">Trading & Marketplace</span><span data-lang="de" class="hidden">Tausch & Marktplatz</span>
+                🤝 <span data-lang="en">Trading & Moderation</span><span data-lang="de" class="hidden">Tausch & Moderation</span>
             </button>
         </div>
 
-        <!-- 20 FAQ ITEMS -->
+        <!-- 34 FAQ ITEMS -->
         <div id="faq-list" class="space-y-3">
             
-            <!-- Q1: ACCOUNT REQUIREMENT -->
+            <!-- Q01: ACCOUNT REQUIREMENT -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="onboarding" data-search-en="do i need an account to start scanning registration guest try in store" data-search-de="muss ich ein konto anlegen registrierung gast sofort testen">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
@@ -227,7 +227,7 @@
                 </div>
             </div>
 
-            <!-- Q2: IMPORT EXISTING COLLECTION -->
+            <!-- Q02: IMPORT EXISTING COLLECTION -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="onboarding" data-search-en="import existing collection excel csv spreadsheet bulk migration" data-search-de="bestehende sammlung importieren excel csv tabelle umzug riesensammlung">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
@@ -247,7 +247,7 @@
                 </div>
             </div>
 
-            <!-- Q3: DEVICE SWITCH & BACKUP -->
+            <!-- Q03: DEVICE SWITCH & BACKUP -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="onboarding" data-search-en="what happens if switch phone new device backup restore sync" data-search-de="was passiert beim handywechsel neues smartphone backup synchronisation">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
@@ -267,11 +267,89 @@
                 </div>
             </div>
 
-            <!-- Q4: SCANNER FRONT VS BACK -->
+            <!-- Q04: PRIVATE GARAGE VS PUBLIC PROFILE -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="onboarding" data-search-en="private garage vs public profile what data is private what can others see privacy showcase" data-search-de="private garage oeffentliches profil was bleibt privat was sehen andere datenschutz tausch vitrine">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-gray-100 text-gray-700 flex items-center justify-center text-xs shrink-0 font-mono">04</span>
+                        <span data-lang="en">Private Garage vs. Public Profile: What stays private and what is visible?</span>
+                        <span data-lang="de" class="hidden">Private Garage vs. &Ouml;ffentliches Profil: Was bleibt privat und was sehen andere?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            Your collection data is <strong>strictly private by default</strong>. You decide exactly what to share with the collector community:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Deine Sammlungsdaten sind <strong>standardmässig zu 100 % privat</strong>. Du hast die volle Kontrolle darüber, was du mit der Community teilst:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">100% Private Data:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">100 % Private Daten:</strong>
+                                <span data-lang="en">Your total inventory count, purchase prices, acquisition dates, storage bin locations, private condition notes, and offline garage backups are never visible to anyone else.</span>
+                                <span data-lang="de" class="hidden">Deine Gesamtstückzahl, Einkaufspreise, Kaufdaten, Lagerorte (Boxen/Regale), private Zustandsnotizen und Offline-Scans sind für niemanden sichtbar.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Public Showcase & Profile:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">&Ouml;ffentliche Sammler-Vitrine:</strong>
+                                <span data-lang="en">When sharing your collector handle or profile link, visitors only see: your public username, verified collector badge, items you explicitly mark as <em>"Available for Trade"</em>, and your shared Cool Wall tier board.</span>
+                                <span data-lang="de" class="hidden">Wenn du dein Sammlerprofil teilst, sehen Besucher lediglich: deinen Nutzernamen, dein Sammler-Abzeichen, Modelle mit dem Status <em>„Zum Tausch verfügbar“</em> und deine geteilte Cool Wall.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q05: PROFILE SETTINGS & DISABLING GPS (NEW) -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="onboarding" data-search-en="profile settings disable gps share location units metric imperial notifications privacy account delete" data-search-de="profil einstellungen gps deaktivieren standort ausschalten einheiten metrisch imperial benachrichtigungen konto loeschen">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-gray-100 text-gray-700 flex items-center justify-center text-xs shrink-0 font-mono">05</span>
+                        <span data-lang="en">Profile Settings: How do I customize my profile and disable GPS location sharing?</span>
+                        <span data-lang="de" class="hidden">Profil-Einstellungen: Wie passe ich mein Profil an und wie deaktiviere ich die GPS-Standortfreigabe?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            In your app's <strong>Profile & Settings</strong> screen, you have comprehensive control over your collector experience:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Im Bereich <strong>Profil & Einstellungen</strong> hast du die volle Kontrolle über dein Sammler-Erlebnis:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Disable GPS Location Sharing:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">GPS-Standortfreigabe deaktivieren:</strong>
+                                <span data-lang="en">Navigate to <em>Settings &rarr; Privacy & Location</em> and toggle off <strong>"Share Store GPS on Radar"</strong>. When disabled, your device GPS is never queried during scans or hunt logs. You can still optionally select a city or store name manually without transmitting any hardware coordinates.</span>
+                                <span data-lang="de" class="hidden">Gehe auf <em>Einstellungen &rarr; Privatsphäre & Standort</em> und schalte <strong>„Laden-GPS auf Radar teilen“</strong> aus. Wenn deaktiviert, wird dein Smartphone-GPS beim Scannen oder Eintragen von Funden niemals abgefragt. Du kannst Verkaufsorte weiterhin manuell ohne Koordinaten erfassen.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Measurement Units:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Einheiten (Metrisch / Imperial):</strong>
+                                <span data-lang="en">Switch telemetry between <strong>Metric</strong> (km/h, HP/PS, cc) and <strong>Imperial</strong> (mph, BHP, cu in) with one click.</span>
+                                <span data-lang="de" class="hidden">Wähle zwischen <strong>Metrisch</strong> (km/h, PS, cm³) und <strong>Imperial</strong> (mph, BHP, cu in) für alle Telemetriedaten.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Notification Preferences:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Mitteilungen & Benachrichtigungen:</strong>
+                                <span data-lang="en">Toggle instant push notifications for Trade Chat messages, Daily Quest reminders, COTD drops, or new Case assortment releases.</span>
+                                <span data-lang="de" class="hidden">Aktiviere Push-Mitteilungen für Tausch-Chats, tägliche Quest-Erinnerungen, COTD-Drops oder neue Case-Mix-Veröffentlichungen.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q06: SCANNER FRONT VS BACK -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="aim camera front artwork back toy code best recognition rate" data-search-de="kamera zielen vorderseite artwork rueckseite toy code erkennung">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">04</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">06</span>
                         <span data-lang="en">Should I scan the front artwork or the back toy code of the blister?</span>
                         <span data-lang="de" class="hidden">Soll ich beim Blister-Scan eher auf die Vorderseite oder R&uuml;ckseite zielen?</span>
                     </span>
@@ -287,11 +365,11 @@
                 </div>
             </div>
 
-            <!-- Q5: PROTECTOR CASES & GLARE -->
+            <!-- Q07: PROTECTOR CASES & GLARE -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="protector case clam shell thick plastic reflection scan through" data-search-de="protector case schutzhuelle hartplastik spiegelung durchscannen">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">05</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">07</span>
                         <span data-lang="en">Does the scanner work through thick plastic Protector Cases?</span>
                         <span data-lang="de" class="hidden">Funktioniert der Scanner auch durch dicke Plastik-Schutzh&uuml;llen (Protector Cases)?</span>
                     </span>
@@ -307,11 +385,54 @@
                 </div>
             </div>
 
-            <!-- Q6: BATCH CAPTURE 30 CARS -->
+            <!-- Q08: SCANNER MODES COMPARISON -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="which scanner mode to use when comparison single blister ocr batch capture loose vision strengths weaknesses" data-search-de="wann welchen scanner verwenden staerken schwaechen vergleich single blister ocr batch capture loose vision werkzeuge">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">08</span>
+                        <span data-lang="en">Which scanner mode should I use? Strengths and weaknesses of each tool</span>
+                        <span data-lang="de" class="hidden">Wann soll ich welchen Scanner verwenden? St&auml;rken und Schw&auml;chen der Tools</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-4">
+                        <p data-lang="en">
+                            Garage Prime features 3 specialized scanner tools tailored for different collecting scenarios:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Garage Prime bietet 3 spezialisierte Scan-Werkzeuge für unterschiedliche Sammler-Situationen:
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="bg-gray-50 border border-gray-200/80 rounded-xl p-3.5 text-xs space-y-2">
+                                <div class="font-bold text-gray-900 flex items-center gap-1.5"><span class="text-base">🎯</span><span>Single Blister OCR</span></div>
+                                <p class="text-gray-500"><strong class="text-gray-700" data-lang="en">Best for:</strong><strong class="text-gray-700 hidden" data-lang="de">Ideal f&uuml;r:</strong><span data-lang="en"> Live Peg-Hunting in store aisles; instant duplicate check before purchase.</span><span data-lang="de" class="hidden"> Live an den Laden-Haken im Supermarkt; schneller Dubletten-Check vor dem Kauf.</span></p>
+                                <p class="text-emerald-700"><strong>&plus; <span data-lang="en">Strengths:</span><span data-lang="de" class="hidden">St&auml;rken:</span></strong><span data-lang="en"> Ultra-fast (&lt;200ms), instant Green/Red HUD alert, 100% offline.</span><span data-lang="de" class="hidden"> Blitzschnell (&lt;200ms), sofortiger Gr&uuml;n/Rot-Alarm, 100% offline.</span></p>
+                                <p class="text-rose-700"><strong>&minus; <span data-lang="en">Limitations:</span><span data-lang="de" class="hidden">Grenzen:</span></strong><span data-lang="en"> Scans 1 car at a time; requires carded packaging.</span><span data-lang="de" class="hidden"> Erfasst jeweils 1 Auto; ben&ouml;tigt Original-Verpackung.</span></p>
+                            </div>
+                            <div class="bg-gray-50 border border-gray-200/80 rounded-xl p-3.5 text-xs space-y-2">
+                                <div class="font-bold text-gray-900 flex items-center gap-1.5"><span class="text-base">📸</span><span>Batch Capture Mode</span></div>
+                                <p class="text-gray-500"><strong class="text-gray-700" data-lang="en">Best for:</strong><strong class="text-gray-700 hidden" data-lang="de">Ideal f&uuml;r:</strong><span data-lang="en"> Big shopping hauls (20–50 cars) on desk/floor at home.</span><span data-lang="de" class="hidden"> Grosseink&auml;ufe (20–50 Autos) daheim auf dem Tisch oder Boden.</span></p>
+                                <p class="text-emerald-700"><strong>&plus; <span data-lang="en">Strengths:</span><span data-lang="de" class="hidden">St&auml;rken:</span></strong><span data-lang="en"> Non-stop photo shutter; background parsing queue; 1-click bulk import.</span><span data-lang="de" class="hidden"> Knipsen im Sekundentakt; Hintergrund-Warteschlange; 1-Klick-Sammelimport.</span></p>
+                                <p class="text-rose-700"><strong>&minus; <span data-lang="en">Limitations:</span><span data-lang="de" class="hidden">Grenzen:</span></strong><span data-lang="en"> Requires decent lighting to prevent motion blur on fast snaps.</span><span data-lang="de" class="hidden"> Erfordert gleichm&auml;ssiges Licht, um Bewegungsunsch&auml;rfe zu vermeiden.</span></p>
+                            </div>
+                            <div class="bg-gray-50 border border-gray-200/80 rounded-xl p-3.5 text-xs space-y-2">
+                                <div class="font-bold text-gray-900 flex items-center gap-1.5"><span class="text-base">🔍</span><span>Loose Vision Mode</span></div>
+                                <p class="text-gray-500"><strong class="text-gray-700" data-lang="en">Best for:</strong><strong class="text-gray-700 hidden" data-lang="de">Ideal f&uuml;r:</strong><span data-lang="en"> Uncarded models, flea market bins, vintage cars without blister.</span><span data-lang="de" class="hidden"> Ausgepackte Modelle, Flohmarkt-W&uuml;hltische, Vintage-Autos ohne Blister.</span></p>
+                                <p class="text-emerald-700"><strong>&plus; <span data-lang="en">Strengths:</span><span data-lang="de" class="hidden">St&auml;rken:</span></strong><span data-lang="en"> Visual AI identifies castings via silhouette, rim style, and decals.</span><span data-lang="de" class="hidden"> KI erkennt Gussformen anhand Silhouette, Felgen und Decal-Muster.</span></p>
+                                <p class="text-rose-700"><strong>&minus; <span data-lang="en">Limitations:</span><span data-lang="de" class="hidden">Grenzen:</span></strong><span data-lang="en"> Needs clean background; identical castings with tiny livery differences may need quick manual confirmation.</span><span data-lang="de" class="hidden"> Braucht neutralen Hintergrund; bei &auml;hnlichen Farbvarianten kurze manuelle Best&auml;tigung n&ouml;tig.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q09: BATCH CAPTURE 30 CARS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="how to scan 30 cars at once haul batch capture rapid queue" data-search-de="wie scanne ich 30 autos auf einmal grosseinkauf batch capture serienaufnahme">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">06</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">09</span>
                         <span data-lang="en">How do I rapidly scan 30+ cars after a big shopping haul?</span>
                         <span data-lang="de" class="hidden">Wie scanne ich am schnellsten 30 Autos auf einmal nach einem Gro&szlig;einkauf?</span>
                     </span>
@@ -327,11 +448,11 @@
                 </div>
             </div>
 
-            <!-- Q7: INCORRECT CAMERA SUGGESTION -->
+            <!-- Q10: INCORRECT CAMERA SUGGESTION -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="camera suggests wrong casting fix manual edit search fallback" data-search-de="kamera schlaegt falsches auto vor korrektur manuelle suche anpassen">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">07</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">10</span>
                         <span data-lang="en">What if the camera suggests a slightly different casting model?</span>
                         <span data-lang="de" class="hidden">Was mache ich, wenn die Kamera ein falsches Modell vorschl&auml;gt?</span>
                     </span>
@@ -347,11 +468,11 @@
                 </div>
             </div>
 
-            <!-- Q08: UNRECOGNIZED MODEL / VARIANTS / WIKI INCOMPLETENESS -->
+            <!-- Q11: UNRECOGNIZED MODEL / VARIANTS / WIKI INCOMPLETENESS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="what to do if model is not recognized causes variants incomplete wiki table submission manual add" data-search-de="modell wird nicht erkannt was tun ursachen varianten wiki tabelle unvollstaendig manuell erfassen community einreichen">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">08</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">11</span>
                         <span data-lang="en">What should I do if a model is not recognized by the scanner?</span>
                         <span data-lang="de" class="hidden">Was tun, wenn ein Modell nicht erkannt wird?</span>
                     </span>
@@ -395,11 +516,11 @@
                 </div>
             </div>
 
-            <!-- Q09: LOOSE CARS WITHOUT CARD -->
+            <!-- Q12: LOOSE CARS WITHOUT CARD -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="loose cars uncarded opened vision silhouette casting identification" data-search-de="lose autos ohne verpackung ausgepackt vision silhouette erkennen">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">09</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">12</span>
                         <span data-lang="en">Can I scan loose die-cast cars without any packaging?</span>
                         <span data-lang="de" class="hidden">Kann ich auch lose Modellautos ohne Verpackung erfassen?</span>
                     </span>
@@ -415,11 +536,11 @@
                 </div>
             </div>
 
-            <!-- Q10: OFFLINE SHOPPING SCAN -->
+            <!-- Q13: OFFLINE SHOPPING SCAN -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="scanner" data-search-en="scan in basement store without internet cellular signal offline queue" data-search-de="scannen im keller supermarkt ohne empfang internet offline warteschlange">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">10</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">13</span>
                         <span data-lang="en">Does scanning work in store basements with zero cellular reception?</span>
                         <span data-lang="de" class="hidden">Funktioniert das Scannen auch im Untergeschoss ohne Handyempfang?</span>
                     </span>
@@ -435,11 +556,129 @@
                 </div>
             </div>
 
-            <!-- Q11: 1/250 MISSING NUMBERS -->
+            <!-- Q14: REAL CARS THEMATIK / PHILOSOPHY -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="real cars philosophy why scan real cars telemetry horsepower automotive culture tribute" data-search-de="real cars thematik warum echte autos scannen telemetrie vorbilder autolexikon fahrzeugkultur">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">14</span>
+                        <span data-lang="en">The "Real Cars" Concept: Why link die-cast models to real-world automotive telemetry?</span>
+                        <span data-lang="de" class="hidden">Die „Real Cars“-Thematik: Warum verkn&uuml;pft Garage Prime Die-Cast mit echten Autodaten?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        Hot Wheels and die-cast models are miniature tributes to automotive engineering history—from 90s JDM icons (Toyota Supra, Nissan Skyline GT-R, Mazda RX-7) and classic American Muscle (Shelby GT500, '69 Camaro) to Group B rally beasts and modern hypercars. Instead of treating models as static toys, Garage Prime brings them to life with real factory horsepower, engine displacement, top speed, and 0-100 km/h acceleration. It turns collecting into an interactive automotive encyclopedia and bridges the passion between die-cast collectors and true petrolheads.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Modellautos sind detailgetreue Miniatur-Denkmäler echter Automobilgeschichte – von 90er JDM-Ikonen (Toyota Supra, Nissan Skyline GT-R, Mazda RX-7) über US-Muscle-Cars ('69 Camaro, Shelby GT500) bis hin zu Gruppe-B-Rallye-Monstern und modernen Hypercars. Anstatt Autos nur als nummerierte Spielzeuge abzuhaken, erweckt Garage Prime sie mit echten Werks-PS, Hubraum, Höchstgeschwindigkeit und 0-100 km/h Beschleunigung zum Leben. So wird das Sammeln zu einem interaktiven Auto-Lexikon, das Spielzeugsammler und echte Autoliebhaber verbindet.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q15: STIMMEN SÄMTLICHE DATEN? -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="are all specs and data 100 accurate stimmen saemtliche daten factory values variations trims" data-search-de="stimmen saemtliche daten sind alle leistungsdaten korrekt genauigkeit abweichungen laendervarianten">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">15</span>
+                        <span data-lang="en">Are all specifications and telemetry data 100% accurate?</span>
+                        <span data-lang="de" class="hidden">Stimmen s&auml;mtliche Daten? Sind alle Leistungs- und Katalogwerte zu 100 % exakt?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        We curate our vehicle specs from official manufacturer datasheets, homologation archives, and verified automotive databases. However, real-world cars often vary by market (e.g., European vs. US horsepower ratings, or pre-facelift vs. post-facelift engine generations). For pure Mattel fantasy castings (Twin Mill, Bone Shaker, Rodger Dodger), specifications are derived from official Mattel engine lore. Because no database is static, you have complete freedom: tap the <strong>Edit (Pencil) icon</strong> to customize any stat for your garage or submit a community correction!
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Wir beziehen unsere Fahrzeugdaten aus offiziellen Werksdatenblättern, Homologationsunterlagen und verifizierten Automobil-Archiven. Dennoch weichen reale Autos je nach Länderausführung oft leicht ab (z. B. US- vs. Europa-PS oder Vorfacelift- vs. Facelift-Motoren). Bei reinen Fantasie-Modellen (Twin Mill, Bone Shaker) stammen die Angaben aus der offiziellen Mattel-Lore. Da keine Datenbank statisch ist, hast du die volle Freiheit: Über das <strong>Stift-Symbol</strong> kannst du jeden Wert für deine eigene Garage anpassen oder Korrekturvorschläge für die Zentraldatenbank einreichen.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q16: MARKET DATA & ESTIMATED VALUES (NEW) -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="market data estimated values secondary market price trends fair trading valuation guide" data-search-de="marktdaten geschaetzte sammlerwerte preis trends bewertung marktwert fairer tauschhandel">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">16</span>
+                        <span data-lang="en">Market Data & Collector Values: How does Garage Prime calculate value estimates?</span>
+                        <span data-lang="de" class="hidden">Marktdaten & Sammlerwerte: Wie ermittelt Garage Prime gesch&auml;tzte Werte?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            Garage Prime aggregates market indices to provide neutral transparency for the collector community:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Garage Prime analysiert Markttrends, um Sammlern eine verlässliche und neutrale Orientierung zu bieten:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Data Aggregation & Tiers:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Datenbasis & Seltenheitsstufen:</strong>
+                                <span data-lang="en">Estimated values factor in recent verified secondary market transactions, casting rarity tiers (Standard Mainlines, Regular Treasure Hunts, Super Treasure Hunts with Spectraflame & Real Riders, and RLC / Convention Exclusives), as well as packaging condition.</span>
+                                <span data-lang="de" class="hidden">Schätzwerte basieren auf verifizierten Sammler-Verkäufen, Seltenheitsstufen (Mainline, Regular Treasure Hunt, Super Treasure Hunt mit Spectraflame & Real Riders, RLC-Editionen) und dem Zustand der Karte.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Fair Bartering Guideline:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Faire Orientierung für den Tausch:</strong>
+                                <span data-lang="en">Garage Prime does not sell cars and charges zero fees. Values serve solely as an informational guideline so collectors can evaluate fair 1-for-1 or multi-car trades without getting taken advantage of.</span>
+                                <span data-lang="de" class="hidden">Garage Prime ist kein Händler und erhebt keine Gebühren. Die Preisrichtwerte dienen rein als transparente Orientierung, damit Sammler bei 1-zu-1 oder Mehrfach-Tauschangeboten stets auf Augenhöhe verhandeln können.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q17: INACCURATE DATA / WHAT TO DO / NOT PERFECT -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="inaccurate data wrong specs not perfect what to do how to fix edit pencil custom photo report typo" data-search-de="falsche daten nicht perfekt was tun korrektur stift symbol werkstatt journal eigene fotos fehler melden">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">17</span>
+                        <span data-lang="en">What if catalog data or specs are inaccurate or imperfect?</span>
+                        <span data-lang="de" class="hidden">Was tun bei ungenauen oder fehlerhaften Daten? Die Daten sind nicht perfekt.</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            With over 10,000+ historical castings and constant yearly releases, automated matches may occasionally contain minor imperfections. Here is how you can easily adjust them:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Bei über 10.000 Modellvarianten und ständigen Neuzugängen können automatische Treffer gelegentlich kleine Ungenauigkeiten aufweisen. So hast du jederzeit die volle Kontrolle:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">1. 1-Tap In-App Edit (Pencil Icon):</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">1. Direktes Bearbeiten per Stift-Icon:</strong>
+                                <span data-lang="en">Every car detail screen features an <strong>Edit (Pencil)</strong> icon in the top header. You can overwrite the model name, series year, horsepower, displacement, color, and personal notes instantly for your garage.</span>
+                                <span data-lang="de" class="hidden">Jede Fahrzeugansicht besitzt oben ein <strong>Stift-Symbol</strong>. Du kannst Modellbezeichnung, Modelljahr, PS-Zahl, Hubraum, Farbton und eigene Notizen mit einem Fingertipp direkt für deine Garage anpassen.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">2. Custom Photos in Maintenance Journal:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">2. Eigene Fotos im Werkstatt-Journal:</strong>
+                                <span data-lang="en">If the default catalog image doesn't match your exact variation, snap a crisp photo of your physical car in the <em>Journal & Maintenance</em> tab. Your custom photo immediately takes priority across all PDF exports, album grids, and share cards.</span>
+                                <span data-lang="de" class="hidden">Falls das Standard-Katalogbild nicht exakt deiner Variante entspricht, lade im <em>Werkstatt-Journal</em> ein eigenes Foto hoch. Dein Bild wird automatisch in allen PDF-Exporten, Sammlungs-Übersichten und Share-Cards bevorzugt.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">3. Report Correction to Master Database:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">3. Fehler an die Zentraldatenbank melden:</strong>
+                                <span data-lang="en">Spotted a genuine typo in the central catalog? Tap <em>"Report / Suggest Fix"</em> or use the feedback button. Master catalog improvements are reviewed and rolled out over cloud sync so the entire collector community benefits!</span>
+                                <span data-lang="de" class="hidden">Hast du einen echten Tippfehler im Zentralkatalog entdeckt? Nutze die Funktion <em>„Korrektur vorschlagen“</em> oder das Feedback-Formular. Korrekturen fliessen in die Cloud-Datenbank ein, wovon die gesamte Sammler-Community profitiert!</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q18: 1/250 MISSING NUMBERS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="which numbers missing 1 250 yearly mainline set checklist filter" data-search-de="welche nummern fehlen 1 250 mainline jahresset checkliste filter">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">11</span>
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">18</span>
                         <span data-lang="en">How do I see which numbers are missing from my 1/250 Mainline set?</span>
                         <span data-lang="de" class="hidden">Wie sehe ich auf einen Blick, welche Nummern mir f&uuml;r das 1/250 Set fehlen?</span>
                     </span>
@@ -455,11 +694,11 @@
                 </div>
             </div>
 
-            <!-- Q12: RECOLOR VS DUPLICATE -->
+            <!-- Q19: RECOLOR VS DUPLICATE -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="how to distinguish recolor color variant from true duplicate casting" data-search-de="wie unterscheide ich farbvariante recolor von echter dublette">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">12</span>
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">19</span>
                         <span data-lang="en">How do I distinguish true duplicates from recolor variations?</span>
                         <span data-lang="de" class="hidden">Wie unterscheide ich echte Dubletten von Farbvarianten (Recolors)?</span>
                     </span>
@@ -475,11 +714,11 @@
                 </div>
             </div>
 
-            <!-- Q13: CUSTOM PHOTOS -->
+            <!-- Q20: CUSTOM PHOTOS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="add custom real life photo to my car maintenance journal replace stock image" data-search-de="eigenes foto hinzufuegen werkstatt journal standardbild ersetzen vitrine">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">13</span>
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">20</span>
                         <span data-lang="en">Can I replace the catalog render with a real photo of my exact car?</span>
                         <span data-lang="de" class="hidden">Kann ich das Standardbild durch ein eigenes Foto meines Autos ersetzen?</span>
                     </span>
@@ -495,11 +734,11 @@
                 </div>
             </div>
 
-            <!-- Q14: PDF BOOKLET EXPORT -->
+            <!-- Q21: PDF BOOKLET EXPORT -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="garage" data-search-en="how to export collection as pdf printable booklet catalog binder share" data-search-de="wie exportiere ich sammlung als pdf druckbarer katalog heft ordner drucken">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">14</span>
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">21</span>
                         <span data-lang="en">How do I export my collection as a printable PDF catalog?</span>
                         <span data-lang="de" class="hidden">Wie exportiere ich meine Sammlung als druckbares PDF-Heft?</span>
                     </span>
@@ -515,11 +754,109 @@
                 </div>
             </div>
 
-            <!-- Q15: REAL TELEMETRY SPECS -->
+            <!-- Q22: CAR COMPARE & AUTO-QUARTETT DUELS -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="car compare auto quartett top trumps stat duel battle challenge friends head to head" data-search-de="car compare fahrzeugvergleich auto quartett duell top trumps herausforderung freunde head to head">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">22</span>
+                        <span data-lang="en">Car Compare & Stat Duels: How does vehicle comparison work?</span>
+                        <span data-lang="de" class="hidden">Car Compare & Quartett-Duelle: Wie funktioniert der Fahrzeug-Vergleich?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            The <strong>Car Compare</strong> engine lets you pit any two vehicles head-to-head with direct automotive telemetry comparisons:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Das <strong>Car Compare</strong>-Werkzeug ermöglicht den direkten Head-to-Head-Vergleich zweier Fahrzeuge anhand echter Telemetriewerte:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Head-to-Head Telemetry Comparison:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Direkter Telemetrie-Vergleich:</strong>
+                                <span data-lang="en">Select any two cars from your garage or challenge rival guest cars. The tool generates dynamic side-by-side comparison bars for Horsepower (HP), Engine Displacement (cc), Top Speed (km/h), and 0-100 km/h Acceleration.</span>
+                                <span data-lang="de" class="hidden">Wähle zwei beliebige Autos aus deiner Garage oder fordere Gastmodelle heraus. Die App vergleicht PS, Hubraum, Höchstgeschwindigkeit und 0-100 km/h Beschleunigung in übersichtlichen Balkendiagrammen.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Auto-Quartett (Top Trumps) Duels:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Auto-Quartett-Spielmodus:</strong>
+                                <span data-lang="en">In duel mode, pick your car's strongest attribute to outmatch the opponent. The winner of the round takes the checkered flag, and all duel records are saved to your personal match history log.</span>
+                                <span data-lang="de" class="hidden">Im Duell-Modus wählst du die stärkste Eigenschaft deines Modells (z. B. PS oder Vmax), um den Gegner zu schlagen. Der Gewinner wird sofort gekürt und in deiner Match-Historie vermerkt.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q23: CAR OF THE DAY (COTD) (NEW) -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="cotd car of the day featured daily model stig verdict trivia wishlist bonus xp" data-search-de="cotd car of the day auto des tages taegliches modell stigs urteil trivia wunschliste bonus xp">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">23</span>
+                        <span data-lang="en">Car of the Day (COTD): What is the daily featured car and what does it include?</span>
+                        <span data-lang="de" class="hidden">Car of the Day (COTD): Was ist das t&auml;gliche Modell und was beinhaltet es?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        Every 24 hours, Garage Prime spotlights an iconic die-cast casting as the <strong>Car of the Day (COTD)</strong>. Each spotlight features: real-world automotive history, engine specs, production trivia, Stig's humorous verdict commentary, and 1-tap buttons to add the model to your Wishlist or Garage. Checking the COTD also rewards daily bonus XP for your Collector Level!
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Alle 24 Stunden kürt Garage Prime ein besonderes Modell zum <strong>Car of the Day (COTD)</strong>. Jedes Feature bietet: die reale Entstehungsgeschichte des Originals, Motordaten, Trivia-Fakten, Stigs humorvollen Kommentar und 1-Klick-Buttons, um das Auto auf die Wunschliste oder in die Garage zu setzen. Das tägliche Vorbeischauen belohnt dich zudem mit Bonus-XP für dein Sammler-Level!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q24: POINTS, DAILY QUESTS & COMMUNITY MISSIONS (NEW) -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="collector points xp daily quests community missions badges leveling rewards achievements" data-search-de="sammlerpunkte xp daily quests community missionen level aufstieg abzeichen belohnungen erfolge">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">24</span>
+                        <span data-lang="en">Points, Daily Quests & Missions: How do XP, levels, and community goals work?</span>
+                        <span data-lang="de" class="hidden">Punkte, Daily Quests & Missionen: Wie funktionieren XP, Level und Gemeinschaftsziele?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            Collecting in Garage Prime is accompanied by a motivating, non-paywalled gamification system:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Das Sammeln wird in Garage Prime durch ein motivierendes, rein spielerisches Fortschrittssystem belohnt:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Collector Points (XP) & Levels:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Sammler-XP & Rangaufstieg:</strong>
+                                <span data-lang="en">Earn XP by scanning new cars, completing yearly series (e.g. HW Turbo 5/5), winning Quartett duels, and ranking models on the Cool Wall. Rise through ranks from <em>Rookie</em> to <em>Master Collector</em> to unlock exclusive profile badges.</span>
+                                <span data-lang="de" class="hidden">Erhalte XP durch das Scannen neuer Modelle, Abschliessen von 5er-Serien, Siege bei Quartett-Duellen und Einstufungen auf der Cool Wall. Steige vom <em>Rookie</em> bis zum <em>Master Collector</em> auf und schalte Profil-Badges frei.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Daily Quests:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Daily Quests (Tagesaufgaben):</strong>
+                                <span data-lang="en">3 fresh challenges each morning (e.g., "Scan 1 JDM model", "Challenge a Muscle Car in duel", "Inspect today's COTD") offering daily XP boosts.</span>
+                                <span data-lang="de" class="hidden">3 frische tägliche Mini-Aufgaben (z. B. „Scanne 1 JDM-Modell“, „Tritt im Duell gegen ein Muscle-Car an“, „Sieh dir das COTD an“) bringen extra XP.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">Community Missions:</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">Community-Missionen:</strong>
+                                <span data-lang="en">Global cooperative goals for all collectors worldwide (e.g., "Community discovers 500 Case D cars this week"). When achieved, every participant receives an exclusive seasonal community badge.</span>
+                                <span data-lang="de" class="hidden">Gemeinsame weltweite Sammlerziele (z. B. „Community erfasst diese Woche 500 Case-D-Autos“). Bei Erreichen erhalten alle Teilnehmer ein exklusives Saison-Abzeichen.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q25: REAL TELEMETRY SPECS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="where do engine horsepower top speed specs come from fantasy real cars" data-search-de="woher kommen ps hubraum v max daten echte vorbilder fantasie">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">15</span>
+                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">25</span>
                         <span data-lang="en">Where do the horsepower, engine displacement, and top speed specs come from?</span>
                         <span data-lang="de" class="hidden">Woher stammen die PS-Zahlen, Hubraum- und H&ouml;chstgeschwindigkeitswerte?</span>
                     </span>
@@ -535,11 +872,11 @@
                 </div>
             </div>
 
-            <!-- Q16: COOL WALL RANKING -->
+            <!-- Q26: COOL WALL RANKING -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="how to rank cars on cool wall seriously uncool to sub zero" data-search-de="wie stufe ich autos auf der cool wall ein seriously uncool sub zero">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">16</span>
+                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">26</span>
                         <span data-lang="en">How do I categorize cars on The Cool Wall (from Seriously Uncool to Sub-Zero)?</span>
                         <span data-lang="de" class="hidden">Wie stufe ich ein Auto auf der Cool Wall ein (von Seriously Uncool bis Sub-Zero)?</span>
                     </span>
@@ -555,31 +892,31 @@
                 </div>
             </div>
 
-            <!-- Q17: AUTO-QUARTETT DUELS -->
-            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="how to start auto quartett top trumps stat duel battle challenge friends" data-search-de="wie starte ich auto quartett duell top trumps herausforderung freunde">
+            <!-- Q27: VIPS & COOL WALL / TOP GEAR HOMAGE -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="who are the vips on cool wall are they real celebrities stig top gear parody bbc" data-search-de="wer sind die vips auf der cool wall sind das echte promis stig top gear parodie bbc">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">17</span>
-                        <span data-lang="en">How do I start an Auto-Quartett (Top Trumps) duel?</span>
-                        <span data-lang="de" class="hidden">Wie starte ich ein Auto-Quartett-Duell (Top Trumps)?</span>
+                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">27</span>
+                        <span data-lang="en">Who are the VIPs on The Cool Wall? Are they real celebrities or affiliated with Top Gear?</span>
+                        <span data-lang="de" class="hidden">Wer sind die VIPs auf der Cool Wall? Sind das echte Promis oder Top Gear Mitarbeiter?</span>
                     </span>
                     <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
                 </button>
                 <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
                     <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
-                        In your Garage, tap <strong>Compare / Duel</strong>. Pick your challenger car, then choose a second car from your garage or a community rival. Pick your strongest stat (Horsepower, Top Speed, Displacement, or 0-100 Acceleration) to see who takes the victory. Matches are recorded in your battle log.
+                        All VIP avatars, jury quotes, and <em>"Stig's Verdict"</em> commentaries in Garage Prime are <strong>100% fictional, AI-generated artistic parodies</strong>. References to concepts like <em>The Cool Wall</em> are affectionate cultural homages celebrating iconic car culture (such as the legendary BBC TV show Top Gear). There is no official affiliation, sponsorship, or involvement by the BBC, its presenters, or any real-life individuals.
                     </p>
                     <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
-                        Tippe in deiner Garage auf <strong>Quartett-Duell</strong>. Wähle dein erstes Auto und ein gegnerisches Modell aus deiner Garage oder von Gastautos. Vergleiche PS, Vmax, Hubraum oder Beschleunigung – der Sieger wird sofort gekürt und in deiner Match-Historie vermerkt.
+                        Sämtliche VIP-Avatare, Juroren-Zitate und <em>„Stigs Urteil“</em>-Kommentare in Garage Prime sind <strong>vollständig fiktive, KI-generierte Parodien</strong>. Anspielungen auf <em>The Cool Wall</em> oder den Stig verstehen sich als liebevolle popkulturelle Hommage an legendäre Auto-TV-Formate (Top Gear / BBC). Es besteht keinerlei offizielle Partnerschaft oder Mitwirkung der BBC, deren Moderatoren oder realer Personen.
                     </p>
                 </div>
             </div>
 
-            <!-- Q18: WHERE TO FIND CASE LETTER -->
+            <!-- Q28: WHERE TO FIND CASE LETTER -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="cases" data-search-en="where is case mix letter a through q located on box card packaging" data-search-de="wo steht der case mix buchstabe a bis q auf karton verpackung rueckseite">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">18</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">28</span>
                         <span data-lang="en">Where on the blister card or factory case is the Case Letter (A&ndash;Q) located?</span>
                         <span data-lang="de" class="hidden">Wo auf der Verpackung oder dem Karton erkenne ich den Case-Buchstaben (A bis Q)?</span>
                     </span>
@@ -595,11 +932,31 @@
                 </div>
             </div>
 
-            <!-- Q19: SPOTTING SUPER TREASURE HUNTS -->
+            <!-- Q29: COLLECTOR NEWSFEED & ARTICLE CURATION (NEW) -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="cases" data-search-en="collector newsfeed article curation case leaks drop updates editorial news" data-search-de="sammler newsfeed artikel aufbereitung case leaks drop meldungen redaktion neuigkeiten">
+                <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">29</span>
+                        <span data-lang="en">Collector Newsfeed: How are news articles, Case leaks, and drop updates curated?</span>
+                        <span data-lang="de" class="hidden">Sammler-Newsfeed: Wie werden News-Artikel, Case-Leaks und Drop-Meldungen aufbereitet?</span>
+                    </span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        The in-app <strong>Collector Newsfeed</strong> delivers clean, curated die-cast updates without advertisements or clickbait. Our editorial pipeline monitors global assortment shipments, leaks of upcoming Case mixes (A through Q), verified Super Treasure Hunt sightings, store exclusive recolors (ZAMAC, Red Editions), and Garage Prime platform updates (such as the upcoming Desktop Web App).
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Der in die App integrierte <strong>Sammler-Newsfeed</strong> liefert werbefreie, redaktionell aufbereitete Neuigkeiten. Wir informieren über frisch eintreffende Case-Mixe (A bis Q), erste Leaks zu Super Treasure Hunts, Händler-Exclusives (ZAMAC, Red Editions) sowie anstehende Plattform-Meilensteine von Garage Prime (wie die vollwertige Desktop-Browser-App).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q30: SPOTTING SUPER TREASURE HUNTS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="cases" data-search-en="how to spot super treasure hunt sth difference mainline spectraflame real riders gold flame" data-search-de="wie erkenne ich super treasure hunt sth unterschied spectraflame gummireifen goldene flamme">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">19</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">30</span>
                         <span data-lang="en">How do I spot the difference between a normal Mainline and a Super Treasure Hunt ($TH)?</span>
                         <span data-lang="de" class="hidden">Wie erkenne ich den Unterschied zwischen normalem Mainline und Super Treasure Hunt ($TH)?</span>
                     </span>
@@ -618,11 +975,11 @@
                 </div>
             </div>
 
-            <!-- Q20: HUNT RADAR STORE PINS -->
+            <!-- Q31: HUNT RADAR STORE PINS -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="cases" data-search-en="log find on global hunt radar without revealing home address privacy openstreetmap" data-search-de="fund ins radar eintragen ohne privatadresse standort datenschutz openstreetmap">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">20</span>
+                        <span class="w-6 h-6 rounded-md bg-cyan-50 text-cyan-800 flex items-center justify-center text-xs shrink-0 font-mono">31</span>
                         <span data-lang="en">How do I log a find on the Hunt Radar without revealing my home location?</span>
                         <span data-lang="de" class="hidden">Wie trage ich einen Fund ins Radar ein, ohne meine Privatadresse zu verraten?</span>
                     </span>
@@ -638,11 +995,11 @@
                 </div>
             </div>
 
-            <!-- Q21: TRADING & MARKETPLACE -->
+            <!-- Q32: TRADING & MARKETPLACE -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="community" data-search-en="how does peer to peer trading barter marketplace chat work" data-search-de="wie funktioniert der sammler tausch marktplatz angebote chat tauschhandel">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">21</span>
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">32</span>
                         <span data-lang="en">How does trading work through the Collector Marketplace?</span>
                         <span data-lang="de" class="hidden">Wie funktioniert das Tauschen &uuml;ber den Sammler-Marktplatz?</span>
                     </span>
@@ -658,31 +1015,53 @@
                 </div>
             </div>
 
-            <!-- Q22: VIPS & COOL WALL / TOP GEAR HOMAGE -->
-            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="coolwall" data-search-en="who are the vips on cool wall are they real celebrities stig top gear parody bbc" data-search-de="wer sind die vips auf der cool wall sind das echte promis stig top gear parodie bbc">
+            <!-- Q33: SAFETY & MODERATION: BLOCK USER, REPORT USER, REPORT COMMENT -->
+            <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="community" data-search-en="safety moderation how to block user report user report comment inappropriate remark harassment scam spam" data-search-de="sicherheit moderation user blockieren nutzer melden kommentar melden beleidigung betrug spam sammlerschutz">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center text-xs shrink-0 font-mono">22</span>
-                        <span data-lang="en">Who are the VIPs on The Cool Wall? Are they real celebrities or affiliated with Top Gear?</span>
-                        <span data-lang="de" class="hidden">Wer sind die VIPs auf der Cool Wall? Sind das echte Promis oder Top Gear Mitarbeiter?</span>
+                        <span class="w-6 h-6 rounded-md bg-orange-50 text-orange-800 flex items-center justify-center text-xs shrink-0 font-mono">33</span>
+                        <span data-lang="en">Safety & Moderation: How to block users, report profiles, and report inappropriate comments</span>
+                        <span data-lang="de" class="hidden">Sicherheit & Moderation: Nutzer blockieren, Profile melden und Kommentare melden</span>
                     </span>
                     <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
                 </button>
                 <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
-                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
-                        All VIP avatars, jury quotes, and <em>"Stig's Verdict"</em> commentaries in Garage Prime are <strong>100% fictional, AI-generated artistic parodies</strong>. References to concepts like <em>The Cool Wall</em> are affectionate cultural homages celebrating iconic car culture (such as the legendary BBC TV show Top Gear). There is no official affiliation, sponsorship, or involvement by the BBC, its presenters, or any real-life individuals.
-                    </p>
-                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
-                        Sämtliche VIP-Avatare, Juroren-Zitate und <em>„Stigs Urteil“</em>-Kommentare in Garage Prime sind <strong>vollständig fiktive, KI-generierte Parodien</strong>. Anspielungen auf <em>The Cool Wall</em> oder den Stig verstehen sich als liebevolle popkulturelle Hommage an legendäre Auto-TV-Formate (Top Gear / BBC). Es besteht keinerlei offizielle Partnerschaft oder Mitwirkung der BBC, deren Moderatoren oder realer Personen.
-                    </p>
+                    <div class="text-sm text-gray-600 pb-5 leading-relaxed space-y-3">
+                        <p data-lang="en">
+                            Your safety, friendly communication, and fraud prevention are top priorities in Garage Prime. You have 3 direct moderation tools built into the app:
+                        </p>
+                        <p class="hidden" data-lang="de">
+                            Sicherheit, fairer Tauschhandel und ein respektvoller Umgang stehen bei Garage Prime an erster Stelle. Dir stehen 3 direkte Moderations-Werkzeuge zur Verfügung:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-gray-600">
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">1. Block User (1-Tap Mute & Isolation):</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">1. Nutzer blockieren (Sofortige Stummschaltung & Isolation):</strong>
+                                <span data-lang="en">In any Trade Chat or on a user's collector profile, tap the three dots (<code>&vellip;</code>) menu and select <strong>"Block User"</strong>. The blocked person can no longer see your trade listings, cannot send trade offers, and cannot message you. Ongoing chats are instantly frozen and hidden.</span>
+                                <span data-lang="de" class="hidden">Tippe in einem Tausch-Chat oder auf dem Sammlerprofil des Nutzers oben rechts auf das Drei-Punkte-Menü (<code>&vellip;</code>) und wähle <strong>„Nutzer blockieren“</strong>. Der blockierte Nutzer sieht deine Tauschangebote nicht mehr, kann dir keine Anfragen schicken und dir nicht mehr schreiben. Bestehende Chatverläufe werden sofort eingefroren und ausgeblendet.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">2. Report User (Fraud, Scam, or Harassment):</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">2. Nutzer melden (Betrugsversuch oder Belästigung):</strong>
+                                <span data-lang="en">Select <strong>"Report User / Listing"</strong> in the menu. Our moderation team reviews reported accounts and permanently suspends fraudulent, abusive, or spam profiles.</span>
+                                <span data-lang="de" class="hidden">Wähle im Menü <strong>„Nutzer / Angebot melden“</strong>. Gemeldete Profile und verdächtige Aktivitäten werden umgehend von unserem Moderationsteam geprüft; betrügerische oder belästigende Konten werden dauerhaft gesperrt.</span>
+                            </li>
+                            <li>
+                                <strong class="text-gray-900" data-lang="en">3. Report Inappropriate Comment (Cool Wall & Discussions):</strong>
+                                <strong class="text-gray-900 hidden" data-lang="de">3. Unangemessene Kommentare melden (Cool Wall & Diskussionen):</strong>
+                                <span data-lang="en">On public car verdicts or community discussions, tap the flag/menu icon next to any comment to report abusive, commercial spam, or inappropriate text for immediate moderation review and removal.</span>
+                                <span data-lang="de" class="hidden">Bei öffentlichen Urteilen oder Diskussionen auf der Cool Wall kannst du beleidigende, werbliche oder unpassende Kommentare über das Flaggen-Symbol direkt zur Überprüfung und Entfernung melden.</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <!-- Q23: PROJECT FUNDING & KO-FI -->
+            <!-- Q34: PROJECT FUNDING & KO-FI -->
             <div class="faq-item bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm" data-category="general" data-search-en="is garage prime free how to support ko-fi donation server cost tips" data-search-de="ist garage prime kostenlos wie kann ich spenden ko-fi serverkosten unterstuetzen trinkgeld">
                 <button class="w-full text-left p-4.5 sm:p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
                     <span class="flex items-center gap-3">
-                        <span class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-800 flex items-center justify-center text-xs shrink-0 font-mono">23</span>
+                        <span class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-800 flex items-center justify-center text-xs shrink-0 font-mono">34</span>
                         <span data-lang="en">Is Garage Prime free, and how can I support the project ("Ko-fi")?</span>
                         <span data-lang="de" class="hidden">Ist Garage Prime kostenlos und wie kann ich das Projekt unterstützen ("Ko-fi")?</span>
                     </span>
@@ -694,6 +1073,9 @@
                     </p>
                     <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
                         Garage Prime ist vollkommen kostenlos und werbefrei. Da es sich um ein privates Indie-Projekt handelt, entstehen laufende Kosten für Supabase-Datenbanken, OCR-Server und APIs. Wenn dir die App gefällt und du die Weiterentwicklung unterstützen möchtest, kannst du das Projekt gerne über <a href="https://ko-fi.com/garageprime" target="_blank" class="text-orange-600 font-bold underline hover:text-orange-700">ko-fi.com/garageprime</a> unterstützen. Jeder Beitrag hilft, die Server am Laufen zu halten!
+                    </p>
+                </div>
+            </div>ont-bold underline hover:text-orange-700">ko-fi.com/garageprime</a> unterstützen. Jeder Beitrag hilft, die Server am Laufen zu halten!
                     </p>
                 </div>
             </div>
