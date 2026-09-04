@@ -1,11 +1,15 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.garageprime.app",
       "sha256_cert_fingerprints": [
-        "21:33:0D:D5:9E:5E:25:AD:22:21:83:C0:A1:08:76:1C:54:4B:AA:B1:48:56:5B:99:22:F3:9A:49:45:A0:7C:BC"
+        "21:33:0D:D5:9E:5E:25:AD:22:21:83:C0:A1:08:76:1C:54:4B:AA:B1:48:56:5B:99:22:F3:9A:49:45:A0:7C:BC",
+        "95:65:90:B3:BD:83:A1:19:59:B4:1A:AF:C3:C7:DD:64:18:CC:10:68:1C:C2:A1:4D:2E:7E:FB:EF:8C:F4:15:8D"
       ]
     }
   }
