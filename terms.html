@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service | Garage Prime</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,8 +19,10 @@
                 else el.classList.add('hidden');
             });
             localStorage.setItem('gp_lang', lang);
-            document.getElementById('btn-en').className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            const btnEn = document.getElementById('btn-en');
+            const btnDe = document.getElementById('btn-de');
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('gp_lang') || 'en'));
@@ -39,6 +44,8 @@
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
                 <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
                 <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
             </div>
@@ -51,7 +58,9 @@
                 <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 flex flex-col items-center py-6 space-y-5 shadow-2xl">
+        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
             <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
             <a href="index.html" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
         </div>
@@ -60,8 +69,8 @@
     <main class="max-w-4xl mx-auto px-4 pt-32 pb-16 min-h-screen">
         <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase" data-lang="en">Terms of Service</h1>
         <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase hidden" data-lang="de">Nutzungsbedingungen</h1>
-        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: 31.05.2026</p>
-        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: 31.05.2026</p>
+        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: September 2026</p>
+        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: September 2026</p>
 
         <div class="prose prose-invert prose-cyan max-w-none space-y-8 text-gray-400">
             
@@ -72,8 +81,8 @@
 
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gporange pl-4" data-lang="en">2. Purpose of the App & Gamification</h2>
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gporange pl-4 hidden" data-lang="de">2. Zweck der App & Gamifizierung</h2>
-            <p data-lang="en" class="text-sm">"Garage Prime" is a gamified, private, non-commercial tool for Hot Wheels enthusiasts to scan, manage, and showcase their digital collection, participate in community challenges (Daily Quests), and view community statistics.</p>
-            <p data-lang="de" class="text-sm hidden">"Garage Prime" ist ein gamifiziertes, privates, nicht-kommerzielles Werkzeug für Hot Wheels Sammler zum Scannen, Verwalten und Präsentieren ihrer digitalen Sammlung, zur Teilnahme an Community-Herausforderungen (Daily Quests) und zum Einsehen von Community-Statistiken.</p>
+            <p data-lang="en" class="text-sm">"Garage Prime" is a gamified tool for 1:64 die-cast collectors to scan, catalog, and showcase their digital collection, rank models on the Cool Wall, track Treasure Hunts, explore Case Mixes, participate in community challenges (Daily Quests), and duel cars head-to-head.</p>
+            <p data-lang="de" class="text-sm hidden">"Garage Prime" ist ein gamifiziertes Werkzeug für 1:64 Modellauto-Sammler zum Scannen, Katalogisieren und Präsentieren der digitalen Sammlung, zur Einstufung auf der Cool Wall, Erfassung von Treasure Hunts, Übersicht über Case-Mixe, Teilnahme an Quests und für Quartett-Duelle.</p>
 
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gporange pl-4" data-lang="en">3. AI-Generated Content & Gamification Disclaimer</h2>
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gporange pl-4 hidden" data-lang="de">3. KI-Inhalte & Haftungsausschluss</h2>

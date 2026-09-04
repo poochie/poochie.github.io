@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact & Support | Garage Prime</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
@@ -17,9 +20,14 @@
                 if(el.getAttribute('data-lang') === lang) el.classList.remove('hidden');
                 else el.classList.add('hidden');
             });
+            document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+                el.placeholder = lang === 'de' ? el.getAttribute('data-placeholder-de') : el.getAttribute('data-placeholder-en');
+            });
             localStorage.setItem('gp_lang', lang);
-            document.getElementById('btn-en').className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            const btnEn = document.getElementById('btn-en');
+            const btnDe = document.getElementById('btn-de');
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         
@@ -76,7 +84,7 @@
     <!-- BACKGROUND GLOW -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-        <div class="absolute top-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-gpcyan/5 rounded-full blur-[120px]"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-[35rem] h-[35rem] bg-gpcyan/10 rounded-full blur-[120px]"></div>
     </div>
 
     <!-- NAVBAR -->
@@ -89,6 +97,8 @@
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
                 <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
                 <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
             </div>
@@ -101,9 +111,11 @@
                 <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 flex flex-col items-center py-6 space-y-5 shadow-2xl">
-            <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
-            <a href="index.html" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
         </div>
     </nav>
 
@@ -167,7 +179,7 @@
                 <div>
                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Your Message</label>
                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Deine Nachricht</label>
-                    <textarea id="req-msg" required rows="5" placeholder="How can I help you?" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none resize-none transition"></textarea>
+                    <textarea id="req-msg" required rows="5" placeholder="How can I help you?" data-placeholder-en="How can I help you?" data-placeholder-de="Wie kann ich dir helfen?" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none resize-none transition"></textarea>
                 </div>
 
                 <button type="submit" id="submit-btn" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-gray-200 transition text-sm flex justify-center items-center gap-2">

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | Garage Prime</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
@@ -18,8 +21,10 @@
                 else el.classList.add('hidden');
             });
             localStorage.setItem('gp_lang', lang);
-            document.getElementById('btn-en').className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            document.getElementById('btn-de').className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            const btnEn = document.getElementById('btn-en');
+            const btnDe = document.getElementById('btn-de');
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('gp_lang') || 'en'));
@@ -43,6 +48,8 @@
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
                 <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
                 <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
             </div>
@@ -56,7 +63,9 @@
             </div>
         </div>
         <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 flex flex-col items-center py-6 space-y-5 shadow-2xl">
+        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
             <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
             <a href="index.html" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
         </div>
@@ -66,15 +75,15 @@
     <main class="max-w-4xl mx-auto px-4 pt-32 pb-16 min-h-screen">
         <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase" data-lang="en">Privacy Policy</h1>
         <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase hidden" data-lang="de">Datenschutzerklärung</h1>
-        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: 31.05.2026</p>
-        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: 31.05.2026</p>
+        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: September 2026</p>
+        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: September 2026</p>
 
         <div class="prose prose-invert prose-cyan max-w-none space-y-8 text-gray-400">
             
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">General Information</h2>
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Allgemeines</h2>
-            <p data-lang="en">This Privacy Policy informs you about the collection and processing of personal data when using the "Garage Prime" mobile application. This is a private, non-commercial project.</p>
-            <p data-lang="de" class="hidden">Diese Datenschutzerklärung informiert Sie über die Erhebung und Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Applikation "Garage Prime". Dies ist ein privates, nicht-kommerzielles Projekt.</p>
+            <p data-lang="en">This Privacy Policy informs you about the collection and processing of personal data when using the "Garage Prime" mobile application.</p>
+            <p data-lang="de" class="hidden">Diese Datenschutzerklärung informiert Sie über die Erhebung und Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Applikation "Garage Prime".</p>
 
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Controller</h2>
             <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Verantwortlicher</h2>
@@ -87,21 +96,21 @@
             
             <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">A. Account & Authentication</h3>
             <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">A. Benutzerkonto</h3>
-            <p data-lang="en" class="text-sm">We use Supabase Auth for registration. We collect your email address and display name to provide access to your personal digital garage.</p>
-            <p data-lang="de" class="text-sm hidden">Wir nutzen Supabase Auth für die Registrierung. Wir erfassen Ihre E-Mail-Adresse und Ihren Anzeigenamen, um den Zugriff auf Ihre persönliche digitale Garage zu ermöglichen.</p>
+            <p data-lang="en" class="text-sm">We use Supabase Auth for registration and secure login. We collect your email address and display name to provide access to your personal digital garage.</p>
+            <p data-lang="de" class="text-sm hidden">Wir nutzen Supabase Auth für die Registrierung und den sicheren Login. Wir erfassen Ihre E-Mail-Adresse und Ihren Anzeigenamen, um den Zugriff auf Ihre persönliche digitale Garage zu ermöglichen.</p>
 
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">B. Photos & AI Processing</h3>
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">B. Fotos & KI-Verarbeitung</h3>
-            <p data-lang="en" class="text-sm">When you scan a vehicle, photos are processed using the Google Gemini API to identify the car model and extract technical data. Images are uploaded to Supabase Storage.</p>
-            <p data-lang="de" class="text-sm hidden">Wenn Sie ein Fahrzeug scannen, werden Fotos über die Google Gemini API verarbeitet, um das Fahrzeugmodell zu identifizieren und technische Daten zu extrahieren. Bilder werden im Supabase Storage gespeichert.</p>
+            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">B. Photos & AI / OCR Processing</h3>
+            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">B. Fotos & KI- / OCR-Verarbeitung</h3>
+            <p data-lang="en" class="text-sm">For fast identification of packaging numbers and Toy-IDs, the app utilizes local on-device OCR (Google ML Kit), which processes images directly on your mobile device. For detailed model recognition and technical specifications, images are processed securely using the Google Gemini API. Saved vehicle photos are stored in European Supabase Storage buckets.</p>
+            <p data-lang="de" class="text-sm hidden">Für die schnelle Erkennung von Packungsnummern und Toy-IDs nutzt die App lokales On-Device OCR (Google ML Kit), das direkt auf Ihrem Gerät ausgeführt wird. Zur tiefen Modellidentifikation und Telemetrie-Ermittlung werden Fotos über die Google Gemini API verarbeitet. Gespeicherte Fahrzeugfotos werden in europäischen Supabase Storage Buckets gesichert.</p>
 
-            <!-- SEKTION C AKTUALISIERT (ANONYMISIERUNGS-SCHILD EINGEBAUT) -->
+            <!-- SEKTION C (STANDORTDATEN) -->
             <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">C. Location Data</h3>
             <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">C. Standortdaten</h3>
             <p data-lang="en" class="text-sm">To track where vehicles were found, the app collects GPS coordinates (Latitude/Longitude) and location names. While exact coordinate details are kept private and visible only within your personal collection, any location data used in public features (such as the Global Hunt Map or the public Race Strip feed) is strictly and automatically anonymised to the city or region level only (exact street names and house numbers are discarded before publication).</p>
-            <p data-lang="de" class="text-sm hidden">Um festzuhalten, wo fahrzeuge gefunden wurden, erfasst die App GPS-Koordinaten (Breitengrad/Längengrad) und Ortsnamen. Während genaue Koordinatendetails privat gehalten und nur innerhalb Ihrer persönlichen Sammlung sichtbar sind, werden alle Standortdaten, die in öffentlichen Funktionen (wie der Global Hunt Map oder dem öffentlichen Race Strip-Feed) verwendet werden, streng und automatisch ausschließlich auf Stadt- oder Regionalebene anonymisiert (genaue Straßennamen und Hausnummern werden vor der Veröffentlichung entfernt).</p>
+            <p data-lang="de" class="text-sm hidden">Um festzuhalten, wo Fahrzeuge gefunden wurden, erfasst die App GPS-Koordinaten (Breitengrad/Längengrad) und Ortsnamen. Während genaue Koordinatendetails privat gehalten und nur innerhalb Ihrer persönlichen Sammlung sichtbar sind, werden alle Standortdaten, die in öffentlichen Funktionen (wie der Global Hunt Map oder dem öffentlichen Race Strip-Feed) verwendet werden, streng und automatisch ausschließlich auf Stadt- oder Regionalebene anonymisiert (genaue Straßennamen und Hausnummern werden vor der Veröffentlichung entfernt).</p>
 
-            <!-- SEKTION D NEU (COMMUNITY / PROFILE / KOMMENTARE) -->
+            <!-- SEKTION D (COMMUNITY / PROFILE / KOMMENTARE) -->
             <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">D. Community Interaction & User Content</h3>
             <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">D. Interaktion der Gemeinschaft & Nutzerinhalte</h3>
             <p data-lang="en" class="text-sm">If you interact with other collectors by posting comments or likes on the global feed, or by enabling your public profile settings, your chosen display name, avatar photo, and submitted comments will be visible to other registered users of the app.</p>
@@ -114,8 +123,9 @@
             <ul class="list-disc pl-6 space-y-2 mt-4 text-sm">
                 <li><strong class="text-gray-300">Supabase:</strong> Data is stored on secure servers (West EU - Ireland). Supabase processes data on our behalf to provide hosting, database, and authentication.</li>
                 <li><strong class="text-gray-300">Google Gemini API:</strong> Image data is sent to Google for analysis. Google’s terms for API usage apply.</li>
-                <li><strong class="text-gray-300">Google Maps API:</strong> Used for displaying the "Hunt Map".</li>
-                <!-- ONESIGNAL NEU HINZUGEFÜGT -->
+                <li><strong class="text-gray-300">OpenStreetMap / Map Tile Providers:</strong> Used for rendering map tiles on the "Hunt Radar". Requests fetch map images directly without sending private collection data.</li>
+                <li><strong class="text-gray-300">Google AdMob:</strong> The app displays advertisements through Google AdMob. AdMob may process pseudonymous device identifiers (e.g. Advertising ID) and telemetry to deliver ads in accordance with your consent preferences.</li>
+                <li><strong class="text-gray-300">Google Play Billing:</strong> In-app subscriptions and pro features are processed exclusively through Google Play. We do not store or process credit card numbers or financial accounts.</li>
                 <li><strong class="text-gray-300">OneSignal:</strong> Used to securely deliver push notifications to your mobile device. OneSignal processes push tokens and notification payloads under their privacy policies.</li>
                 <li><strong class="text-gray-300">Ebay:</strong> This app uses affiliate links. When you click these links, the respective network may place a cookie or use tracking pixels to assign the commission to us.</li>
             </ul>

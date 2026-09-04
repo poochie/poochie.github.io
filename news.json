@@ -1,15 +1,15 @@
 {
   "news": [
     {
-      "date": "May 2026",
-      "title": "Welcome to Garage Prime 1.0! 🚀",
-      "content": "The ultimate AI scanner is now live. Start building your garage and check out the new Global Hunt Radar.",
+      "date": "September 2026",
+      "title": "Garage Prime 2.0 is Live! 🚀",
+      "content": "The massive v2.0 update is here! Experience The Cool Wall, Case Mix explorer, Treasure Vault checklists, on-device OCR, and Quartett battle duels.",
       "is_important": true
     },
     {
-      "date": "Next Update",
-      "title": "Car Compare is coming! 🏎️💨",
-      "content": "Get ready for the next update where you can match up your cars head-to-head in a Top Trumps style battle.",
+      "date": "Coming Soon",
+      "title": "Community Database & Fuel! ⚡",
+      "content": "Get ready for v2.1 where you can submit missing castings, verify community data, and earn Fuel rewards.",
       "is_important": false
     }
   ]
