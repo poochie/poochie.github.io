@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#05050A]">
+<html lang="en" class="scroll-smooth bg-[#F8F9FA]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,23 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="Logo.png">
     <link rel="apple-touch-icon" href="Logo.png">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { gpbg: '#05050A', gpcard: '#0E1015', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans: ['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#F8F9FA',
+                        gporange: '#E64A00',
+                        gpcyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        racing: ['"Racing Sans One"', 'cursive'],
+                    }
+                }
+            }
         }
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
@@ -23,149 +33,199 @@
             localStorage.setItem('gp_lang', lang);
             const btnEn = document.getElementById('btn-en');
             const btnDe = document.getElementById('btn-de');
-            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('gp_lang') || 'en'));
     </script>
 </head>
-<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
-
-    <!-- BACKGROUND GLOW -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-        <div class="absolute top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-gpcyan/5 rounded-full blur-[120px]"></div>
-    </div>
+<body class="text-gray-600 font-sans antialiased overflow-x-hidden w-full selection:bg-orange-100 selection:text-orange-900 bg-[#F8F9FA]">
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav class="fixed w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/70 transition-all duration-300 shadow-sm shadow-gray-100/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center gap-3">
-                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
-                    <img src="Logo.png" alt="Logo" class="w-7 h-7 object-contain rounded" onerror="this.style.display='none'">
-                    <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
+                <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition">
+                    <img src="Logo.png" alt="Garage Prime Logo" class="w-7 h-7 object-contain rounded-md" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-wider text-gray-900">GARAGE PRIME</span>
                 </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
+            <div class="hidden md:flex items-center space-x-7">
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Home</a>
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Startseite</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Die Story</a>
+                <a href="faq.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Contact</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Kontakt</a>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="flex gap-2 text-[10px] font-bold bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
-                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                    <span class="text-gray-700">|</span>
-                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-[11px] font-semibold bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200/80">
+                    <button id="btn-en" onclick="setLanguage('en')" class="transition">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button id="btn-de" onclick="setLanguage('de')" class="transition">DE</button>
                 </div>
-                <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 hover:text-gray-900 p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
         <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
-            <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
-            <a href="index.html" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-5 space-y-4 shadow-xl">
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Startseite</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Die Story</a>
+            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Kontakt</a>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <main class="max-w-4xl mx-auto px-4 pt-32 pb-16 min-h-screen">
-        <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase" data-lang="en">Privacy Policy</h1>
-        <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase hidden" data-lang="de">Datenschutzerklärung</h1>
-        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: September 2026</p>
-        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: September 2026</p>
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20 min-h-screen">
+        <div class="mb-10">
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mb-2 uppercase" data-lang="en">Privacy Policy</h1>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mb-2 uppercase hidden" data-lang="de">Datenschutzerkl&auml;rung</h1>
+            <p class="text-xs font-mono text-gray-400" data-lang="en">Last Updated: September 2026 &bull; Compliant with GDPR (DSGVO) & Swiss revDSG</p>
+            <p class="text-xs font-mono text-gray-400 hidden" data-lang="de">Zuletzt aktualisiert: September 2026 &bull; Konform mit DSGVO & Schweizer revDSG</p>
+        </div>
 
-        <div class="prose prose-invert prose-cyan max-w-none space-y-8 text-gray-400">
+        <div class="space-y-6 text-sm leading-relaxed text-gray-600">
             
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">General Information</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Allgemeines</h2>
-            <p data-lang="en">This Privacy Policy informs you about the collection and processing of personal data when using the "Garage Prime" mobile application.</p>
-            <p data-lang="de" class="hidden">Diese Datenschutzerklärung informiert Sie über die Erhebung und Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Applikation "Garage Prime".</p>
-
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Controller</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Verantwortlicher</h2>
-            <div class="bg-gpcard p-6 rounded-xl border border-white/5 shadow-lg">
-                <p class="m-0 text-sm">André Sterchi<br>Stationsstrasse 5<br>8606 Nänikon<br>Switzerland / Schweiz<br>Email: <a href="mailto:dev@garage-prime.com" class="text-gpcyan hover:text-white transition">dev@garage-prime.com</a></p>
+            <!-- SECTION 1: OVERVIEW & CONTROLLER -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-3" data-lang="en">1. Controller & General Principles</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-3 hidden" data-lang="de">1. Verantwortliche Stelle & Grunds&auml;tze</h2>
+                <p class="mb-3" data-lang="en">
+                    This Privacy Policy explains how personal data is processed when you use the <strong>Garage Prime</strong> mobile application and website.
+                    We are committed to data minimization: your collection data belongs to you, and we do not sell or monetize personal user profiles.
+                </p>
+                <p class="mb-3 hidden" data-lang="de">
+                    Diese Datenschutzerkl&auml;rung erl&auml;utert die Erhebung und Verarbeitung personenbezogener Daten bei der Nutzung der mobilen Applikation <strong>Garage Prime</strong> und dieser Website. 
+                    Wir setzen auf Datensparsamkeit: Deine Sammlungsdaten geh&ouml;ren dir und werden weder verkauft noch f&uuml;r Werbezwecke monetarisiert.
+                </p>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 font-mono text-xs text-gray-800">
+                    <p class="font-bold text-gray-900">Controller / Verantwortlicher:</p>
+                    <p>Andr&eacute; Sterchi, Stationsstrasse 5, 8606 N&auml;nikon, Switzerland</p>
+                    <p>E-Mail: <a href="mailto:dev@garage-prime.com" class="text-orange-600 hover:underline">dev@garage-prime.com</a></p>
+                </div>
             </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Data Collection and Purpose</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Datenerhebung und Zweck</h2>
-            
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">A. Account & Authentication</h3>
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">A. Benutzerkonto</h3>
-            <p data-lang="en" class="text-sm">We use Supabase Auth for registration and secure login. We collect your email address and display name to provide access to your personal digital garage.</p>
-            <p data-lang="de" class="text-sm hidden">Wir nutzen Supabase Auth für die Registrierung und den sicheren Login. Wir erfassen Ihre E-Mail-Adresse und Ihren Anzeigenamen, um den Zugriff auf Ihre persönliche digitale Garage zu ermöglichen.</p>
+            <!-- SECTION 2: DATA PROCESSING IN THE APP -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm space-y-4">
+                <h2 class="text-lg font-bold text-gray-900" data-lang="en">2. Data Collection & App Features</h2>
+                <h2 class="text-lg font-bold text-gray-900 hidden" data-lang="de">2. Datenverarbeitung & App-Funktionen</h2>
 
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">B. Photos & AI / OCR Processing</h3>
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">B. Fotos & KI- / OCR-Verarbeitung</h3>
-            <p data-lang="en" class="text-sm">For fast identification of packaging numbers and Toy-IDs, the app utilizes local on-device OCR (Google ML Kit), which processes images directly on your mobile device. For detailed model recognition and technical specifications, images are processed securely using the Google Gemini API. Saved vehicle photos are stored in European Supabase Storage buckets.</p>
-            <p data-lang="de" class="text-sm hidden">Für die schnelle Erkennung von Packungsnummern und Toy-IDs nutzt die App lokales On-Device OCR (Google ML Kit), das direkt auf Ihrem Gerät ausgeführt wird. Zur tiefen Modellidentifikation und Telemetrie-Ermittlung werden Fotos über die Google Gemini API verarbeitet. Gespeicherte Fahrzeugfotos werden in europäischen Supabase Storage Buckets gesichert.</p>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1" data-lang="en">A. Account & Authentication (Supabase)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1 hidden" data-lang="de">A. Benutzerkonto & Authentifizierung (Supabase)</h3>
+                    <p data-lang="en">When registering an account, your email address, display username, and encrypted credentials are stored in our secure database managed via Supabase (hosted in ISO-certified European data centers). Row-Level Security (RLS) ensures that private garage records are strictly isolated to your user ID.</p>
+                    <p class="hidden" data-lang="de">Bei der Registrierung werden E-Mail-Adresse, Benutzername und Zugangsdaten &uuml;ber Supabase auf abgesicherten Servern in der Europ&auml;ischen Union verarbeitet. Mittels Row-Level Security (RLS) ist deine Garage strikt gesch&uuml;tzt und nur f&uuml;r deinen Account zug&auml;nglich.</p>
+                </div>
 
-            <!-- SEKTION C (STANDORTDATEN) -->
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">C. Location Data</h3>
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">C. Standortdaten</h3>
-            <p data-lang="en" class="text-sm">To track where vehicles were found, the app collects GPS coordinates (Latitude/Longitude) and location names. While exact coordinate details are kept private and visible only within your personal collection, any location data used in public features (such as the Global Hunt Map or the public Race Strip feed) is strictly and automatically anonymised to the city or region level only (exact street names and house numbers are discarded before publication).</p>
-            <p data-lang="de" class="text-sm hidden">Um festzuhalten, wo Fahrzeuge gefunden wurden, erfasst die App GPS-Koordinaten (Breitengrad/Längengrad) und Ortsnamen. Während genaue Koordinatendetails privat gehalten und nur innerhalb Ihrer persönlichen Sammlung sichtbar sind, werden alle Standortdaten, die in öffentlichen Funktionen (wie der Global Hunt Map oder dem öffentlichen Race Strip-Feed) verwendet werden, streng und automatisch ausschließlich auf Stadt- oder Regionalebene anonymisiert (genaue Straßennamen und Hausnummern werden vor der Veröffentlichung entfernt).</p>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1" data-lang="en">B. On-Device OCR Scanner & AI Identification</h3>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1 hidden" data-lang="de">B. On-Device OCR Scanner & KI-Erkennung</h3>
+                    <p data-lang="en">When scanning blister packs, Toy-Code text recognition (OCR) is performed entirely <strong>on your device</strong> using Google ML Kit. No raw camera feed is permanently streamed to external servers for basic OCR. For optional AI-assisted model recognition and telemetry enrichment, image data is transmitted securely via HTTPS to AI services (Google Gemini API) solely to identify the casting and fetch automotive specs.</p>
+                    <p class="hidden" data-lang="de">Beim Scannen von Blister-Karten erfolgt die Texterkennung von Toy-Codes &uuml;ber Google ML Kit vollst&auml;ndig <strong>lokal auf deinem Smartphone</strong>. F&uuml;r die optionale KI-Modellerkennung und Telemetrie-Zuweisung werden Bildausschnitte verschl&uuml;sselt via HTTPS an KI-Dienste (Google Gemini API) &uuml;bertragen, ausschlie&szlig;lich um das Modell zu identifizieren und Fahrzeugdaten zu erg&auml;nzen.</p>
+                </div>
 
-            <!-- SEKTION D (COMMUNITY / PROFILE / KOMMENTARE) -->
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2" data-lang="en">D. Community Interaction & User Content</h3>
-            <h3 class="text-lg font-semibold text-white mt-6 mb-2 hidden" data-lang="de">D. Interaktion der Gemeinschaft & Nutzerinhalte</h3>
-            <p data-lang="en" class="text-sm">If you interact with other collectors by posting comments or likes on the global feed, or by enabling your public profile settings, your chosen display name, avatar photo, and submitted comments will be visible to other registered users of the app.</p>
-            <p data-lang="de" class="text-sm hidden">Wenn Sie mit anderen Sammlern interagieren, indem Sie Kommentare oder Likes im globalen Feed hinterlassen oder Ihr öffentliches Profil aktivieren, sind Ihr gewählter Anzeigename, Ihr Profilbild und Ihre verfassten Kommentare für andere registrierte Nutzer der App sichtbar.</p>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1" data-lang="en">C. Global Hunt Radar & Location (OpenStreetMap)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1 hidden" data-lang="de">C. Globales Hunt-Radar & Standortdaten (OpenStreetMap)</h3>
+                    <p data-lang="en">The Hunt Radar map allows collectors to log and view where specific models were found in stores. Location permission is optional and only used when active to center the map. Store coordinates logged to the community radar are generalized to protect user privacy. Maps are rendered via OpenStreetMap tiles.</p>
+                    <p class="hidden" data-lang="de">Das Hunt-Radar erm&ouml;glicht das Finden und Teilen von Fundorten in Gesch&auml;ften. Die Standortfreigabe ist optional und dient nur dem Zentrieren der Karte. Geteilte Fundorte werden als Store-Standorte anonymisiert erfasst. Die Kartendarstellung erfolgt &uuml;ber OpenStreetMap.</p>
+                </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Third-Party Services</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Drittanbieter</h2>
-            <p data-lang="en" class="text-sm">We share data with the following providers for technical functionality:</p>
-            <p data-lang="de" class="text-sm hidden">Wir teilen Daten mit folgenden Anbietern für die technische Funktionalität:</p>
-            <ul class="list-disc pl-6 space-y-2 mt-4 text-sm">
-                <li><strong class="text-gray-300">Supabase:</strong> Data is stored on secure servers (West EU - Ireland). Supabase processes data on our behalf to provide hosting, database, and authentication.</li>
-                <li><strong class="text-gray-300">Google Gemini API:</strong> Image data is sent to Google for analysis. Google’s terms for API usage apply.</li>
-                <li><strong class="text-gray-300">OpenStreetMap / Map Tile Providers:</strong> Used for rendering map tiles on the "Hunt Radar". Requests fetch map images directly without sending private collection data.</li>
-                <li><strong class="text-gray-300">Google AdMob:</strong> The app displays advertisements through Google AdMob. AdMob may process pseudonymous device identifiers (e.g. Advertising ID) and telemetry to deliver ads in accordance with your consent preferences.</li>
-                <li><strong class="text-gray-300">Google Play Billing:</strong> In-app subscriptions and pro features are processed exclusively through Google Play. We do not store or process credit card numbers or financial accounts.</li>
-                <li><strong class="text-gray-300">OneSignal:</strong> Used to securely deliver push notifications to your mobile device. OneSignal processes push tokens and notification payloads under their privacy policies.</li>
-                <li><strong class="text-gray-300">Ebay:</strong> This app uses affiliate links. When you click these links, the respective network may place a cookie or use tracking pixels to assign the commission to us.</li>
-            </ul>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1" data-lang="en">D. Peer-to-Peer Collector Marketplace & Chats</h3>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1 hidden" data-lang="de">D. Sammler-Marktplatz & Tausch-Nachrichten</h3>
+                    <p data-lang="en">When listing cars for trade or sending barter proposals to other verified collectors, trade messages and public showcase items are stored in the database to enable peer communication. The marketplace is non-commercial and handles no monetary payments or financial account data.</p>
+                    <p class="hidden" data-lang="de">Beim Einstellen von Tausch-Angeboten oder Tauschanfragen werden Nachrichten und &ouml;ffentliche Vitrinen-Modelle gespeichert, um die Kommunikation zwischen Sammlern zu erm&ouml;glichen. Es handelt sich um ein rein privates Sammler-Feature ohne Zahlungsabwicklung.</p>
+                </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">AI Specifics</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Besonderheiten KI</h2>
-            <p data-lang="en" class="text-sm">Image data sent to the Google Gemini API is used for inference only. According to current API policies, this data is not used to train Google's base models.</p>
-            <p data-lang="de" class="text-sm hidden">Bilddaten, die an die Google Gemini API gesendet werden, dienen nur der Analyse. Nach aktuellen API-Richtlinien werden diese Daten nicht zum Training der Basismodelle von Google verwendet.</p>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1" data-lang="en">E. Push Notifications (OneSignal)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm mb-1 hidden" data-lang="de">E. Push-Benachrichtigungen (OneSignal)</h3>
+                    <p data-lang="en">If enabled, OneSignal is used to deliver important app news, quest rewards, or trade notifications. You can toggle push notifications off anytime in your device settings.</p>
+                    <p class="hidden" data-lang="de">Falls aktiviert, nutzen wir OneSignal f&uuml;r Benachrichtigungen zu App-Updates, Quests oder Tauschanfragen. Push-Nachrichten k&ouml;nnen jederzeit in den Systemeinstellungen deaktiviert werden.</p>
+                </div>
+            </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Your Rights & Data Deletion</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Ihre Rechte & Löschung</h2>
-            <p data-lang="en" class="text-sm">You have the right to access, correct, or delete your data at any time.<br><strong class="text-gray-300">Account Deletion:</strong> You can delete your account and all associated data (including all photos and vehicle records) directly within the app's settings.</p>
-            <p data-lang="de" class="text-sm hidden">Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer Daten.<br><strong class="text-gray-300">Kontolöschung:</strong> Sie können Ihr Konto und alle damit verbundenen Daten (einschliesslich aller Fotos und Fahrzeugdatensätze) direkt in den App-Einstellungen löschen.</p>
+            <!-- SECTION 3: APP PERMISSIONS -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-3" data-lang="en">3. Device Permissions</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-3 hidden" data-lang="de">3. Erforderliche Ger&auml;teberechtigungen</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1">Camera / Kamera</strong>
+                        <span data-lang="en">Required for the on-device blister scanner and taking photos of your models.</span>
+                        <span data-lang="de" class="hidden">Erforderlich f&uuml;r den Scanner und eigene Modell-Fotos.</span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1">Photo Library / Storage</strong>
+                        <span data-lang="en">Used to pick custom vehicle pictures and save exported PDF catalogs locally.</span>
+                        <span data-lang="de" class="hidden">F&uuml;r eigene Fahrzeugbilder und das Speichern von PDF-Katalogen.</span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1">Location / Standort (Optional)</strong>
+                        <span data-lang="en">Only used when opening the Hunt Radar map to find nearby model hotspots.</span>
+                        <span data-lang="de" class="hidden">Nur f&uuml;r die Kartenzentrierung im Hunt-Radar nach deiner Zustimmung.</span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1">Notifications / Push (Optional)</strong>
+                        <span data-lang="en">To alert you about trade proposals, daily quests, and v2 update releases.</span>
+                        <span data-lang="de" class="hidden">F&uuml;r Updates, Quests und Sammler-Tauschanfragen.</span>
+                    </div>
+                </div>
+            </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4" data-lang="en">Legal Basis</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gpcyan pl-4 hidden" data-lang="de">Rechtsgrundlage</h2>
-            <p data-lang="en" class="text-sm">The processing is based on your consent and the necessity to provide the app’s services. Legal jurisdiction is Uster (Zürich), Switzerland.</p>
-            <p data-lang="de" class="text-sm hidden">Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung und der Notwendigkeit zur Erbringung der App-Dienste. Gerichtsstand ist Uster (Zürich), Schweiz.</p>
+            <!-- SECTION 4: USER RIGHTS & ACCOUNT DELETION -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-3" data-lang="en">4. Your Rights & Account Deletion</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-3 hidden" data-lang="de">4. Deine Rechte & Account-L&ouml;schung</h2>
+                <p class="mb-3" data-lang="en">
+                    Under the GDPR and Swiss Federal Data Protection Act, you have the right to access, rectify, export, or erase all your personal data at any time.
+                </p>
+                <p class="mb-3 hidden" data-lang="de">
+                    Gem&auml;&szlig; DSGVO und Schweizer Datenschutzgesetz hast du jederzeit das Recht auf Auskunft, Berichtigung, Datenexport und vollst&auml;ndige L&ouml;schung deiner Daten.
+                </p>
+                <div class="bg-orange-50 border border-orange-200 p-4 rounded-xl text-xs text-orange-950">
+                    <strong class="block mb-1 font-bold text-orange-900" data-lang="en">Complete Account & Data Deletion</strong>
+                    <strong class="block mb-1 font-bold text-orange-900 hidden" data-lang="de">Vollst&auml;ndige Account- & Datenl&ouml;schung</strong>
+                    <span data-lang="en">You can delete your entire account and all associated garage records directly inside the app under <em>Profile &rarr; Privacy & Security &rarr; Delete Account</em> or by emailing <a href="mailto:dev@garage-prime.com" class="underline font-bold">dev@garage-prime.com</a>. All your cars, photos, and records will be permanently purged immediately.</span>
+                    <span data-lang="de" class="hidden">Du kannst deinen gesamten Account und alle Sammlungsdaten direkt in der App unter <em>Profil &rarr; Privatsph&auml;re & Sicherheit &rarr; Account l&ouml;schen</em> oder formlos per E-Mail an <a href="mailto:dev@garage-prime.com" class="underline font-bold">dev@garage-prime.com</a> unwiderruflich l&ouml;schen lassen.</span>
+                </div>
+            </div>
 
         </div>
     </main>
 
-<!-- FOOTER -->
-    <footer class="bg-[#05050A] py-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
-                &copy; <span id="year"></span> Garage Prime. All rights reserved.<br>
-                Garage Prime is an independent collector's tool and not affiliated with Mattel, Inc.
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-xs text-center md:text-left max-w-md">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                    <img src="Logo.png" alt="Garage Prime" class="w-5 h-5 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-gray-900 tracking-wider">GARAGE PRIME</span>
+                </div>
+                &copy; <span id="year"></span> Garage Prime. Built with passion for collectors.
             </div>
-            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-                               <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
-                <a href="contact.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Contact</a>
-                <span class="text-gray-800 hidden md:inline">|</span>
-                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Imprint</a>
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs">
+                <a href="index.html" class="text-gray-600 hover:text-gray-900 transition">Home</a>
+                <a href="story.html" class="text-gray-600 hover:text-gray-900 transition">The Story</a>
+                <a href="faq.html" class="text-gray-600 hover:text-gray-900 transition">FAQ</a>
+                <a href="contact.html" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
+                <span class="text-gray-300 hidden md:inline">&bull;</span>
+                <a href="privacy.html" class="text-orange-600 font-semibold">Privacy</a>
+                <a href="terms.html" class="text-gray-600 hover:text-gray-900 transition">Terms</a>
+                <a href="imprint.html" class="text-gray-600 hover:text-gray-900 transition">Imprint</a>
             </div>
         </div>
     </footer>
+
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
