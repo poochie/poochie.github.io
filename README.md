@@ -8,12 +8,12 @@ Official landing page, documentation, collector FAQ, and legal hub for **Garage 
 
 ## 🏎️ Overview
 
-* **Homepage (`index.html`):** Lightweight, authentic editorial showcase of Garage Prime v2.0 features (In-Store Scan, Real Telemetry Specs, The Cool Wall, Case Mixes A–Q, Auto-Quartett duels, and roadmap).
+* **Homepage (`index.html`):** Lightweight, authentic editorial showcase of Garage Prime v2.0 features (In-Store Scan, Real Telemetry Specs, Car Compare, Case Mixes A–Q, and roadmap).
 * **The Story (`story.html`):** The authentic founder journey (Christmas 2025 origin, dedicated to sons, kitchen-table maker spirit).
-* **Deep Collector FAQ (`faq.html`):** 23 collector questions & troubleshooting guides with live real-time search and category filtering.
+* **Deep Collector FAQ (`faq.html`):** 32 collector questions & troubleshooting guides with live real-time search and category filtering.
 * **Direct Feedback (`contact.html`):** Interactive feedback & feature request form connected to Supabase.
 * **Legal Hub:**
-  * `imprint.html`: Legal notice, Mattel / Hot Wheels fair use, Top Gear / BBC homage disclosure, AI fictional VIPs disclaimer, OpenStreetMap ODbL attribution, and SIL OFL typography licenses.
+  * `imprint.html`: Legal notice, Mattel / Hot Wheels fair use, AI fictional personas disclaimer, OpenStreetMap ODbL attribution, and SIL OFL typography licenses.
   * `privacy.html`: Comprehensive GDPR & Swiss revDSG privacy policy (On-device ML Kit OCR, Supabase EU Frankfurt RLS, Google Gemini API, OneSignal, Ko-fi, full deletion rights).
   * `terms.html`: Terms of Service, non-commercial P2P trading, user photos warranty, and Swiss jurisdiction.
 * **App Deep Links & Auth:**
