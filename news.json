@@ -3,13 +3,17 @@
     {
       "date": "September 2026",
       "title": "Garage Prime 2.0 is Live! 🚀",
+<<<<<<< HEAD
       "content": "The massive v2.0 update is here! Experience Case Mix explorer, Treasure Vault checklists, on-device OCR, and side-by-side car spec comparison.",
+=======
+      "content": "The massive update is here! Experience The Cool Wall, Case Mix explorer (A-Q), Treasure Vault checklists, on-device OCR, Peer-to-Peer Trading, and Quartett battle duels.",
+>>>>>>> 5d650228c50f7188fcb42836e7ed3b910e05d410
       "is_important": true
     },
     {
-      "date": "Coming Soon",
-      "title": "Community Database & Fuel! ⚡",
-      "content": "Get ready for v2.1 where you can submit missing castings, verify community data, and earn Fuel rewards.",
+      "date": "In Development",
+      "title": "Full Desktop-Browser App 💻",
+      "content": "Work on the web version of Garage Prime has begun. Manage your entire showcase on the big screen with real-time cloud sync.",
       "is_important": false
     }
   ]

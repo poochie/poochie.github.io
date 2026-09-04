@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#0B0D14]">
+<html lang="en" class="scroll-smooth bg-[#F8F9FA]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { gpbg: '#05050A', gpcard: '#0E1015', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans: ['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#F8F9FA',
+                        gporange: '#E64A00',
+                        gpcyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        racing: ['"Racing Sans One"', 'cursive'],
+                    }
+                }
+            }
         }
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
@@ -26,14 +38,13 @@
             localStorage.setItem('gp_lang', lang);
             const btnEn = document.getElementById('btn-en');
             const btnDe = document.getElementById('btn-de');
-            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         
         async function submitContactForm(e) {
             e.preventDefault();
-            // Honeypot Check (Bot-Schutz)
             if (document.getElementById('website-url-bot').value !== "") return;
             
             const btn = document.getElementById('submit-btn');
@@ -45,7 +56,6 @@
             const topic = document.getElementById('req-topic').value;
             const rawMsg = document.getElementById('req-msg').value;
             
-            // Verbindet Thema und Nachricht, damit deine aktuelle DB-Tabelle nicht geändert werden muss
             const formattedMsg = `[${topic}] ${rawMsg}`;
 
             const SUPABASE_URL = 'https://behaycailacyhlyrnorn.supabase.co'; 
@@ -62,7 +72,7 @@
                     document.getElementById('contact-form').classList.add('hidden');
                     document.getElementById('success-msg').classList.remove('hidden');
                 } else { 
-                    alert('Error sending request. Please try again.'); 
+                    alert('Error sending message. Please try again.'); 
                 }
             } catch (err) { 
                 alert('Network error. Please check your connection.'); 
@@ -79,140 +89,164 @@
         });
     </script>
 </head>
-<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
-
-    <!-- BACKGROUND GLOW -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-        <div class="absolute top-[-10%] right-[-10%] w-[35rem] h-[35rem] bg-gpcyan/10 rounded-full blur-[120px]"></div>
-    </div>
+<body class="text-gray-600 font-sans antialiased overflow-x-hidden w-full selection:bg-orange-100 selection:text-orange-900 bg-[#F8F9FA]">
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav class="fixed w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/70 transition-all duration-300 shadow-sm shadow-gray-100/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center gap-3">
-                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
-                    <img src="Logo.png" alt="Logo" class="w-7 h-7 object-contain rounded" onerror="this.style.display='none'">
-                    <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
+                <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition">
+                    <img src="Logo.png" alt="Garage Prime Logo" class="w-7 h-7 object-contain rounded-md" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-wider text-gray-900">GARAGE PRIME</span>
                 </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
+            <div class="hidden md:flex items-center space-x-7">
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Home</a>
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Startseite</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Die Story</a>
+                <a href="faq.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
+                <a href="contact.html" class="text-orange-600 font-semibold text-sm" data-lang="en">Contact</a>
+                <a href="contact.html" class="text-orange-600 font-semibold text-sm hidden" data-lang="de">Kontakt</a>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="flex gap-2 text-[10px] font-bold bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
-                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                    <span class="text-gray-700">|</span>
-                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-[11px] font-semibold bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200/80">
+                    <button id="btn-en" onclick="setLanguage('en')" class="transition">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button id="btn-de" onclick="setLanguage('de')" class="transition">DE</button>
                 </div>
-                <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 hover:text-gray-900 p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
-            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
-            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-5 space-y-4 shadow-xl">
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Startseite</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Die Story</a>
+            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-orange-600 font-semibold" data-lang="en">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-orange-600 font-semibold hidden" data-lang="de">Kontakt</a>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <main class="max-w-2xl mx-auto px-4 pt-32 pb-16 min-h-screen">
-        <div class="text-center mb-12">
-            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4" data-lang="en">Contact & Support</h1>
-            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4 hidden" data-lang="de">Kontakt & Support</h1>
-            <p class="text-gray-500" data-lang="en">Got an idea, found a bug, or need help? Send me a message.</p>
-            <p class="text-gray-500 hidden" data-lang="de">Hast du eine Idee, einen Bug gefunden oder brauchst Hilfe? Schreib mir.</p>
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20 min-h-screen">
+        <div class="mb-10 text-center">
+            <span class="text-xs font-mono uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full font-medium" data-lang="en">Direct Connection</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full font-medium hidden" data-lang="de">Direkter Draht</span>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-2 uppercase" data-lang="en">Get in Touch</h1>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-2 uppercase hidden" data-lang="de">Kontakt & Feedback</h1>
+            <p class="text-sm text-gray-500 max-w-md mx-auto" data-lang="en">Have a question, feedback, or a feature idea? Send a message directly to the developer.</p>
+            <p class="text-sm text-gray-500 max-w-md mx-auto hidden" data-lang="de">Hast du eine Frage, Feedback oder eine Feature-Idee? Schreib direkt an den Entwickler.</p>
         </div>
 
-        <div class="bg-gpcard border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-            <!-- Decorative Glow -->
-            <div class="absolute top-[-50px] right-[-50px] w-48 h-48 bg-gpcyan/10 rounded-full blur-[80px]"></div>
-
-            <div id="success-msg" class="hidden text-center py-16">
-                <div class="w-20 h-20 bg-gpcyan/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-gpcyan/30">
-                    <svg class="w-10 h-10 text-gpcyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT INFO CARD -->
+            <div class="md:col-span-5 bg-white p-7 rounded-2xl border border-gray-200/80 shadow-sm space-y-6">
+                <div>
+                    <h3 class="text-base font-bold text-gray-900 mb-1" data-lang="en">Developer & Creator</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-1 hidden" data-lang="de">Entwickler & Betreiber</h3>
+                    <p class="text-xs text-gray-500 mb-3" data-lang="en">Garage Prime is crafted by André Sterchi in Switzerland.</p>
+                    <p class="text-xs text-gray-500 mb-3 hidden" data-lang="de">Garage Prime wird von André Sterchi in der Schweiz entwickelt.</p>
+                    <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200 text-xs text-gray-700 font-mono space-y-1">
+                        <p class="font-bold text-gray-900">André Sterchi</p>
+                        <p>Nänikon, Switzerland</p>
+                        <p class="text-orange-600 font-semibold pt-1">dev@garage-prime.com</p>
+                    </div>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-2" data-lang="en">Message Sent!</h2>
-                <h2 class="text-2xl font-bold text-white mb-2 hidden" data-lang="de">Nachricht gesendet!</h2>
-                <p class="text-gray-400" data-lang="en">Thanks for reaching out. I'll get back to you as soon as possible.</p>
-                <p class="text-gray-400 hidden" data-lang="de">Danke für deine Nachricht. Ich melde mich so schnell wie möglich bei dir.</p>
-                <button onclick="location.reload()" class="mt-8 text-sm text-gpcyan hover:text-white transition" data-lang="en">&larr; Send another message</button>
-                <button onclick="location.reload()" class="mt-8 text-sm text-gpcyan hover:text-white transition hidden" data-lang="de">&larr; Weitere Nachricht senden</button>
+
+                <div>
+                    <h3 class="text-base font-bold text-gray-900 mb-1" data-lang="en">Community First</h3>
+                    <h3 class="text-base font-bold text-gray-900 mb-1 hidden" data-lang="de">Community-Getrieben</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed" data-lang="en">
+                        Every suggestion counts! New features in v2.0 like The Cool Wall, Case Mix explorer, and Quartett battles were built directly from collector requests.
+                    </p>
+                    <p class="text-xs text-gray-500 leading-relaxed hidden" data-lang="de">
+                        Jeder Vorschlag fließt ein! Neuerungen in v2.0 wie die Cool Wall, Case-Mixe und Quartett-Duelle sind direkt aus Sammler-Feedback entstanden.
+                    </p>
+                </div>
             </div>
 
-            <form id="contact-form" class="space-y-6 relative z-10">
-                <!-- Honeypot -->
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" id="website-url-bot"></div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- RIGHT FORM -->
+            <div class="md:col-span-7 bg-white p-7 sm:p-8 rounded-2xl border border-gray-200/80 shadow-sm">
+                <div id="success-msg" class="hidden text-center py-10">
+                    <div class="w-12 h-12 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 flex items-center justify-center mx-auto mb-3 text-xl font-bold">&check;</div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-1" data-lang="en">Message Received!</h3>
+                    <h3 class="font-bold text-gray-900 text-lg mb-1 hidden" data-lang="de">Nachricht empfangen!</h3>
+                    <p class="text-xs text-gray-500 max-w-sm mx-auto" data-lang="en">Thank you for reaching out. I read every message and will get back to you if you provided an email.</p>
+                    <p class="text-xs text-gray-500 max-w-sm mx-auto hidden" data-lang="de">Vielen Dank für deine Nachricht. Ich lese jedes Feedback und melde mich zurück, falls du eine E-Mail angegeben hast.</p>
+                </div>
+
+                <form id="contact-form" class="space-y-4">
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" id="website-url-bot"></div>
+                    
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Name / Nickname</label>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Name / Nickname</label>
-                        <input type="text" id="req-name" required class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none transition">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1" data-lang="en">Topic</label>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1 hidden" data-lang="de">Thema</label>
+                        <select id="req-topic" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:border-orange-500 focus:bg-white outline-none transition">
+                            <option value="Feature Request">Feature Request / Idee</option>
+                            <option value="Bug Report">Bug Report / Fehler melden</option>
+                            <option value="General Question">General Question / Allgemeine Frage</option>
+                            <option value="Community Database">Community Database / Daten einreichen</option>
+                        </select>
                     </div>
+
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Email Address</label>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">E-Mail Adresse</label>
-                        <input type="email" id="req-email" required class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none transition">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1" data-lang="en">Name or Nickname</label>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1 hidden" data-lang="de">Name oder Spitzname</label>
+                        <input type="text" id="req-name" required placeholder="How should we call you?" data-placeholder-en="How should we call you?" data-placeholder-de="Wie dürfen wir dich nennen?" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:border-orange-500 focus:bg-white outline-none transition">
                     </div>
-                </div>
 
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Topic</label>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Thema</label>
-                    <select id="req-topic" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none transition appearance-none">
-                        <option value="Feature Request" data-lang="en">Idea / Feature Request</option>
-                        <option value="Feature Request" data-lang="de" class="hidden">Idee / Feature Request</option>
-                        <option value="Bug Report" data-lang="en">Bug Report / Issue</option>
-                        <option value="Bug Report" data-lang="de" class="hidden">Fehler / Problem melden</option>
-                        <option value="Support" data-lang="en">Account Support</option>
-                        <option value="Support" data-lang="de" class="hidden">Account Support</option>
-                        <option value="General" data-lang="en">General Question</option>
-                        <option value="General" data-lang="de" class="hidden">Allgemeine Frage</option>
-                    </select>
-                </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1" data-lang="en">Email (Optional)</label>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1 hidden" data-lang="de">E-Mail (Optional, für Rückfragen)</label>
+                        <input type="email" id="req-email" placeholder="your.email@example.com" data-placeholder-en="your.email@example.com" data-placeholder-de="deine.email@beispiel.de" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:border-orange-500 focus:bg-white outline-none transition">
+                    </div>
 
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-lang="en">Your Message</label>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 hidden" data-lang="de">Deine Nachricht</label>
-                    <textarea id="req-msg" required rows="5" placeholder="How can I help you?" data-placeholder-en="How can I help you?" data-placeholder-de="Wie kann ich dir helfen?" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-gpcyan outline-none resize-none transition"></textarea>
-                </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1" data-lang="en">Message</label>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1 hidden" data-lang="de">Nachricht</label>
+                        <textarea id="req-msg" required rows="4" placeholder="Tell us what you think or what we should build next..." data-placeholder-en="Tell us what you think or what we should build next..." data-placeholder-de="Schreib uns deine Gedanken oder was dir in der App noch fehlt..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:border-orange-500 focus:bg-white outline-none resize-none transition"></textarea>
+                    </div>
 
-                <button type="submit" id="submit-btn" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-gray-200 transition text-sm flex justify-center items-center gap-2">
-                    <span data-lang="en">Send Message</span>
-                    <span data-lang="de" class="hidden">Nachricht senden</span>
-                </button>
-            </form>
-        </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-orange-600 text-white font-medium py-2.5 rounded-xl hover:bg-orange-700 transition text-xs shadow-sm shadow-orange-200">
+                        <span data-lang="en">Send Message</span>
+                        <span data-lang="de" class="hidden">Nachricht absenden</span>
+                    </button>
+                </form>
+            </div>
 
-        <div class="mt-8 text-center">
-            <p class="text-sm text-gray-500" data-lang="en">Prefer email? Contact me directly at <a href="mailto:dev@garage-prime.com" class="text-gpcyan hover:underline">dev@garage-prime.com</a></p>
-            <p class="text-sm text-gray-500 hidden" data-lang="de">Lieber per E-Mail? Schreibe mir direkt an <a href="mailto:dev@garage-prime.com" class="text-gpcyan hover:underline">dev@garage-prime.com</a></p>
         </div>
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-[#05050A] py-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
-                &copy; <span id="year"></span> Garage Prime. All rights reserved.<br>
-                Garage Prime is an independent collector's tool and not affiliated with Mattel, Inc.
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-xs text-center md:text-left max-w-md">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                    <img src="Logo.png" alt="Garage Prime" class="w-5 h-5 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-gray-900 tracking-wider">GARAGE PRIME</span>
+                </div>
+                &copy; <span id="year"></span> Garage Prime. Built with passion for collectors.
             </div>
-            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-                <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
-                <a href="contact.html" class="text-xs font-medium text-gpcyan hover:text-white transition">Contact</a>
-                <span class="text-gray-800 hidden md:inline">|</span>
-                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Imprint</a>
+            <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-xs">
+                <a href="index.html" class="text-gray-600 hover:text-gray-900 transition">Home</a>
+                <a href="story.html" class="text-gray-600 hover:text-gray-900 transition">The Story</a>
+                <a href="faq.html" class="text-gray-600 hover:text-gray-900 transition">FAQ</a>
+                <a href="contact.html" class="text-orange-600 font-semibold">Contact</a>
+                <a href="https://ko-fi.com/garageprime" target="_blank" class="text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 hover:bg-amber-100 transition font-medium">☕ Support</a>
+                <span class="text-gray-300 hidden md:inline">&bull;</span>
+                <a href="privacy.html" class="text-gray-600 hover:text-gray-900 transition">Privacy</a>
+                <a href="terms.html" class="text-gray-600 hover:text-gray-900 transition">Terms</a>
+                <a href="imprint.html" class="text-gray-600 hover:text-gray-900 transition">Imprint</a>
             </div>
         </div>
     </footer>
+
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

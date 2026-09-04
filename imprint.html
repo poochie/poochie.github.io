@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#05050A]">
+<html lang="en" class="scroll-smooth bg-[#F8F9FA]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imprint | Garage Prime</title>
+    <title>Imprint & Legal Credits | Garage Prime</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="Logo.png">
     <link rel="apple-touch-icon" href="Logo.png">
@@ -11,7 +11,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { gpbg: '#05050A', gpcard: '#0E1015', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans:['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#F8F9FA',
+                        gporange: '#E64A00',
+                        gpcyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        racing: ['"Racing Sans One"', 'cursive'],
+                    }
+                }
+            }
         }
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
@@ -21,105 +33,224 @@
             localStorage.setItem('gp_lang', lang);
             const btnEn = document.getElementById('btn-en');
             const btnDe = document.getElementById('btn-de');
-            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('gp_lang') || 'en'));
     </script>
 </head>
-<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
-
-    <!-- BACKGROUND GLOW -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-    </div>
+<body class="text-gray-600 font-sans antialiased overflow-x-hidden w-full selection:bg-orange-100 selection:text-orange-900 bg-[#F8F9FA]">
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav class="fixed w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/70 transition-all duration-300 shadow-sm shadow-gray-100/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center gap-3">
-                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
-                    <img src="Logo.png" alt="Logo" class="w-7 h-7 object-contain rounded" onerror="this.style.display='none'">
-                    <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
+                <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition">
+                    <img src="Logo.png" alt="Garage Prime Logo" class="w-7 h-7 object-contain rounded-md" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-wider text-gray-900">GARAGE PRIME</span>
                 </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
+            <div class="hidden md:flex items-center space-x-7">
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Home</a>
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Startseite</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Die Story</a>
+                <a href="faq.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Contact</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Kontakt</a>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="flex gap-2 text-[10px] font-bold bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
-                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                    <span class="text-gray-700">|</span>
-                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-[11px] font-semibold bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200/80">
+                    <button id="btn-en" onclick="setLanguage('en')" class="transition">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button id="btn-de" onclick="setLanguage('de')" class="transition">DE</button>
                 </div>
-                <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 hover:text-gray-900 p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
-            <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
-            <a href="index.html" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-5 space-y-4 shadow-xl">
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Startseite</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Die Story</a>
+            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Kontakt</a>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <main class="max-w-4xl mx-auto px-4 pt-32 pb-16 min-h-screen">
-        <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase" data-lang="en">Imprint</h1>
-        <h1 class="text-5xl font-racing text-white mb-2 tracking-wide uppercase hidden" data-lang="de">Impressum</h1>
-        <p class="text-gpcyan font-mono text-xs mb-12" data-lang="en">Last Updated: September 2026</p>
-        <p class="text-gpcyan font-mono text-xs mb-12 hidden" data-lang="de">Zuletzt aktualisiert: September 2026</p>
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20 min-h-screen">
+        <div class="mb-10">
+            <span class="text-xs font-mono uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full font-medium" data-lang="en">Legal Notice & License Credits</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full font-medium hidden" data-lang="de">Rechtliche Hinweise & Lizenzen</span>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-2 uppercase" data-lang="en">Imprint / Legal Notice</h1>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-2 uppercase hidden" data-lang="de">Impressum & Lizenzhinweise</h1>
+            <p class="text-xs font-mono text-gray-400" data-lang="en">Last Updated: September 2026 &bull; Garage Prime v2.0</p>
+            <p class="text-xs font-mono text-gray-400 hidden" data-lang="de">Zuletzt aktualisiert: September 2026 &bull; Garage Prime v2.0</p>
+        </div>
 
-        <div class="prose prose-invert prose-cyan max-w-none space-y-8 text-gray-400">
+        <div class="space-y-6 text-sm leading-relaxed text-gray-600">
             
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4" data-lang="en">Contact Information</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4 hidden" data-lang="de">Kontaktangaben</h2>
-            <p data-lang="en" class="text-sm">This app is a private, non-commercial project developed and operated by:</p>
-            <p data-lang="de" class="text-sm hidden">Diese App ist ein privates, nicht-kommerzielles Projekt, entwickelt und betrieben von:</p>
-            
-            <div class="bg-gpcard p-6 rounded-xl border border-white/5 shadow-lg">
-                <p class="m-0 text-sm">André Sterchi<br>Stationsstrasse 5<br>8606 Nänikon<br>Switzerland / Schweiz<br>Email: <a href="mailto:dev@garage-prime.com" class="text-gpcyan hover:text-white transition">dev@garage-prime.com</a></p>
+            <!-- 1. PROVIDER -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">1. Operator & Contact</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">1. Betreiber & Kontaktangaben</h2>
+                <p class="mb-3 text-xs text-gray-500" data-lang="en">Garage Prime is an independent, non-commercial software project operated by:</p>
+                <p class="mb-3 text-xs text-gray-500 hidden" data-lang="de">Garage Prime ist ein unabhängiges, privates Softwareprojekt, betrieben von:</p>
+                
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 font-mono text-xs text-gray-800 space-y-1">
+                    <p class="font-bold text-gray-900">Andr&eacute; Sterchi</p>
+                    <p>Stationsstrasse 5</p>
+                    <p>8606 N&auml;nikon</p>
+                    <p>Switzerland / Schweiz</p>
+                    <p class="pt-2">E-Mail: <a href="mailto:dev@garage-prime.com" class="text-orange-600 hover:underline">dev@garage-prime.com</a></p>
+                    <p>Web: <a href="https://garage-prime.com" class="text-orange-600 hover:underline">https://garage-prime.com</a></p>
+                </div>
             </div>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4" data-lang="en">Representation</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4 hidden" data-lang="de">Vertretung</h2>
-            <p data-lang="en" class="text-sm">Represented by: André Sterchi</p>
-            <p data-lang="de" class="text-sm hidden">Vertreten durch: André Sterchi</p>
+            <!-- 2. TRADEMARK NOMINATIVE FAIR USE & POP CULTURE HOMAGE -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">2. Trademark, Fair Use & Pop Culture Homage</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">2. Markenrecht, Fair Use & Popkultur-Hommagen</h2>
+                
+                <div class="space-y-3">
+                    <p data-lang="en">
+                        <strong>"Hot Wheels"</strong>, <strong>"Matchbox"</strong>, and related logos, casting designations, packaging blister card art, and series names are registered trademarks of Mattel, Inc. 
+                        Garage Prime is an independent enthusiast application. It is <strong>not sponsored, endorsed, authorized, or affiliated with Mattel, Inc.</strong> in any manner.
+                    </p>
+                    <p class="hidden" data-lang="de">
+                        <strong>"Hot Wheels"</strong>, <strong>"Matchbox"</strong> sowie zugehörige Marken, Logos, Modellbezeichnungen und Verpackungsgrafiken sind eingetragene Warenzeichen von Mattel, Inc. 
+                        Garage Prime ist eine unabhängige Sammler-Applikation und steht in <strong>keinerlei geschäftlicher Verbindung zu Mattel, Inc.</strong> und wird von Mattel weder gesponsert noch autorisiert.
+                    </p>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4" data-lang="en">Trademark Disclaimer</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4 hidden" data-lang="de">Markenrechtlicher Hinweis</h2>
-            <p data-lang="en" class="text-sm">"Hot Wheels" is a registered trademark of Mattel, Inc. This application is an independent fan project and is not affiliated with, sponsored by, or endorsed by Mattel, Inc. All product names, logos, and brands are property of their respective owners.</p>
-            <p data-lang="de" class="text-sm hidden">"Hot Wheels" ist ein eingetragenes Markenzeichen von Mattel, Inc. Diese Applikation ist ein unabhängiges Fan-Projekt und steht in keiner Verbindung zu Mattel, Inc., wird nicht von Mattel gesponsert oder unterstützt. Alle Produktnamen, Logos und Marken sind Eigentum ihrer jeweiligen Inhaber.</p>
+                    <p class="text-xs text-gray-500" data-lang="en">
+                        <strong>"Top Gear"</strong>, <strong>"The Cool Wall"</strong>, and <strong>"The Stig"</strong> are trademarks or show formats of the British Broadcasting Corporation (BBC). Any references to "The Cool Wall" or "Stig's Verdict" within Garage Prime are affectionate cultural homages and parodies celebrating automotive enthusiasm. Garage Prime is not affiliated with, produced by, or endorsed by the BBC or its presenters.
+                    </p>
+                    <p class="text-xs text-gray-500 hidden" data-lang="de">
+                        <strong>"Top Gear"</strong>, <strong>"The Cool Wall"</strong> und <strong>"The Stig"</strong> sind geschützte Marken bzw. Sendeformate der British Broadcasting Corporation (BBC). Nennungen wie "The Cool Wall" oder "Stigs Urteil" in Garage Prime verstehen sich als respektvolle popkulturelle Hommage und Parodie im Rahmen der automobilen Sammler-Kultur. Es besteht keinerlei Verbindung, Lizenzierung oder Kooperation mit der BBC oder deren Moderatoren.
+                    </p>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4" data-lang="en">Dispute Resolution</h2>
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4 border-l-4 border-gray-500 pl-4 hidden" data-lang="de">Streitbeilegung</h2>
-            <p data-lang="en" class="text-sm">The European Commission provides a platform for online dispute resolution (ODR): <a href="https://ec.europa.eu/consumers/odr" class="text-gpcyan hover:text-white transition" target="_blank">https://ec.europa.eu/consumers/odr</a>. As a project based in Switzerland, we are not legally obligated to participate in these proceedings and generally choose not to do so. Any disputes arising from this app are subject to the exclusive jurisdiction of the courts in Uster, Switzerland.</p>
-            <p data-lang="de" class="text-sm hidden">Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" class="text-gpcyan hover:text-white transition" target="_blank">https://ec.europa.eu/consumers/odr</a>. Als in der Schweiz ansässiges Projekt sind wir rechtlich nicht zur Teilnahme an solchen Verfahren verpflichtet und entscheiden uns im Regelfall dagegen. Für alle Streitigkeiten aus dieser App gilt ausschliesslich der Gerichtsstand Uster, Schweiz.</p>
+                    <p class="text-xs text-gray-500" data-lang="en">
+                        All automotive manufacturer brand names (e.g. Porsche, Nissan, Ford, Chevrolet, Toyota, BMW, Ferrari) referenced in vehicle specs or catalog descriptions belong to their respective trademark holders. They are used exclusively under nominative fair use for descriptive identification of physical scale models and their real-world vehicle counterparts.
+                    </p>
+                    <p class="text-xs text-gray-500 hidden" data-lang="de">
+                        Alle in der App genannten Automobilhersteller-Marken (z. B. Porsche, Nissan, Ford, Chevrolet, Toyota, BMW, Ferrari) sind Eigentum der jeweiligen Rechteinhaber. Ihre Nennung erfolgt ausschließlich zur sachlich beschreibenden Zuordnung der physischen Modellautos und ihrer realen Vorbilder.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 3. FICTIONAL VIPS & PERSONALITY RIGHTS -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">3. Fictional VIPs & Personality Rights (AI Disclaimer)</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">3. Fiktive VIPs & Persönlichkeitsrechte (KI-Hinweis)</h2>
+                <p class="mb-3 text-xs leading-relaxed" data-lang="en">
+                    All "VIP" avatars, guest reviewers, jury quotes, and character personas displayed within Garage Prime (including on The Cool Wall or during Quartett duels) are <strong>100% fictional, AI-generated artistic parodies</strong>. 
+                    Any resemblance to actual persons, living or deceased, automotive journalists, race drivers, public figures, or celebrities is purely coincidental or constitutes protected satirical parody. No real individual has endorsed, rated, or reviewed any model, car rating, or user collection.
+                </p>
+                <p class="mb-3 text-xs leading-relaxed hidden" data-lang="de">
+                    Sämtliche in Garage Prime vorkommenden "VIP"-Avatare, Gast-Juroren, Tester-Zitate und Charakter-Persönlichkeiten (z. B. auf der Cool Wall oder in Quartett-Duellen) sind <strong>vollständig fiktive, KI-generierte künstlerische Parodien</strong>. 
+                    Jegliche Ähnlichkeit mit realen lebenden oder verstorbenen Personen, Automobil-Journalisten, Rennfahrern oder Personen der Zeitgeschichte ist rein zufällig oder versteht sich als satirische Hommage. Keine reale Person hat die in der App gezeigten Modelle, Rankings oder Sammlungen bewertet oder gesponsert.
+                </p>
+            </div>
+
+            <!-- 4. SOURCES & LICENSES -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm space-y-4">
+                <h2 class="text-lg font-bold text-gray-900" data-lang="en">4. Data, Map & Third-Party Licenses</h2>
+                <h2 class="text-lg font-bold text-gray-900 hidden" data-lang="de">4. Datenquellen, Karten- & Software-Lizenzen</h2>
+
+                <div class="border-t border-gray-100 pt-3">
+                    <h3 class="font-bold text-gray-800 text-xs uppercase tracking-wider mb-1" data-lang="en">A. Map Data (OpenStreetMap)</h3>
+                    <h3 class="font-bold text-gray-800 text-xs uppercase tracking-wider mb-1 hidden" data-lang="de">A. Kartendaten (OpenStreetMap)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed" data-lang="en">
+                        Interactive map tiles in the Global Hunt Radar are provided by <a href="https://www.openstreetmap.org/" target="_blank" class="text-cyan-800 underline font-medium">OpenStreetMap</a> contributors.
+                        Map data is licensed under the <strong>Open Data Commons Open Database License (ODbL)</strong>. Cartography tiles are licensed under Creative Commons Attribution-ShareAlike 2.0 (CC BY-SA).
+                    </p>
+                    <p class="text-xs text-gray-600 leading-relaxed hidden" data-lang="de">
+                        Die interaktiven Kartendarstellungen im Hunt-Radar nutzen Daten von <a href="https://www.openstreetmap.org/" target="_blank" class="text-cyan-800 underline font-medium">OpenStreetMap</a>-Mitwirkenden.
+                        Die Kartendaten unterliegen der <strong>Open Database License (ODbL)</strong>.
+                    </p>
+                </div>
+
+                <div class="border-t border-gray-100 pt-3">
+                    <h3 class="font-bold text-gray-800 text-xs uppercase tracking-wider mb-1" data-lang="en">B. Typography & Fonts</h3>
+                    <h3 class="font-bold text-gray-800 text-xs uppercase tracking-wider mb-1 hidden" data-lang="de">B. Typografie & Schriften</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed" data-lang="en">
+                        Typography utilized across the website and app (Inter, Racing Sans One, Fira Code) is licensed under the <strong>SIL Open Font License (OFL 1.1)</strong>.
+                    </p>
+                    <p class="text-xs text-gray-600 leading-relaxed hidden" data-lang="de">
+                        Die genutzten Schriftarten (Inter, Racing Sans One, Fira Code) unterliegen der freien <strong>SIL Open Font License (OFL 1.1)</strong>.
+                    </p>
+                </div>
+
+                <div class="border-t border-gray-100 pt-3">
+                    <h3 class="font-bold text-gray-800 text-xs uppercase tracking-wider mb-1" data-lang="en">C. Reference Metadata & User Content</h3>
+                    <h3 class="font-bold text-gray-800 text-xs uppercase tracking-wider mb-1 hidden" data-lang="de">C. Referenz-Metadaten & Sammler-Fotos</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed" data-lang="en">
+                        Casting release years, toy numbers, and historical trivia are compiled from public collector wikis (Fandom Die-Cast Wiki, Wikipedia) and curated community contributions. Custom car photos uploaded by users in their Maintenance Journal remain the intellectual property of the respective uploading user.
+                    </p>
+                    <p class="text-xs text-gray-600 leading-relaxed hidden" data-lang="de">
+                        Modelljahrgänge, Toy-Nummern und historische Fakten basieren auf öffentlich zugänglichen Sammler-Referenzen (Die-Cast Wiki, Wikipedia) und Community-Beiträgen. Von Nutzern hochgeladene eigene Vitrinen-Fotos verbleiben im Urheberrecht des jeweiligen Nutzers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 5. PROJECT SUPPORT & VOLUNTARY DONATIONS -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">5. Community Support & "Ko-fi"</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">5. Projekt-Unterstützung & "Ko-fi"</h2>
+                <p class="text-xs text-gray-600 leading-relaxed mb-2" data-lang="en">
+                    Garage Prime is developed as a non-commercial community passion project. Voluntary tips and support contributions via platforms like <strong>Ko-fi</strong> (Ko-fi Labs Ltd.) are voluntary micro-donations used solely to help offset database hosting (Supabase), OCR compute, and server infrastructure costs. They do not constitute commercial sales, equity purchases, or fee-for-service contracts.
+                </p>
+                <p class="text-xs text-gray-600 leading-relaxed mb-2 hidden" data-lang="de">
+                    Garage Prime ist ein privates, nicht-kommerzielles Sammlerprojekt. Freiwillige Unterstützungsbeiträge über Plattformen wie <strong>Ko-fi</strong> (Ko-fi Labs Ltd.) sind freiwillige Zuwendungen (Trinkgelder), die zweckgebunden zur Deckung laufender Server-, Hosting- (Supabase) und API-Kosten verwendet werden. Sie begründen keinen Anspruch auf Gegenleistung, Beteiligung oder kommerzielle Dienstleistungen.
+                </p>
+            </div>
+
+            <!-- 6. JURISDICTION -->
+            <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm">
+                <h2 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">6. Applicable Law & Jurisdiction</h2>
+                <h2 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">6. Anwendbares Recht & Gerichtsstand</h2>
+                <p class="text-xs text-gray-500" data-lang="en">
+                    This platform and any disputes arising from it are subject exclusively to Swiss law. The exclusive place of jurisdiction is Uster / Zurich, Switzerland.
+                </p>
+                <p class="text-xs text-gray-500 hidden" data-lang="de">
+                    Für dieses Angebot und alle daraus entstehenden Streitigkeiten gilt ausschließlich Schweizer Recht. Ausschließlicher Gerichtsstand ist Uster / Zürich, Schweiz.
+                </p>
+            </div>
+
         </div>
     </main>
 
-  <!-- FOOTER -->
-    <footer class="bg-[#05050A] py-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
-                &copy; <span id="year"></span> Garage Prime. All rights reserved.<br>
-                Garage Prime is an independent collector's tool and not affiliated with Mattel, Inc.
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-xs text-center md:text-left max-w-md">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                    <img src="Logo.png" alt="Garage Prime" class="w-5 h-5 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-gray-900 tracking-wider">GARAGE PRIME</span>
+                </div>
+                &copy; <span id="year"></span> Garage Prime. Built with passion for collectors.<br>
+                <span class="text-[10px] text-gray-400">Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" class="underline">OpenStreetMap</a> contributors.</span>
             </div>
-            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-                <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
-                <a href="contact.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Contact</a>
-                <span class="text-gray-800 hidden md:inline">|</span>
-                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Imprint</a>
+            <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-xs">
+                <a href="index.html" class="text-gray-600 hover:text-gray-900 transition">Home</a>
+                <a href="story.html" class="text-gray-600 hover:text-gray-900 transition">The Story</a>
+                <a href="faq.html" class="text-gray-600 hover:text-gray-900 transition">FAQ</a>
+                <a href="contact.html" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
+                <a href="https://ko-fi.com/garageprime" target="_blank" class="text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 hover:bg-amber-100 transition font-medium">☕ Support</a>
+                <span class="text-gray-300 hidden md:inline">&bull;</span>
+                <a href="privacy.html" class="text-gray-600 hover:text-gray-900 transition">Privacy</a>
+                <a href="terms.html" class="text-gray-600 hover:text-gray-900 transition">Terms</a>
+                <a href="imprint.html" class="text-orange-600 font-semibold">Imprint</a>
             </div>
         </div>
     </footer>
+
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
