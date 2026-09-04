@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#05050A]">
+<html lang="en" class="scroll-smooth bg-[#F8F9FA]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,23 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="Logo.png">
     <link rel="apple-touch-icon" href="Logo.png">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { gpbg: '#05050A', gpcard: '#0E1015', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans: ['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#F8F9FA',
+                        gporange: '#E64A00',
+                        gpcyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        racing: ['"Racing Sans One"', 'cursive'],
+                    }
+                }
+            }
         }
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
@@ -23,12 +33,11 @@
             localStorage.setItem('gp_lang', lang);
             const btnEn = document.getElementById('btn-en');
             const btnDe = document.getElementById('btn-de');
-            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         
-        // Accordion Logic
         function toggleFAQ(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('.icon');
@@ -36,266 +45,191 @@
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
                 icon.innerHTML = '+';
-                icon.classList.remove('text-gpcyan');
-                button.classList.remove('text-gpcyan');
+                icon.classList.remove('text-orange-600');
+                button.classList.remove('text-orange-600');
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
                 icon.innerHTML = '−';
-                icon.classList.add('text-gpcyan');
-                button.classList.add('text-gpcyan');
+                icon.classList.add('text-orange-600');
+                button.classList.add('text-orange-600');
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('gp_lang') || 'en'));
     </script>
 </head>
-<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gpcyan selection:text-black">
-
-    <!-- BACKGROUND GLOW -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-        <div class="absolute top-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-gpcyan/5 rounded-full blur-[120px]"></div>
-    </div>
+<body class="text-gray-600 font-sans antialiased overflow-x-hidden w-full selection:bg-orange-100 selection:text-orange-900 bg-[#F8F9FA]">
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav class="fixed w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/70 transition-all duration-300 shadow-sm shadow-gray-100/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center gap-3">
-                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
-                    <img src="Logo.png" alt="Logo" class="w-7 h-7 object-contain rounded" onerror="this.style.display='none'">
-                    <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
+                <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition">
+                    <img src="Logo.png" alt="Garage Prime Logo" class="w-7 h-7 object-contain rounded-md" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-wider text-gray-900">GARAGE PRIME</span>
                 </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">The Story</a>
-                <a href="story.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">Die Story</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
+            <div class="hidden md:flex items-center space-x-7">
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Home</a>
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Startseite</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Die Story</a>
+                <a href="faq.html" class="text-orange-600 font-semibold text-sm">FAQ</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Contact</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Kontakt</a>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="flex gap-2 text-[10px] font-bold bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
-                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                    <span class="text-gray-700">|</span>
-                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-[11px] font-semibold bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200/80">
+                    <button id="btn-en" onclick="setLanguage('en')" class="transition">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button id="btn-de" onclick="setLanguage('de')" class="transition">DE</button>
                 </div>
-                <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 hover:text-gray-900 p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
         <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">The Story</a>
-            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">Die Story</a>
-            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
-            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-5 space-y-4 shadow-xl">
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Startseite</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Die Story</a>
+            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-orange-600 font-semibold">FAQ</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Kontakt</a>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <main class="max-w-3xl mx-auto px-4 pt-32 pb-16 min-h-screen">
-        <div class="text-center mb-16">
-            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4" data-lang="en">Frequently Asked Questions</h1>
-            <h1 class="text-5xl font-racing text-white tracking-wide uppercase mb-4 hidden" data-lang="de">Häufig gestellte Fragen</h1>
-            <p class="text-gray-500" data-lang="en">Everything you need to know about Garage Prime, the AI, and your collection.</p>
-            <p class="text-gray-500 hidden" data-lang="de">Alles was du über Garage Prime, die KI und deine Sammlung wissen musst.</p>
+    <main class="max-w-3xl mx-auto px-4 pt-32 pb-20 min-h-screen">
+        <div class="text-center mb-12">
+            <span class="text-xs font-mono uppercase tracking-widest text-cyan-800 bg-cyan-50 border border-cyan-200 px-3 py-1 rounded-full font-medium" data-lang="en">Collector Handbook</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-cyan-800 bg-cyan-50 border border-cyan-200 px-3 py-1 rounded-full font-medium hidden" data-lang="de">Sammler-Handbuch</span>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-3 uppercase" data-lang="en">Frequently Asked Questions</h1>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-3 uppercase hidden" data-lang="de">H&auml;ufig gestellte Fragen (FAQ)</h1>
+            <p class="text-sm text-gray-500 max-w-md mx-auto" data-lang="en">Everything you need to know about Garage Prime, scanning, and managing your models.</p>
+            <p class="text-sm text-gray-500 max-w-md mx-auto hidden" data-lang="de">Alles Wissenswerte &uuml;ber Garage Prime, das Scannen und die Verwaltung deiner Sammlung.</p>
         </div>
 
-        <div class="space-y-12">
+        <div class="space-y-3.5">
             
-            <!-- Category 1 -->
-            <div>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2" data-lang="en">1. Capturing Cars & Identification</h2>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2 hidden" data-lang="de">1. Autos Erfassen & Erkennung</h2>
-                
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">How can I add a car to my garage?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Wie kann ich ein Auto zu meiner Garage hinzufügen?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">There are three ways: <br><strong>1. Live OCR Scan:</strong> The camera reads the text on the card. <br><strong>2. AI Image Scan:</strong> The AI analyzes a photo of the casting. <br><strong>3. Manual Reference:</strong> Search my global database and add it with one click.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Es gibt drei Wege: <br><strong>1. Live OCR Scan:</strong> Die Kamera liest den Text auf der Verpackung. <br><strong>2. KI Bild Scan:</strong> Die KI analysiert ein Foto des Modells. <br><strong>3. Manuelle Suche:</strong> Suche in meiner Datenbank und füge das Auto mit einem Klick hinzu.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">How should I take photos for the scanner?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Wie mache ich die besten Fotos für den Scanner?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">For best results, ensure the entire blister pack or car is clearly visible and well-lit. Avoid heavy glare. Since AI isn't perfect, mistakes can still happen. If you need help, feel free to contact me at dev@garage-prime.com.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Achte darauf, dass der komplette Blister oder das Auto gut sichtbar und ausgeleuchtet ist. Vermeide starke Spiegelungen. Da die KI nicht perfekt ist, können trotzdem Fehler passieren. Bei Problemen kannst du mich jederzeit unter dev@garage-prime.com kontaktieren.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">Why is my car recognized incorrectly?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Warum wird mein Auto falsch erkannt?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">Identifying these cars is incredibly difficult. Many models have been re-released over decades with different codes. While the AI is smart, there is still room for improvement, especially with Premium models and special editions.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Die Identifizierung dieser Autos ist extrem schwierig. Viele Modelle wurden über Jahrzehnte hinweg mit unterschiedlichen Codes neu aufgelegt. Die KI lernt ständig dazu, aber bei Premium-Modellen kann sie sich irren.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">What is the Matching Score and the FIX DATA button?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Was ist der Matching Score und der FIX DATA Button?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">When you scan a car, the app calculates a Matching Score against my database. If the scanner only got a partial read, you can click <strong>FIX DATA</strong> to automatically overwrite the dirty scan text with clean, verified data.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Beim Scannen berechnet die App einen Matching Score. Wenn der Scanner den Text nur teilweise lesen konnte, kannst du auf <strong>FIX DATA</strong> klicken, um die fehlerhaften Scan-Texte automatisch mit sauberen, verifizierten Daten aus meiner Datenbank zu überschreiben.</p>
-                    </div>
+            <!-- Q1: SCANNER -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">How does the camera scan work for carded & loose cars?</span>
+                    <span data-lang="de" class="hidden">Wie funktioniert das Scannen von OVP-Karten und losen Autos?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        For packaged (carded) cars, Garage Prime utilizes high-speed on-device OCR (Google ML Kit) to read the unique toy code stamped on the back or front of the card. For loose castings, the camera captures visual silhouettes and livery details to match them against our catalog and populate real-world horsepower, release year, and series data.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        F&uuml;r verpackte Autos (OVP) liest der integrierte On-Device OCR Scanner blitzschnell den aufgedruckten Toy-Code auf der Karte. F&uuml;r lose Modelle erfasst die Kamera die Silhouette und Farbgebung, gleicht das Modell mit der Datenbank ab und l&auml;dt sofort Baujahr, Serie und echte PS-Werte.
+                    </p>
                 </div>
             </div>
 
-            <!-- Category 2 -->
-            <div>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2" data-lang="en">2. Technical Specs & Privacy</h2>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2 hidden" data-lang="de">2. Technische Daten & Datenschutz</h2>
-                
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">Are the technical specs (BHP, Top Speed) accurate?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Sind die technischen Daten (PS, V-Max) genau?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">They are a Best Guess. For real-world licensed cars, the AI fetches realistic data. For Fantasy toy cars, the AI estimates specs based on engine type and design. No claim to 100% accuracy; it's built for the fun factor!</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Es ist eine bestmögliche Schätzung. Bei lizenzierten Autos liefert die KI realistische Werte. Bei Fantasie-Autos schätzt die KI die Werte basierend auf Design und Motortyp. Es gibt keinen Anspruch auf 100%ige Richtigkeit – es geht um den Spielspaß!</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">Are my exact GPS locations visible to others?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Sind meine genauen GPS-Standorte für andere sichtbar?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">No. Your exact street name and house number are kept strictly private in your personal logbook. For the global Hunt Map and the Race Strip feed, the app automatically strips away the street name and only displays the city or region.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Nein. Deine exakte Strasse und Hausnummer bleiben streng privat in deinem Logbuch. Für die globale Hunt Map und den Newsfeed entfernt die App automatisch die Strassennamen und zeigt nur noch die Stadt oder Region an.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">What happens to the photos I upload?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Was passiert mit den Fotos, die ich hochlade?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">Great photos of rare cars help build our global database. If you capture a clean image of a missing model, the system might use it as a "Master Asset" for the global catalog, helping other collectors identify their finds.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Gute Fotos von seltenen Autos helfen beim Aufbau unserer globalen Datenbank. Wenn du ein sauberes Bild eines fehlenden Modells machst, kann das System es als "Master Asset" für den globalen Katalog nutzen, um anderen Sammlern zu helfen.</p>
-                    </div>
+            <!-- Q2: DUPLICATE PROTECTION -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">How does Duplicate Protection help in the store?</span>
+                    <span data-lang="de" class="hidden">Wie sch&uuml;tzt mich der Dubletten-Schutz beim Einkaufen?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        When you point your camera at a car in the store, Garage Prime immediately checks your local collection. If you already own this specific casting, a bright notice informs you and shows how many copies you already possess&mdash;preventing accidental double purchases.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Sobald du im Laden die Kamera auf ein Auto richtest, pr&uuml;ft die App in Millisekunden deine Garage. Besitzt du das Modell bereits, warnt dich ein deutlicher Hinweis und zeigt dir die genaue Anzahl deiner Exemplare&mdash;keine versehentlichen Doppelk&auml;ufe mehr.
+                    </p>
                 </div>
             </div>
 
-            <!-- Category 3 -->
-            <div>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2" data-lang="en">3. App Features & Tools</h2>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2 hidden" data-lang="de">3. App Funktionen & Tools</h2>
-                
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">What is the Real Cars feature?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Was ist das "Real Cars" Feature?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">I added this feature so you can track actual 1:1 scale vehicles (like your daily driver or dream car). Because it is incredibly fun to put your real car into the app and compare its specs against your 1:64 scale toy legends.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Mit dieser Funktion kannst du echte 1:1 Fahrzeuge (wie dein eigenes Auto) scannen und speichern. Es macht einfach unglaublich viel Spaß, echte Autos im Quartett gegen 1:64 Spielzeuglegenden antreten zu lassen!</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">What is the Head-to-Head feature?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Was ist das "Auto-Duell" Feature?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">You can select any two cars from your garage and put them head-to-head to compare their horsepower, speed, and weight to see which machine wins the stats battle.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Wähle zwei Autos aus deiner Garage und lass sie in Disziplinen wie PS, V-Max und Beschleunigung gegeneinander antreten.</p>
-                    </div>
+            <!-- Q3: THE COOL WALL -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">What is "The Cool Wall"?</span>
+                    <span data-lang="de" class="hidden">Was ist die "Cool Wall"?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        Inspired by the iconic Top Gear refrigerator wall, The Cool Wall lets you categorize every model in your collection into 4 distinct tiers: <em>Seriously Uncool</em>, <em>Uncool</em>, <em>Cool</em>, and the prestigious <em>Sub-Zero</em>. It gives your collection a personal touch based on your own taste.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Inspiriert vom legend&auml;ren Top-Gear-K&uuml;hlschrank kannst du jedes deiner Modelle auf der Cool Wall in 4 Stufen einsortieren: <em>Seriously Uncool</em>, <em>Uncool</em>, <em>Cool</em> und das legend&auml;re <em>Sub-Zero</em>. So bekommt deine Vitrine eine ganz pers&ouml;nliche Rangordnung.
+                    </p>
                 </div>
             </div>
 
-            <!-- Category 4 -->
-            <div>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2" data-lang="en">4. Quests, Points & Fuel</h2>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2 hidden" data-lang="de">4. Quests, Punkte & Fuel</h2>
-                
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">How do Daily Quests work?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Wie funktionieren Daily Quests?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">Every day, our AI "Game Master" sets a mission (e.g., scan a Porsche). The first person globally to solve it gets bonus points! All others can still earn points by completing the task during the day.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Jeden Tag stellt unser KI-„Game Master“ eine Mission (z. B. scanne einen Porsche). Die erste Person weltweit, die sie löst, erhält Bonuspunkte! Alle anderen können die Aufgabe im Laufe des Tages ebenfalls für Punkte abschließen.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">Can users cheat on quests?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Kann man bei Quests schummeln?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">We enforce strict live-scan requirements. While some might try to outsmart the system using high-resolution screen photos, our community monitors findings in the Race Strip feed to ensure fair play.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Wir erzwingen strikte Live-Scan-Anforderungen. Auch wenn manche versuchen könnten, das System mit Fotos von Bildschirmen zu überlisten, sorgt unsere Community durch gegenseitige Kontrolle im Race Strip für Fairplay.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">How are points awarded?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Wie werden Punkte vergeben?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">Points are awarded for every car scanned. Rarity (Mainline, TH, STH, Chase) acts as a multiplier. Solve Daily Quests to climb the global leaderboard and unlock new Collector Tiers.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Punkte werden für jedes gescannte Fahrzeug vergeben. Die Seltenheit (Mainline, TH, STH, Chase) dient als Multiplikator. Löse Daily Quests, um in der globalen Rangliste aufzusteigen und neue Sammler-Stufen freizuschalten.</p>
-                    </div>
-                </div>
-
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">What is Fuel and the Founder Package?</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Was ist Fuel und das Founder Package?</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">Every AI scan costs server resources. To keep the app running, you have a daily limit of free scans (Fuel). If you want to scan more, you can buy Fuel packs. The "Founder Package" is a one-time upgrade for power users who want to support my development and unlock unlimited limits.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Jeder KI-Scan verbraucht Server-Ressourcen. Um die App am Laufen zu halten, hast du ein tägliches Limit an gratis Scans (Fuel). Wenn du mehr scannen willst, kannst du Fuel-Packs kaufen. Das "Founder Package" ist ein einmaliges Upgrade für Power-User, die meine Entwicklung unterstützen und unbegrenzte Limits freischalten wollen.</p>
-                    </div>
+            <!-- Q4: AUTO-QUARTETT DUELS -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">How do the Auto-Quartett Duelle (Head-to-Head) work?</span>
+                    <span data-lang="de" class="hidden">Wie funktionieren die Auto-Quartett Duelle?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        You can select any two cars from your garage (or challenge community guest cars) and pit them against each other in a classic Top Trumps battle. Compare horsepower, top speed, acceleration, or weight with a complete duel history.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        W&auml;hle zwei beliebige Autos aus deiner Garage (oder fordere Gastautos heraus) und lass sie im klassischen Top-Trumps-Stil gegeneinander antreten. Vergleiche PS, H&ouml;chstgeschwindigkeit, Hubraum oder Gewicht &ndash; perfekt f&uuml;r den K&uuml;chentisch mit Kindern oder Freunden.
+                    </p>
                 </div>
             </div>
 
-            <!-- Category 5 -->
-            <div>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2" data-lang="en">5. Support & Feedback</h2>
-                <h2 class="text-xs font-bold text-gporange uppercase tracking-[0.2em] mb-4 border-b border-white/5 pb-2 hidden" data-lang="de">5. Support & Feedback</h2>
+            <!-- Q5: CASE MIXES (A-Q) -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">What are Case Mixes (A to Q) & Treasure Vault?</span>
+                    <span data-lang="de" class="hidden">Was bedeuten Case-Mixe (A bis Q) und Treasure Vault?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        Die-cast manufacturers release annual mainline cars in sealed assortment boxes labeled with letters (Case A through Case Q). Garage Prime provides comprehensive case checklists and dedicated trackers for rare Super Treasure Hunts ($TH) and regular Treasure Hunts so you know exactly which cases contain your grails.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Hot Wheels ver&ouml;ffentlicht Mainline-Modelle in j&auml;hrlichen Sortimentskartons von Case A bis Q. Garage Prime bietet dir daf&uuml;r vollst&auml;ndige Checklisten sowie den Treasure Vault f&uuml;r Super Treasure Hunts ($TH), damit du im Laden sofort wei&szlig;t, welche Sch&auml;tze in welcher Kiste stecken.
+                    </p>
+                </div>
+            </div>
 
-                <div class="mb-3 border border-white/5 rounded-2xl bg-gpcard overflow-hidden transition-all hover:border-white/20 hover:shadow-lg">
-                    <button class="w-full flex justify-between items-center p-6 focus:outline-none transition-colors" onclick="toggleFAQ(this)">
-                        <span class="font-semibold text-white text-left text-sm" data-lang="en">I have an idea for a feature!</span>
-                        <span class="font-semibold text-white text-left text-sm hidden" data-lang="de">Ich habe eine Idee für eine neue Funktion!</span>
-                        <span class="icon text-xl font-light text-gray-500 transition-colors">+</span>
-                    </button>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/30">
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5" data-lang="en">I love community feedback! Please use the 'Idea' form on the website to share your thoughts. For urgent technical issues, contact me at dev@garage-prime.com.</p>
-                        <p class="p-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 hidden" data-lang="de">Ich liebe Community-Feedback! Bitte nutze das Formular auf meiner Website, um deine Vorschläge mitzuteilen. Bei dringenden technischen Problemen kontaktiere mich unter dev@garage-prime.com.</p>
-                    </div>
+            <!-- Q6: PRICING / SUBSCRIPTIONS -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">Is Garage Prime free? Are there subscription traps?</span>
+                    <span data-lang="de" class="hidden">Ist die App kostenlos? Gibt es Abo-Fallen?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        Garage Prime is built as an indie passion project. There are no recurring subscription traps. You can scan, manage your garage, play quartett, and track checklists freely.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Garage Prime ist ein unabh&auml;ngiges Herzensprojekt von einem Sammler. Es gibt keine l&auml;stigen Abo-Fallen. Du kannst deine Garage erfassen, scannen, Quartett spielen und Case-Checklisten uneingeschr&auml;nkt nutzen.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q7: PDF EXPORT & BACKUP -->
+            <div class="bg-white border border-gray-200/80 rounded-2xl overflow-hidden shadow-sm">
+                <button class="w-full text-left p-5 font-bold text-gray-900 flex justify-between items-center transition focus:outline-none" onclick="toggleFAQ(this)">
+                    <span data-lang="en">Can I print or export my collection?</span>
+                    <span data-lang="de" class="hidden">Kann ich meine Sammlung ausdrucken oder als PDF exportieren?</span>
+                    <span class="icon text-xl font-bold text-gray-400 shrink-0 ml-4">+</span>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed" data-lang="en">
+                        Yes! With one tap, you can generate a clean, high-resolution PDF collector booklet of your garage or your yearly 1/250 mainline album. You can save it to your device, send it, or print it out for physical binder archives.
+                    </p>
+                    <p class="text-sm text-gray-600 pb-5 leading-relaxed hidden" data-lang="de">
+                        Ja! Mit einem Klick erstellst du ein druckfertiges, hochaufl&ouml;sendes PDF-Sammlerbuch deiner Garage oder deines 1/250 Mainline-Jahresalbums. Perfekt zum Speichern, Verschicken oder Ausdrucken f&uuml;r den Ordner an der Vitrine.
+                    </p>
                 </div>
             </div>
 
@@ -303,23 +237,28 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-[#05050A] py-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
-                &copy; <span id="year"></span> Garage Prime. All rights reserved.<br>
-                Garage Prime is an independent collector's tool and not affiliated with Mattel, Inc.
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-xs text-center md:text-left max-w-md">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                    <img src="Logo.png" alt="Garage Prime" class="w-5 h-5 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-gray-900 tracking-wider">GARAGE PRIME</span>
+                </div>
+                &copy; <span id="year"></span> Garage Prime. Built with passion for collectors.
             </div>
-            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-                <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
-                <a href="contact.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Contact</a>
-                <span class="text-gray-800 hidden md:inline">|</span>
-                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-xs font-medium text-gpcyan hover:text-white transition">Imprint</a>
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs">
+                <a href="index.html" class="text-gray-600 hover:text-gray-900 transition">Home</a>
+                <a href="story.html" class="text-gray-600 hover:text-gray-900 transition">The Story</a>
+                <a href="faq.html" class="text-orange-600 font-semibold">FAQ</a>
+                <a href="contact.html" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
+                <span class="text-gray-300 hidden md:inline">&bull;</span>
+                <a href="privacy.html" class="text-gray-600 hover:text-gray-900 transition">Privacy</a>
+                <a href="terms.html" class="text-gray-600 hover:text-gray-900 transition">Terms</a>
+                <a href="imprint.html" class="text-gray-600 hover:text-gray-900 transition">Imprint</a>
             </div>
         </div>
     </footer>
+
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

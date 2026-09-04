@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#05050A]">
+<html lang="en" class="scroll-smooth bg-[#F8F9FA]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { gpbg: '#05050A', gpcard: '#0E1015', gpcyan: '#00E5FF', gporange: '#FF5500' }, fontFamily: { sans: ['Inter', 'sans-serif'], racing: ['"Racing Sans One"', 'cursive'] } } }
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#F8F9FA',
+                        gporange: '#E64A00',
+                        gpcyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        racing: ['"Racing Sans One"', 'cursive'],
+                    }
+                }
+            }
         }
         function setLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
@@ -23,149 +35,152 @@
             localStorage.setItem('gp_lang', lang);
             const btnEn = document.getElementById('btn-en');
             const btnDe = document.getElementById('btn-de');
-            if (btnEn) btnEn.className = lang === 'en' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
-            if (btnDe) btnDe.className = lang === 'de' ? 'text-white font-bold cursor-pointer' : 'text-gray-600 hover:text-white transition cursor-pointer';
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
         }
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('gp_lang') || 'en'));
     </script>
 </head>
-<body class="text-gray-300 font-sans antialiased overflow-x-hidden w-full selection:bg-gporange selection:text-black">
-
-    <!-- BACKGROUND GLOW -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50"></div>
-        <div class="absolute top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-gporange/5 rounded-full blur-[120px]"></div>
-    </div>
+<body class="text-gray-600 font-sans antialiased overflow-x-hidden w-full selection:bg-orange-100 selection:text-orange-900 bg-[#F8F9FA]">
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav class="fixed w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/70 transition-all duration-300 shadow-sm shadow-gray-100/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center gap-3">
-                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition cursor-pointer">
-                    <img src="Logo.png" alt="Logo" class="w-7 h-7 object-contain rounded" onerror="this.style.display='none'">
-                    <span class="font-racing text-xl tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GARAGE PRIME</span>
+                <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition">
+                    <img src="Logo.png" alt="Garage Prime Logo" class="w-7 h-7 object-contain rounded-md" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-wider text-gray-900">GARAGE PRIME</span>
                 </a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="faq.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors">FAQ</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors" data-lang="en">&larr; Back to Home</a>
-                <a href="index.html" class="text-sm font-semibold text-gray-400 hover:text-white transition-colors hidden" data-lang="de">&larr; Zurück</a>
+            <div class="hidden md:flex items-center space-x-7">
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Home</a>
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Startseite</a>
+                <a href="story.html" class="text-orange-600 font-semibold text-sm" data-lang="en">The Story</a>
+                <a href="story.html" class="text-orange-600 font-semibold text-sm hidden" data-lang="de">Die Story</a>
+                <a href="faq.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Contact</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Kontakt</a>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="flex gap-2 text-[10px] font-bold bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
-                    <span id="btn-en" onclick="setLanguage('en')">EN</span>
-                    <span class="text-gray-700">|</span>
-                    <span id="btn-de" onclick="setLanguage('de')">DE</span>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-[11px] font-semibold bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200/80">
+                    <button id="btn-en" onclick="setLanguage('en')" class="transition">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button id="btn-de" onclick="setLanguage('de')" class="transition">DE</button>
                 </div>
-                <button onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-white p-1 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 hover:text-gray-900 p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
         <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="md:hidden hidden bg-[#05050A]/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-6 space-y-5 shadow-2xl">
-            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest">FAQ</a>
-            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest" data-lang="en">&larr; Back to Home</a>
-            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-300 hidden uppercase tracking-widest" data-lang="de">&larr; Zurück</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-5 space-y-4 shadow-xl">
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Startseite</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-orange-600 font-semibold" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-orange-600 font-semibold hidden" data-lang="de">Die Story</a>
+            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Kontakt</a>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <main class="max-w-3xl mx-auto px-4 pt-32 pb-16 min-h-screen">
-        <h1 class="text-5xl font-racing text-white mb-12 tracking-wide uppercase text-center" data-lang="en">The Story Behind Garage Prime</h1>
-        <h1 class="text-5xl font-racing text-white mb-12 tracking-wide uppercase text-center hidden" data-lang="de">Die Geschichte hinter Garage Prime</h1>
+    <main class="max-w-3xl mx-auto px-4 pt-32 pb-20 min-h-screen">
+        <div class="text-center mb-12">
+            <span class="text-xs font-mono uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full font-medium" data-lang="en">Origin & Mission</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full font-medium hidden" data-lang="de">Hintergrund & Mission</span>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-3 uppercase" data-lang="en">The Story Behind Garage Prime</h1>
+            <h1 class="text-4xl sm:text-5xl font-racing text-gray-900 tracking-tight mt-3 mb-3 uppercase hidden" data-lang="de">Die Geschichte hinter Garage Prime</h1>
+            <p class="text-sm text-gray-500 max-w-md mx-auto" data-lang="en">How a holiday family moment turned into a dedicated 1:64 collector companion.</p>
+            <p class="text-sm text-gray-500 max-w-md mx-auto hidden" data-lang="de">Wie aus einem Moment am Küchentisch ein Werkzeug für Sammler weltweit wurde.</p>
+        </div>
 
-        <div class="prose prose-invert prose-lg max-w-none space-y-12 text-gray-400">
+        <div class="space-y-8 text-base leading-relaxed text-gray-700">
             
-            <!-- SECTION 1 -->
-            <div>
-                <h2 class="text-2xl font-bold text-gporange mb-4" data-lang="en">The Spark: Christmas 2025</h2>
-                <h2 class="text-2xl font-bold text-gporange mb-4 hidden" data-lang="de">Der Funke: Weihnachten 2025</h2>
+            <!-- SECTION 1: THE SPARK -->
+            <div class="bg-white rounded-2xl p-7 sm:p-8 border border-gray-200/80 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-3" data-lang="en">The Spark: Christmas 2025</h2>
+                <h2 class="text-xl font-bold text-gray-900 mb-3 hidden" data-lang="de">Der Funke: Weihnachten 2025</h2>
                 
-                <p class="leading-relaxed" data-lang="en">It all started during the Christmas break of 2025. Like many great ideas, it was born out of a simple family moment. My sons have a huge passion for Hot Wheels—and honestly, I’ve caught the fever too. But my boys didn't just want to look at the cars; they wanted to know everything about them.</p>
-                <p class="leading-relaxed hidden" data-lang="de">Alles begann während der Weihnachtsferien 2025. Wie viele gute Ideen entstand sie aus einem einfachen Familienmoment. Meine Söhne haben eine riesige Leidenschaft für Hot Wheels – und ehrlich gesagt hat mich das Fieber auch gepackt. Aber meine Jungs wollten die Autos nicht nur ansehen; sie wollten alles darüber wissen.</p>
+                <p class="mb-4" data-lang="en">It all started during the Christmas break of 2025. Like many great ideas, it was born out of a simple family moment. My sons have a huge passion for Hot Wheels—and honestly, I’ve caught the fever too. But my boys didn't just want to look at the cars; they wanted to know everything about them.</p>
+                <p class="mb-4 hidden" data-lang="de">Alles begann während der Weihnachtsferien 2025. Wie viele gute Ideen entstand sie aus einem einfachen Familienmoment. Meine Söhne haben eine riesige Leidenschaft für Hot Wheels – und ehrlich gesagt hat mich das Fieber auch gepackt. Aber meine Jungs wollten die Autos nicht nur ansehen; sie wollten alles darüber wissen.</p>
                 
-                <div class="bg-white/5 border-l-4 border-gporange p-6 my-6 rounded-r-xl">
-                    <p class="m-0 text-white italic font-medium" data-lang="en">"How fast is this one? How much horsepower does it have? Which one would win in a race?"</p>
-                    <p class="m-0 text-white italic font-medium hidden" data-lang="de">"Wie schnell ist das hier? Wie viel PS hat es? Welches würde bei einem Rennen gewinnen?"</p>
+                <div class="bg-orange-50 border-l-4 border-orange-500 p-4 my-5 rounded-r-xl">
+                    <p class="m-0 text-orange-950 italic font-medium text-sm" data-lang="en">"Dad, how fast is this one? How much horsepower does it have? Which one would win in a race?"</p>
+                    <p class="m-0 text-orange-950 italic font-medium text-sm hidden" data-lang="de">"Papa, wie schnell ist das hier? Wie viel PS hat es? Welches würde bei einem Rennen gewinnen?"</p>
                 </div>
                 
-                <p class="leading-relaxed" data-lang="en">I knew a bit about cars, but I couldn't keep up with their endless curiosity. Instead of manually using Google Lens for every single find, I thought: <em>"There must be a way to automate this."</em></p>
-                <p class="leading-relaxed hidden" data-lang="de">Ich wusste ein bisschen was über Autos, konnte aber mit ihrer endlosen Neugier nicht mithalten. Anstatt jedes einzelne Auto mühsam per Google Lens zu suchen, dachte ich mir: <em>"Das muss sich doch automatisieren lassen."</em></p>
+                <p data-lang="en">I knew a bit about cars, but I couldn't keep up with their endless curiosity. Instead of manually searching Google Lens for every single find, I thought: <em>"There must be a way to automate this."</em></p>
+                <p class="hidden" data-lang="de">Ich wusste ein bisschen was über Autos, konnte aber mit ihrer endlosen Neugier nicht mithalten. Anstatt jedes einzelne Auto mühsam per Google Lens zu suchen, dachte ich mir: <em>"Das muss sich doch automatisieren lassen."</em></p>
             </div>
 
-            <!-- SECTION 2 -->
-            <div>
-                <h2 class="text-2xl font-bold text-gporange mb-4" data-lang="en">From Prototype to Passion Project</h2>
-                <h2 class="text-2xl font-bold text-gporange mb-4 hidden" data-lang="de">Vom Prototyp zum Herzensprojekt</h2>
-                <p class="leading-relaxed" data-lang="en">I decided to build a quick prototype to see if I could make it work. To my surprise, it did. My sons were thrilled and began using the prototype every single day. Seeing their excitement made me realize the massive potential of this idea. I wanted more, they wanted more—and suddenly, a small holiday project turned into a full-scale development journey.</p>
-                <p class="leading-relaxed hidden" data-lang="de">Ich beschloss, einen schnellen Prototyp zu bauen. Zu meiner Überraschung hat es funktioniert. Meine Söhne waren begeistert und nutzten die App jeden Tag. Als ich ihre Begeisterung sah, wurde mir das enorme Potenzial dieser Idee klar. Ich wollte mehr, sie wollten mehr – und plötzlich wurde aus einem kleinen Ferienprojekt eine ausgewachsene Entwicklungsreise.</p>
+            <!-- SECTION 2: FROM PROTOTYPE TO APP -->
+            <div class="bg-white rounded-2xl p-7 sm:p-8 border border-gray-200/80 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-3" data-lang="en">From Prototype to Passion Project</h2>
+                <h2 class="text-xl font-bold text-gray-900 mb-3 hidden" data-lang="de">Vom Prototyp zum Herzensprojekt</h2>
+                <p class="mb-3" data-lang="en">I decided to build a quick prototype to see if I could make it work. To my surprise, it did. My sons were thrilled and began using the prototype every single day. Seeing their excitement made me realize the massive potential of this idea. I wanted more, they wanted more—and suddenly, a small holiday project turned into a full-scale development journey.</p>
+                <p class="mb-3 hidden" data-lang="de">Ich beschloss, einen schnellen Prototyp zu bauen. Zu meiner Überraschung hat es funktioniert. Meine Söhne waren begeistert und nutzten die App jeden Tag. Als ich ihre Begeisterung sah, wurde mir das enorme Potenzial dieser Idee klar. Ich wollte mehr, sie wollten mehr – und plötzlich wurde aus einem kleinen Ferienprojekt eine ausgewachsene Entwicklungsreise.</p>
             </div>
 
-            <!-- SECTION 3 (HIGHLIGHT BOX) -->
-            <div class="bg-gpcard p-8 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-br from-gpcyan/5 to-transparent opacity-50"></div>
-                <h2 class="text-2xl font-bold text-white mb-4 relative z-10" data-lang="en">Built with Heart, Not a Corporate Lab</h2>
-                <h2 class="text-2xl font-bold text-white mb-4 hidden relative z-10" data-lang="de">Mit Herz gebaut, nicht in einem Konzernlabor</h2>
-                <p class="leading-relaxed text-sm relative z-10" data-lang="en">I want to be transparent: I am not a professional developer. This app is a private labor of love, built during my spare time, late nights, and weekends. I had to learn an immense amount of new technology and invest countless hours to bring this vision to life. I act according to my best knowledge and belief, but I know the app isn't perfect. You might find a bug or a technical spec that needs "healing" - and that’s okay.</p>
-                <p class="leading-relaxed text-sm hidden relative z-10" data-lang="de">Ich möchte transparent sein: Ich bin kein professioneller Entwickler. Diese App ist ein privates Herzensprojekt, das in meiner Freizeit, in späten Nächten und an Wochenenden entstanden ist. Ich musste extrem viel neue Technologie lernen, um diese Vision zum Leben zu erwecken. Ich handle nach bestem Wissen und Gewissen, aber ich weiß, dass die App nicht perfekt ist. Vielleicht findest du mal einen Bug – und das ist völlig okay.</p>
-            </div>
-
-            <!-- SECTION 4 -->
-            <div>
-                <h2 class="text-2xl font-bold text-gporange mb-4" data-lang="en">The Road Ahead</h2>
-                <h2 class="text-2xl font-bold text-gporange mb-4 hidden" data-lang="de">Der Weg vor uns</h2>
-                <p class="leading-relaxed" data-lang="en">Garage Prime is constantly evolving. My backlog is currently overflowing with ideas and features I can’t wait to implement. I continue to refine the experience as much as my personal time and financial resources allow.</p>
-                <p class="leading-relaxed hidden" data-lang="de">Garage Prime entwickelt sich ständig weiter. Mein Backlog quillt über vor Ideen und Funktionen, die ich kaum erwarten kann, umzusetzen. Ich werde das Erlebnis weiter verfeinern, soweit es meine Zeit und meine Ressourcen zulassen.</p>
-            </div>
-
-            <!-- SECTION 5 -->
-            <div>
-                <h2 class="text-2xl font-bold text-gporange mb-4" data-lang="en">Sustainability & Support</h2>
-                <h2 class="text-2xl font-bold text-gporange mb-4 hidden" data-lang="de">Nachhaltigkeit & Support</h2>
-                <p class="leading-relaxed" data-lang="en">Running a high-end platform like this comes with real-world costs. From secure database servers to the advanced AI (Google Gemini) used for identification and image generation—these are currently all self-funded. If you find value in Garage Prime, I would be incredibly grateful for your support through a subscription. It helps keep the servers running and the AI "brains" growing.</p>
-                <p class="leading-relaxed hidden" data-lang="de">Eine High-End-Plattform wie diese zu betreiben, ist mit echten Kosten verbunden. Von sicheren Datenbank-Servern bis zur hochentwickelten KI (Google Gemini) – all dies wird derzeit von mir selbst finanziert. Wenn Garage Prime dir einen Mehrwert bietet, wäre ich für deine Unterstützung durch ein Abonnement unglaublich dankbar. Es hilft, die Server am Laufen zu halten.</p>
-            </div>
-
-<!-- SECTION 6 (CONCLUSION) -->
-            <div class="pt-10 border-t border-white/5 text-center mt-12">
-                <h2 class="text-xl font-bold text-white mb-4" data-lang="en">Dedicated to My Sons</h2>
-                <h2 class="text-xl font-bold text-white mb-4 hidden" data-lang="de">Meinen Söhnen gewidmet</h2>
-                
-                <p class="leading-relaxed text-sm mb-8" data-lang="en">
-                    Above all, Garage Prime is dedicated to my three boys. It is a labor of love—built by a father for his family and for the global community of collectors. 
-                    I hope this app brings as much excitement to your daily hunt as it brings to our living room floor. Your feedback is what keeps the engine running, so please, keep it coming.
+            <!-- SECTION 3: CRAFT & HONESTY -->
+            <div class="bg-cyan-50/50 rounded-2xl p-7 sm:p-8 border border-cyan-200">
+                <h2 class="text-xl font-bold text-cyan-950 mb-3" data-lang="en">Built with Heart, Not in a Corporate Lab</h2>
+                <h2 class="text-xl font-bold text-cyan-950 mb-3 hidden" data-lang="de">Mit Herz gebaut, nicht in einem Konzernlabor</h2>
+                <p class="text-cyan-900/90 text-sm leading-relaxed" data-lang="en">
+                    I want to be transparent: I am not a giant tech corporation. This app is a private labor of love, crafted during spare time, late nights, and weekends. I had to learn an immense amount of technology to bring this vision to life. I act according to my best knowledge, listening closely to fellow collectors. Every feedback note and feature request directly shapes the future of Garage Prime.
                 </p>
-                <p class="leading-relaxed text-sm mb-8 hidden" data-lang="de">
-                    Garage Prime ist in erster Linie meinen drei Jungs gewidmet. Es ist ein Herzensprojekt – entstanden aus der Leidenschaft eines Vaters für seine Familie und die weltweite Sammler-Community. 
-                    Ich hoffe, diese App bereichert eure tägliche Jagd genauso sehr wie unsere Abende am Wohnzimmerteppich. Dein Feedback ist der Treibstoff für dieses Projekt – zögere also nie, mir deine Gedanken mitzuteilen.
+                <p class="text-cyan-900/90 text-sm leading-relaxed hidden" data-lang="de">
+                    Ich möchte transparent sein: Hinter Garage Prime steht kein Konzern, sondern ein privates Herzensprojekt, das in meiner Freizeit, in späten Nächten und an Wochenenden entstanden ist. Ich habe unzählige Stunden investiert und lerne jeden Tag dazu. Jedes Feedback und jede Idee aus der Sammler-Community fließt direkt in die Weiterentwicklung ein.
+                </p>
+            </div>
+
+            <!-- SECTION 4: DEDICATION -->
+            <div class="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-sm text-center">
+                <h2 class="text-xl font-bold text-gray-900 mb-3" data-lang="en">Dedicated to My Sons</h2>
+                <h2 class="text-xl font-bold text-gray-900 mb-3 hidden" data-lang="de">Meinen Söhnen gewidmet</h2>
+                
+                <p class="text-sm text-gray-600 mb-6 max-w-lg mx-auto leading-relaxed" data-lang="en">
+                    Above all, Garage Prime is dedicated to my three boys. It is built by a father for his family and for the global community of collectors. 
+                    I hope this app brings as much excitement to your daily hunts as it brings to our living room floor.
+                </p>
+                <p class="text-sm text-gray-600 mb-6 max-w-lg mx-auto leading-relaxed hidden" data-lang="de">
+                    Garage Prime ist in erster Linie meinen drei Jungs gewidmet. Entstanden aus der Begeisterung eines Vaters für seine Familie und für alle, die kleine Modellautos lieben. 
+                    Ich hoffe, diese App bereichert eure tägliche Jagd genauso wie unsere Momente am Teppich.
                 </p>
                 
-                <p class="font-racing text-4xl text-gpcyan tracking-widest uppercase" data-lang="en">Happy Hunting!</p>
-                <p class="font-racing text-4xl text-gpcyan tracking-widest uppercase hidden" data-lang="de">Gute Jagd!</p>
-                <p class="text-xs text-gray-500 mt-3 uppercase tracking-wider font-semibold" data-lang="en">— The Creator of Garage Prime</p>
-                <p class="text-xs text-gray-500 mt-3 uppercase tracking-wider font-semibold hidden" data-lang="de">— Der Schöpfer von Garage Prime</p>
+                <p class="font-racing text-3xl text-orange-600 tracking-wider uppercase" data-lang="en">Happy Hunting!</p>
+                <p class="font-racing text-3xl text-orange-600 tracking-wider uppercase hidden" data-lang="de">Gute Jagd!</p>
+                <p class="text-xs text-gray-400 mt-2 uppercase tracking-wider font-semibold" data-lang="en">&mdash; Andr&eacute;, Creator of Garage Prime</p>
+                <p class="text-xs text-gray-400 mt-2 uppercase tracking-wider font-semibold hidden" data-lang="de">&mdash; Andr&eacute;, Entwickler von Garage Prime</p>
             </div>
+
         </div>
     </main>
 
-<!-- FOOTER -->
-    <footer class="bg-[#05050A] py-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-600 text-[10px] text-center md:text-left max-w-sm">
-                &copy; <span id="year"></span> Garage Prime. All rights reserved.<br>
-                Garage Prime is an independent collector's tool and not affiliated with Mattel, Inc.
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-xs text-center md:text-left max-w-md">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                    <img src="Logo.png" alt="Garage Prime" class="w-5 h-5 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-gray-900 tracking-wider">GARAGE PRIME</span>
+                </div>
+                &copy; <span id="year"></span> Garage Prime. Built with passion for collectors.
             </div>
-            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-                                <a href="story.html" class="text-xs font-medium text-gray-500 hover:text-white transition">The Story</a>
-                <a href="faq.html" class="text-xs font-medium text-gray-500 hover:text-white transition">FAQ</a>
-                <a href="contact.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Contact</a>
-                <span class="text-gray-800 hidden md:inline">|</span>
-                <a href="privacy.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Privacy</a>
-                <a href="terms.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Terms</a>
-                <a href="imprint.html" class="text-xs font-medium text-gray-500 hover:text-white transition">Imprint</a>
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs">
+                <a href="index.html" class="text-gray-600 hover:text-gray-900 transition">Home</a>
+                <a href="story.html" class="text-orange-600 font-semibold">The Story</a>
+                <a href="faq.html" class="text-gray-600 hover:text-gray-900 transition">FAQ</a>
+                <a href="contact.html" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
+                <span class="text-gray-300 hidden md:inline">&bull;</span>
+                <a href="privacy.html" class="text-gray-600 hover:text-gray-900 transition">Privacy</a>
+                <a href="terms.html" class="text-gray-600 hover:text-gray-900 transition">Terms</a>
+                <a href="imprint.html" class="text-gray-600 hover:text-gray-900 transition">Imprint</a>
             </div>
         </div>
     </footer>
+
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
