@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GaragePrime Scanner & Vision Guide | Hot Wheels AI Erkennung</title>
+  <meta name="description" content="Der ultimative Leitfaden für alle Scanner in GaragePrime. Finde den perfekten Scanner für Flohmarkt, Vitrine, Blisterkarten und Massen-Imports." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #0a0d14;
+      --bg-surface: #111724;
+      --bg-card: rgba(22, 29, 44, 0.75);
+      --bg-card-hover: rgba(30, 41, 62, 0.9);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(255, 85, 0, 0.3);
+      --orange: #FF5500;
+      --orange-glow: rgba(255, 85, 0, 0.25);
+      --cyan: #00E5FF;
+      --cyan-glow: rgba(0, 229, 255, 0.2);
+      --green: #10B981;
+      --purple: #A855F7;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(255, 85, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(0, 229, 255, 0.06) 0%, transparent 45%);
+      background-attachment: fixed;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* Navbar */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(17, 23, 36, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      font-family: 'Russo One', sans-serif;
+      font-size: 20px;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+    }
+
+    .brand-logo span {
+      color: var(--orange);
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--orange), #FF2A00);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan-glow);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: var(--cyan);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--orange) 0%, #FFA000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+
+    /* Quick Decision Matrix */
+    .decision-section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--orange);
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .decision-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .decision-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: all 0.25s ease;
+    }
+
+    .decision-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-accent);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .decision-card:hover::before {
+      background: linear-gradient(90deg, var(--orange), var(--cyan));
+    }
+
+    .card-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .card-scenario {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .card-body {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .card-recommendation {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+    }
+
+    /* Deep Dive Cards */
+    .deep-dive-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .scanner-detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .scanner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .scanner-title-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .scanner-name {
+      font-family: 'Russo One', sans-serif;
+      font-size: 22px;
+      color: var(--text-primary);
+    }
+
+    .scanner-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .pros-cons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .pros-cons-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pro-box, .con-box {
+      background: rgba(10, 14, 23, 0.6);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .pro-box {
+      border-left: 3px solid var(--green);
+    }
+
+    .con-box {
+      border-left: 3px solid #EF4444;
+    }
+
+    .box-title {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-box .box-title {
+      color: var(--green);
+    }
+
+    .con-box .box-title {
+      color: #EF4444;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .feature-list li::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 12px;
+    }
+
+    .pro-box .feature-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .con-box .feature-list li::before {
+      content: '✕';
+      color: #EF4444;
+      font-weight: bold;
+    }
+
+    /* AI Config Section */
+    .ai-config-banner {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.12) 0%, rgba(0, 229, 255, 0.08) 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .config-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .step-card {
+      background: rgba(17, 23, 36, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .step-num {
+      font-family: 'Russo One', sans-serif;
+      font-size: 18px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .step-text {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    /* Best Practices */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 60px;
+    }
+
+    .tip-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .tip-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .tip-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .tip-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    /* Badges colors */
+    .badge-litert { background: rgba(0, 229, 255, 0.15); color: var(--cyan); border: 1px solid rgba(0, 229, 255, 0.3); }
+    .badge-ocr { background: rgba(16, 185, 129, 0.15); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-batch { background: rgba(255, 85, 0, 0.15); color: var(--orange); border: 1px solid rgba(255, 85, 0, 0.3); }
+    .badge-aicore { background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }
+    .badge-sync { background: rgba(59, 130, 246, 0.15); color: #60A5FA; border: 1px solid rgba(59, 130, 246, 0.3); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Navbar -->
+    <nav class="nav">
+      <a href="https://garage-prime.com" class="brand">
+        <div class="brand-logo">GARAGE<span>PRIME</span></div>
+        <div class="brand-badge">v2.0</div>
+      </a>
+      <div style="font-size: 13px; color: var(--text-secondary); font-weight: 600;">
+        Scanner & Vision Guide
+      </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="hero-badge">⚡ Hot Wheels AI Vision Engine</div>
+      <h1 class="hero-title">Welcher Scanner ist <span>der richtige</span> für dich?</h1>
+      <p class="hero-sub">
+        Egal ob beim schnellen Durchstöbern im Supermarkt, beim Unboxing großer Sammlungen oder beim exakten Erfassen seltener Blisterkarten: GaragePrime bietet spezialisierte Scanner für jede Situation.
+      </p>
+    </header>
+
+    <!-- Schnell-Entscheidungs-Kompass -->
+    <section class="decision-section">
+      <h2 class="section-title">🧭 Schneller Entscheidungs-Kompass</h2>
+      <p class="section-desc">Finde in Sekunden den optimalen Modus für deinen aktuellen Einsatzzweck:</p>
+
+      <div class="decision-grid">
+        <!-- Card 1 -->
+        <div class="decision-card">
+          <div class="card-icon-wrap" style="background: rgba(0, 229, 255, 0.12); color: var(--cyan);">
+            📹
+          </div>
+          <span class="card-scenario badge-litert">Im Laden & Flohmarkt</span>
+          <h3 class="card-title">Gemma Live Scanner</h3>
+          <p class="card-body">
+            Du stehst vor dem Hot-Wheels-Regal und möchtest 10–20 Autos in Sekunden abtasten, ohne jedes Mal manuell auszulösen?
+          </p>
+          <div class="card-recommendation">
+            <span>👉 Empfehlung:</span> <strong>Live Scanner (LiteRT)</strong>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="decision-card">
+          <div class="card-icon-wrap" style="background: rgba(16, 185, 129, 0.12); color: var(--green);">
+            🏷️
+          </div>
+          <span class="card-scenario badge-ocr">Verpackte Karten</span>
+          <h3 class="card-title">Klassischer OCR Scanner</h3>
+          <p class="card-body">
+            Deine Autos sind originalverpackt (Carded) und du möchtest Modellname, Toy-ID & Seriennummer exakt aus dem Text ablesen?
+          </p>
+          <div class="card-recommendation">
+            <span>👉 Empfehlung:</span> <strong>ML-Kit OCR Scanner</strong>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="decision-card">
+          <div class="card-icon-wrap" style="background: rgba(255, 85, 0, 0.12); color: var(--orange);">
+            📦
+          </div>
+          <span class="card-scenario badge-batch">Große Neuzugänge</span>
+          <h3 class="card-title">Batch Multi-Shot</h3>
+          <p class="card-body">
+            Ein Paket mit 30 neuen Autos ist angekommen? Schieße Fotos in Serie ab – die KI arbeitet die Fahrzeuge im Hintergrund ab.
+          </p>
+          <div class="card-recommendation">
+            <span>👉 Empfehlung:</span> <strong>Batch Capture</strong>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="decision-card">
+          <div class="card-icon-wrap" style="background: rgba(168, 85, 247, 0.12); color: var(--purple);">
+            ✨
+          </div>
+          <span class="card-scenario badge-aicore">Vitrine & Lose Autos</span>
+          <h3 class="card-title">Einzel-Kamera / Galerie</h3>
+          <p class="card-body">
+            Du möchtest ein ausgepacktes Auto in bester Qualität erfassen, Farbdetails exakt analysieren und AI-Artwork generieren?
+          </p>
+          <div class="card-recommendation">
+            <span>👉 Empfehlung:</span> <strong>Kamera / Galerie Snapshot</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Dive Sektion -->
+    <section class="deep-dive-section">
+      <h2 class="section-title">🔍 Scanner Deep-Dive: Stärken & Schwächen</h2>
+      <p class="section-desc">Detaillierte Übersicht aller Technologien und ihre Vor- und Nachteile im Überblick:</p>
+
+      <div class="deep-dive-grid">
+
+        <!-- Detail: Gemma Live Scanner -->
+        <div class="scanner-detail-card">
+          <div class="scanner-header">
+            <div class="scanner-title-group">
+              <span style="font-size: 32px;">⚡</span>
+              <div>
+                <h3 class="scanner-name">Gemma Live Scanner</h3>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">
+                  On-Device Neural Engine (LiteRT / Edge AI)
+                </div>
+              </div>
+            </div>
+            <span class="scanner-tag badge-litert">Echtzeit-Inferenz</span>
+          </div>
+
+          <p style="color: var(--text-secondary); font-size: 14.5px;">
+            Der Gemma Live Scanner nutzt ein direkt auf deinem Smartphone gespeichertes neuronales Netz. Er scannt das Kamerasichtfeld kontinuierlich mit mehreren Bildern pro Sekunde, ohne dass ein Foto auf externe Server hochgeladen werden muss.
+          </p>
+
+          <div class="pros-cons-grid">
+            <div class="pro-box">
+              <div class="box-title">Vorteile & Stärken</div>
+              <ul class="feature-list">
+                <li>Keine Auslöseverzögerung – erkennt Modelle sofort beim Drüberhalten.</li>
+                <li>Funktioniert 100% offline ohne Internet- oder Mobilfunkverbindung.</li>
+                <li>Extrem sparsam beim Datenvolumen und Akkuschonend.</li>
+                <li>Ideal für lose Autos sowie verpackte Modelle.</li>
+              </ul>
+            </div>
+            <div class="con-box">
+              <div class="box-title">Einschränkungen</div>
+              <ul class="feature-list">
+                <li>Benötigt ausreichend Licht für verlässliche Modell-Treffer.</li>
+                <li>Sehr seltene Farb- oder Felgenvarianten benötigen manchmal einen manuellen Check.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail: OCR Scanner -->
+        <div class="scanner-detail-card">
+          <div class="scanner-header">
+            <div class="scanner-title-group">
+              <span style="font-size: 32px;">🏷️</span>
+              <div>
+                <h3 class="scanner-name">Klassischer OCR Scanner</h3>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">
+                  ML-Kit Kartenerkennung & Wiki-Katalog-Matching
+                </div>
+              </div>
+            </div>
+            <span class="scanner-tag badge-ocr">Text-Präzision</span>
+          </div>
+
+          <p style="color: var(--text-secondary); font-size: 14.5px;">
+            Dieser Scanner liest gezielt die aufgedruckte Modellbezeichnung, die Toy-Nummer (z.B. HKG29) und den Serien-Index (z.B. 3/5 HW J-Imports) von der Blisterkarte ab und gleicht sie direkt mit dem integrierten Hot-Wheels-Wiki-Katalog ab.
+          </p>
+
+          <div class="pros-cons-grid">
+            <div class="pro-box">
+              <div class="box-title">Vorteile & Stärken</div>
+              <ul class="feature-list">
+                <li>Nahezu 100% Treffergenauigkeit bei intakten, lesbaren Blisterkarten.</li>
+                <li>Findet sofort die exakte Jahres- und Serienzugehörigkeit.</li>
+                <li>Automatischer Abgleich mit deiner Garage („Bereits im Besitz“-Hinweis).</li>
+              </ul>
+            </div>
+            <div class="con-box">
+              <div class="box-title">Einschränkungen</div>
+              <ul class="feature-list">
+                <li>Ausschließlich für verpackte Karten („Carded“) geeignet.</li>
+                <li>Funktioniert nicht bei losen Fahrzeugen ohne Verpackungstext.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail: Batch Capture -->
+        <div class="scanner-detail-card">
+          <div class="scanner-header">
+            <div class="scanner-title-group">
+              <span style="font-size: 32px;">📸</span>
+              <div>
+                <h3 class="scanner-name">Batch Multi-Shot Scanner</h3>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">
+                  Massen-Erfassung mit asynchroner Hintergrund-Pipeline
+                </div>
+              </div>
+            </div>
+            <span class="scanner-tag badge-batch">Massenaufnahme</span>
+          </div>
+
+          <p style="color: var(--text-secondary); font-size: 14.5px;">
+            Der perfekte Workflow für Sammelkäufe und Unboxing-Sessions. Du fotografierst beliebig viele Modelle hintereinander weg. Die Bilder wandern in eine Warteschlange und werden automatisch im Hintergrund analysiert.
+          </p>
+
+          <div class="pros-cons-grid">
+            <div class="pro-box">
+              <div class="box-title">Vorteile & Stärken</div>
+              <ul class="feature-list">
+                <li>Höchste Zeiteffizienz beim Einpflegen ganzer Sammlungen (20–50 Autos).</li>
+                <li>Kein Warten auf die Erkennung zwischen den einzelnen Auslösern.</li>
+                <li>Bequemes Sammel-Review aller erkannten Autos in der "On The Way"-Liste.</li>
+              </ul>
+            </div>
+            <div class="con-box">
+              <div class="box-title">Einschränkungen</div>
+              <ul class="feature-list">
+                <li>Kein Live-Feedback unmittelbar beim Foto-Auslösen.</li>
+                <li>Benötigt etwas Geduld bei der anschließenden Hintergrundverarbeitung.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail: Einzel-Kamera & Galerie -->
+        <div class="scanner-detail-card">
+          <div class="scanner-header">
+            <div class="scanner-title-group">
+              <span style="font-size: 32px;">🎨</span>
+              <div>
+                <h3 class="scanner-name">Einzel-Kamera & Galerie (Deep Snapshot)</h3>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">
+                  Hochauflösende Cloud-Vision & Custom AI-Artwork
+                </div>
+              </div>
+            </div>
+            <span class="scanner-tag badge-aicore">Maximale Details</span>
+          </div>
+
+          <p style="color: var(--text-secondary); font-size: 14.5px;">
+            Die klassische Einzelaufnahme für dein persönliches Show-Car. Das Foto wird mit höchster Auflösung verarbeitet. Gleichzeitig hast du die Möglichkeit, automatische stylische Synthwave-, Neon- oder Retro-Artwork-Header für deine Garage generieren zu lassen.
+          </p>
+
+          <div class="pros-cons-grid">
+            <div class="pro-box">
+              <div class="box-title">Vorteile & Stärken</div>
+              <ul class="feature-list">
+                <li>Höchste Detailtreue bei Lackierungen, Decals und Felgen.</li>
+                <li>Unterstützt auch bestehende Fotos aus deiner Smartphone-Galerie.</li>
+                <li>Optionale Generierung von individuellen AI-Artwork-Bildern.</li>
+              </ul>
+            </div>
+            <div class="con-box">
+              <div class="box-title">Einschränkungen</div>
+              <ul class="feature-list">
+                <li>Erfordert eine aktive Internetverbindung.</li>
+                <li>Dauert 1–3 Sekunden pro Aufnahme zur Berechnung.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- KI Konfigurations Menü Hinweis -->
+    <section class="ai-config-banner">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+        <span style="font-size: 28px;">⚙️</span>
+        <h2 style="font-family: 'Russo One', sans-serif; font-size: 22px; color: var(--text-primary);">
+          KI- & Modell-Management im Profil
+        </h2>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 14.5px; max-width: 800px;">
+        Wusstest du, dass du die On-Device Erkennung in GaragePrime nach deinen Wünschen anpassen kannst? Im Profil findest du eine dedizierte Einstellungsseite für alle KI-Modelle.
+      </p>
+
+      <div class="config-steps">
+        <div class="step-card">
+          <div class="step-num">01. Öffnen</div>
+          <div class="step-text">Tippe in der App unten auf <strong>Profil</strong> und scrolle zum Punkt <strong>„KI & Modelle“</strong>.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02. Modelle wählen</div>
+          <div class="step-text">Wähle zwischen dem ultraleichten <em>MobileNet</em> oder dem hochpräzisen <em>LiteRT Gemma</em> Modell.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03. Benchmark</div>
+          <div class="step-text">Teste live, wie viele Millisekunden dein Smartphone für die Erkennung benötigt.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04. Speicher leeren</div>
+          <div class="step-text">Leere den lokalen Modell- und Bildcache mit nur einem Fingertipp, um Speicherplatz freizugeben.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Practices & Tipps -->
+    <section>
+      <h2 class="section-title">💡 4 Tipps für 100% Erkennungsrate</h2>
+      <p class="section-desc">So erzielst du bei jedem Scan die schnellsten und präzisesten Treffer:</p>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">📐</div>
+          <div class="tip-title">Der richtige Abstand</div>
+          <div class="tip-desc">Halte das Smartphone ca. 15–25 cm vom Auto entfernt, sodass das Modell das Scanner-Fenster gut ausfüllt.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">✨</div>
+          <div class="tip-title">Reflexionen vermeiden</div>
+          <div class="tip-desc">Bei Blisterkarten die Kamera leicht schräg halten, um störende Lichtspiegelungen auf dem Plastik zu umgehen.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">☀️</div>
+          <div class="tip-title">Ausreichend Licht</div>
+          <div class="tip-desc">Gute Beleuchtung beschleunigt die On-Device Erkennung spürbar und verhindert Bewegungsunschärfe.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🏎️</div>
+          <div class="tip-title">Seiten- & Frontwinkel</div>
+          <div class="tip-desc">Bei losen Autos liefert eine 45°-Perspektive von schräg vorne die meisten charakteristischen Merkmale.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 GaragePrime • Entwickelt für passionierte Hot Wheels Sammler</p>
+      <p style="margin-top: 6px;">
+        <a href="https://garage-prime.com">garage-prime.com</a> • 
+        <a href="https://github.com/poochie/poochie.github.io">GitHub Repository</a>
+      </p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
