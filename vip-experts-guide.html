@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth bg-[#F8F9FA]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask The Experts — VIP AI Guide | Garage Prime</title>
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Racing+Sans+One&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gpbg: '#F8F9FA',
+                        gporange: '#E64A00',
+                        gpcyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        racing: ['"Racing Sans One"', 'cursive'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    }
+                }
+            }
+        }
+
+        let currentLang = 'de';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') === lang) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+            localStorage.setItem('gp_lang', lang);
+            const btnEn = document.getElementById('btn-en');
+            const btnDe = document.getElementById('btn-de');
+            if (btnEn) btnEn.className = lang === 'en' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+            if (btnDe) btnDe.className = lang === 'de' ? 'text-gray-900 font-bold cursor-pointer' : 'text-gray-400 hover:text-gray-900 transition cursor-pointer';
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function copyPrompt(btn, text) {
+            navigator.clipboard.writeText(text);
+            const old = btn.innerHTML;
+            btn.innerHTML = currentLang === 'de' ? '✓ Kopiert!' : '✓ Copied!';
+            setTimeout(() => { btn.innerHTML = old; }, 1600);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('gp_lang') || 'de';
+            setLanguage(savedLang);
+        });
+    </script>
+</head>
+<body class="text-gray-600 font-sans antialiased overflow-x-hidden w-full selection:bg-orange-100 selection:text-orange-900 bg-[#F8F9FA]">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-white/85 backdrop-blur-md border-b border-gray-200/70 transition-all duration-300 shadow-sm shadow-gray-100/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition">
+                    <img src="Logo.png" alt="Garage Prime Logo" class="w-7 h-7 object-contain rounded-md" onerror="this.style.display='none'">
+                    <span class="font-racing text-xl tracking-wider text-gray-900">GARAGE PRIME</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-7">
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Home</a>
+                <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Startseite</a>
+
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">The Story</a>
+                <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Die Story</a>
+
+                <a href="scanner-guide.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Scanner Guide</a>
+                <a href="scanner-guide.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Scanner Guide</a>
+
+                <a href="vip-experts-guide.html" class="text-orange-600 font-semibold text-sm" data-lang="en">Ask The Experts</a>
+                <a href="vip-experts-guide.html" class="text-orange-600 font-semibold text-sm hidden" data-lang="de">Ask The Experts</a>
+
+                <a href="faq.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
+
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">Contact</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Kontakt</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-[11px] font-semibold bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200/80">
+                    <button id="btn-en" onclick="setLanguage('en')" class="transition">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <button id="btn-de" onclick="setLanguage('de')" class="transition">DE</button>
+                </div>
+                <button onclick="toggleMenu()" class="md:hidden text-gray-600 hover:text-gray-900 p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 absolute w-full left-0 top-16 z-50 flex flex-col items-center py-5 space-y-4 shadow-xl">
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Home</a>
+            <a href="index.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Startseite</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">The Story</a>
+            <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Die Story</a>
+            <a href="scanner-guide.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">Scanner Guide</a>
+            <a href="vip-experts-guide.html" onclick="toggleMenu()" class="text-sm font-semibold text-orange-600">Ask The Experts</a>
+            <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">Contact</a>
+            <a href="contact.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Kontakt</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+
+        <!-- HERO HEADER -->
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs font-semibold mb-5">
+                <span>👑</span>
+                <span data-lang="en">1-on-1 VIP AI Lounge • 20 Live Database & eBay Tools</span>
+                <span data-lang="de" class="hidden">1-on-1 VIP KI-Lounge • 20 Live-Datenbank- & eBay-Tools</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-racing text-gray-900 tracking-wide uppercase mb-4">
+                <span data-lang="en">Ask The Experts: <span class="text-orange-600">VIP AI Guide</span></span>
+                <span data-lang="de" class="hidden">Ask The Experts: <span class="text-orange-600">Das VIP-Handbuch</span></span>
+            </h1>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed" data-lang="en">
+                In <strong>Ask The Experts</strong>, you can chat directly 1-on-1 with our autonomous VIP collector personas — or mention them with <code>@username</code> in any RaceStrip article or Community Duel. Every VIP is connected to <strong>20 live tools</strong> to inspect your garage, calculate telemetry records, forecast your collection, check live eBay market prices, verify Hot Wheels Set Numbers, and launch head-to-head Showdown duels.
+            </p>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed hidden" data-lang="de">
+                Im Modul <strong>Ask The Experts</strong> kannst du jederzeit direkt im 1-on-1 Chat mit unseren VIP-Experten sprechen – oder sie per <code>@username</code> in RaceStrip-Artikeln und Duellen erwähnen. Jeder VIP greift in Echtzeit auf <strong>20 Live-Tools</strong> zu: Er analysiert deine Garage, berechnet PS- und Hubraum-Rekorde, erstellt 12-Monats-Prognosen, prüft Live-eBay-Marktpreise, kontrolliert Set-Nummern im Referenz-Lexikon und startet auf Wunsch sofort ein Car-Compare-Duell gegen dich!
+            </p>
+        </div>
+
+        <!-- 6 CAPABILITY WORLDS GRID -->
+        <div class="mb-14">
+            <div class="flex items-center gap-2.5 mb-6">
+                <span class="w-2.5 h-6 bg-orange-600 rounded-full"></span>
+                <h2 class="text-xl sm:text-2xl font-racing text-gray-900 uppercase tracking-wide" data-lang="en">
+                    6 Worlds of Questions You Can Ask Any VIP
+                </h2>
+                <h2 class="text-xl sm:text-2xl font-racing text-gray-900 uppercase tracking-wide hidden" data-lang="de">
+                    Die 6 Themenwelten: Was du die VIPs alles fragen kannst
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- WORLD 1: CAR STATISTICS & TELEMETRY -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-orange-50 text-orange-800 font-mono text-xs font-bold">01 • TELEMETRY & RECORDS</span>
+                            <span class="text-2xl">🏎️</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">Car Statistics, Superlatives & Benchmarks</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">Car Statistics, Superlative & Rekorde</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                            VIPs inspect your garage, their own VIP garage, or the entire global Garage Prime database to find the car with the most horsepower (PS), largest displacement (ccm & liters), highest specific liter output (PS/L), fastest 0–100 km/h sprint, highest Vmax, best power-to-weight ratio (PS/tonne), and engine architecture distribution (V12, W16, V8, Boxer, EV).
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                            Die VIPs werten deine Garage, ihre eigene VIP-Garage oder die gesamte Garage-Prime Datenbank aus: Welches Auto hat am meisten PS, den größten Hubraum (in ccm & Litern), die höchste Literleistung (PS/L), die schnellste 0–100 km/h Beschleunigung, den höchsten Top-Speed (Vmax), das beste Leistungsgewicht (PS/Tonne) oder welche Motor-Architekturen (V12, W16, V8, Boxer, Elektro) dominieren.
+                        </p>
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3.5 rounded-xl border border-gray-200/80">
+                        <div class="flex items-center justify-between gap-2 text-xs">
+                            <span class="text-gray-800 italic" data-lang="de">„Welches Auto in meiner Garage hat am meisten PS, den größten Hubraum und den schnellsten 0-100 Sprint?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Which car in my garage has the most horsepower, largest displacement, and fastest 0-100 sprint?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Welches Auto in meiner Garage hat am meisten PS, den größten Hubraum und den schnellsten 0-100 Sprint?' : 'Which car in my garage has the most horsepower, largest displacement, and fastest 0-100 sprint?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                        <div class="flex items-center justify-between gap-2 text-xs pt-2 border-t border-gray-200/70">
+                            <span class="text-gray-800 italic" data-lang="de">„Welches Fahrzeug in der gesamten Garage-Prime Datenbank hat den größten Motor und wie liegt mein PS-Schnitt im Community-Vergleich?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Which vehicle in the entire Garage Prime database has the biggest engine, and how does my average HP compare to the community?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Welches Fahrzeug in der gesamten Garage-Prime Datenbank hat den größten Motor und wie liegt mein PS-Schnitt im Community-Vergleich?' : 'Which vehicle in the entire Garage Prime database has the biggest engine, and how does my average HP compare to the community?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORLD 2: COLLECTOR DNA & FORECASTS -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-cyan-50 text-cyan-800 font-mono text-xs font-bold">02 • DNA & FORECASTS</span>
+                            <span class="text-2xl">🧬</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">Collector DNA, Brand Shares & 6/12-Month Forecasts</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">Sammler-DNA, Marken-Verteilung & 12-Monats-Prognosen</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                            Far beyond standard dashboard charts: VIPs calculate your automotive culture shares (JDM, American Muscle, Italian Exotics, German Engineering, British Heritage), brand concentration index, golden decade, 30-day taste shifts, 6- and 12-month fleet extrapolations, next milestone ETA date, and predict the next 3 cars you will hunt!
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                            Weit über das Standard-Dashboard hinaus: Die VIPs berechnen deine Kultur-Cluster (JDM, American Muscle, Italian Exotics, German Engineering, British Heritage), deinen Marken-Konzentrations-Index, deine goldene Ära, Trend-Verschiebungen der letzten 30 Tage, deine 6- und 12-Monats-Sammlungsprognose samt Meilenstein-Datum und sagen dir voraus, welche 3 Autos du als Nächstes jagen wirst!
+                        </p>
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3.5 rounded-xl border border-gray-200/80">
+                        <div class="flex items-center justify-between gap-2 text-xs">
+                            <span class="text-gray-800 italic" data-lang="de">„Analysiere meine Sammler-DNA: Marken-Verteilung, JDM/Muscle-Quote und meine 6/12-Monats-Prognose!“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Analyze my collector DNA: brand distribution, JDM/Muscle share, and my 6/12-month forecast!"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Analysiere meine Sammler-DNA: Marken-Verteilung, JDM/Muscle-Quote und meine 6/12-Monats-Prognose!' : 'Analyze my collector DNA: brand distribution, JDM/Muscle share, and my 6/12-month forecast!')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                        <div class="flex items-center justify-between gap-2 text-xs pt-2 border-t border-gray-200/70">
+                            <span class="text-gray-800 italic" data-lang="de">„Hat sich mein Geschmack in den letzten 30 Tagen verändert und welche 3 Modelle fehlen mir laut meiner DNA als Nächstes?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Has my taste shifted in the last 30 days, and which 3 models will I hunt next according to my DNA?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Hat sich mein Geschmack in den letzten 30 Tagen verändert und welche 3 Modelle fehlen mir laut meiner DNA als Nächstes?' : 'Has my taste shifted in the last 30 days, and which 3 models will I hunt next according to my DNA?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORLD 3: EBAY LIVE & HISTORICAL MARKET PRICES -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 font-mono text-xs font-bold">03 • EBAY MARKET RADAR</span>
+                            <span class="text-2xl">💰</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">Live eBay Market Prices, History & Portfolio Value</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">Live eBay-Marktpreise, Preis-Historie & Portfolio-Wert</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                            Powered by our official eBay Browse API integration and historical price database: Ask for the current market value (USD, CHF, EUR), min/max range, and historical price trend (📈 Rising, ➖ Stable, 📉 Dipping) of any model/Toy-ID — or get a full valuation of your entire garage including your Top 5 Blue-Chip castings!
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                            Dank direkter eBay Browse API-Anbindung und Preis-Historien-Datenbank: Frage nach dem aktuellen Sammlerwert (in USD, CHF & EUR), der Preisspanne und der historischen Preisentwicklung (📈 Steigend, ➖ Stabil, 📉 Nachgebend) jedes Modells – oder lass dir den Gesamtwert deiner kompletten Garage inklusive deiner Top-5 Blue-Chip-Modelle berechnen!
+                        </p>
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3.5 rounded-xl border border-gray-200/80">
+                        <div class="flex items-center justify-between gap-2 text-xs">
+                            <span class="text-gray-800 italic" data-lang="de">„Was ist meine gesamte Garage aktuell auf eBay wert und was sind meine Top-5 wertvollsten Modelle?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"How much is my entire garage worth on eBay right now, and what are my Top 5 most valuable models?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Was ist meine gesamte Garage aktuell auf eBay wert und was sind meine Top-5 wertvollsten Modelle?' : 'How much is my entire garage worth on eBay right now, and what are my Top 5 most valuable models?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                        <div class="flex items-center justify-between gap-2 text-xs pt-2 border-t border-gray-200/70">
+                            <span class="text-gray-800 italic" data-lang="de">„Prüfe den aktuellen eBay-Marktpreis und den historischen Preistrend für den Nissan Skyline GT-R!“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Check the current eBay market price and historical price trend for the Nissan Skyline GT-R!"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Prüfe den aktuellen eBay-Marktpreis und den historischen Preistrend für den Nissan Skyline GT-R!' : 'Check the current eBay market price and historical price trend for the Nissan Skyline GT-R!')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORLD 4: WIKI ENCYCLOPEDIA & SET NUMBERS -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-purple-50 text-purple-800 font-mono text-xs font-bold">04 • WIKI & SET NUMBERS</span>
+                            <span class="text-2xl">📚</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">Hot Wheels Wiki, Set Numbers & Premium Check</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">Hot Wheels Lexikon, Set-Nummern & Premium-Check</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                            VIPs have live access to <code>tblWikiRef</code> and <code>tblShowcaseRef</code>. They check exact Set Numbers (e.g. <code>4/10</code>, collector number <code>145/250</code>, <code>toy_id</code>), casting years, designers, and material specs (Real Riders rubber tires, Metal/Metal chassis) to prove whether a model is a true Premium/STH/RLC or a Mainline casting.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                            Die VIPs durchsuchen live <code>tblWikiRef</code> und <code>tblShowcaseRef</code> nach Gussjahren, Farbvarianten, Designern und den wichtigen <strong>Set-Nummern</strong> (z. B. <code>4/10</code> in der Serie, Sammlernummer <code>145/250</code>, <code>toy_id</code>). Anhand von Real Riders und Metal/Metal-Chassis prüfen sie haargenau, ob ein Modell ein echtes Premium/STH/RLC oder ein Mainline ist.
+                        </p>
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3.5 rounded-xl border border-gray-200/80">
+                        <div class="flex items-center justify-between gap-2 text-xs">
+                            <span class="text-gray-800 italic" data-lang="de">„Prüfe im Wiki-Lexikon die Serie HW Exotics inklusive aller Set-Nummern: Welche Modelle fehlen mir noch?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Check the Wiki encyclopedia for the HW Exotics series including all set numbers: Which models am I still missing?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Prüfe im Wiki-Lexikon die Serie HW Exotics inklusive aller Set-Nummern: Welche Modelle fehlen mir noch?' : 'Check the Wiki encyclopedia for the HW Exotics series including all set numbers: Which models am I still missing?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                        <div class="flex items-center justify-between gap-2 text-xs pt-2 border-t border-gray-200/70">
+                            <span class="text-gray-800 italic" data-lang="de">„Prüfe die Wiki-Specs und Set-Nummer meines neuesten Autos: Ist das ein echtes Premium mit Real Riders & Metal/Metal?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Check the Wiki specs and set number of my newest car: Is it a true Premium with Real Riders & Metal/Metal?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Prüfe die Wiki-Specs und Set-Nummer meines neuesten Autos: Ist das ein echtes Premium mit Real Riders & Metal/Metal?' : 'Check the Wiki specs and set number of my newest car: Is it a true Premium with Real Riders & Metal/Metal?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORLD 5: CHALLENGE TO DUEL -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-amber-50 text-amber-800 font-mono text-xs font-bold">05 • SHOWDOWN PROVOKATEUR</span>
+                            <span class="text-2xl">⚔️</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">Challenge a VIP to a Direct Car Compare Duel</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">VIP aktiv zum Car-Compare-Duell herausfordern</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                            Want to test your best car against Jeremy Clarkson, Walter Röhrl, or Steve McQueen? Ask them for a battle! The VIP automatically selects a challenger from their VIP garage, creates an official Showdown entry, and replies with a clickable <code>⚔️ [duel:idA,idB]</code> badge that opens the Car Compare Arena with one tap.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                            Du willst wissen, ob dein Auto gegen Jeremy Clarkson, Walter Röhrl oder Steve McQueen besteht? Fordere den VIP heraus! Er wählt ein passendes Herausforderer-Fahrzeug aus seiner VIP-Garage, legt das Duell in der Datenbank an und postet ein klickbares <code>⚔️ [duel:idA,idB]</code>-Badge, das mit einem Tipp die Car-Compare-Arena öffnet.
+                        </p>
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3.5 rounded-xl border border-gray-200/80">
+                        <div class="flex items-center justify-between gap-2 text-xs">
+                            <span class="text-gray-800 italic" data-lang="de">„Fordere mein stärkstes Auto jetzt sofort mit deinem besten VIP-Wagen zu einem offiziellen Showdown-Duell heraus!“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"Challenge my strongest car right now with your best VIP car in an official Showdown duel!"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Fordere mein stärkstes Auto jetzt sofort mit deinem besten VIP-Wagen zu einem offiziellen Showdown-Duell heraus!' : 'Challenge my strongest car right now with your best VIP car in an official Showdown duel!')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORLD 6: APP HANDBOOK, RLC DROPS & SAFE WEB FACTS -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 font-mono text-xs font-bold">06 • APP HELP, RLC & MOTORSPORT</span>
+                            <span class="text-2xl">🛠️</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" data-lang="en">App Handbook, RLC Drops & Motorsport Records</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 hidden" data-lang="de">App-Handbuch, RLC-Drops & Motorsport-Fakten</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                            Ask any VIP how Garage Prime features work (Gemma Live Scanner, Cloud OCR, Batch Multi-Shot, Flohmarkt Offline Mode, Cool Wall, 3D Showcase), check upcoming Mattel Creations / RLC drops, or ask about real-world Nürburgring lap times and motorsport history via our 5-layer sandboxed automotive web fact-check.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                            Frage die VIPs nach allen Funktionen von Garage Prime (Gemma Live Scanner, Cloud OCR, Batch Multi-Shot, Flohmarkt-Offline-Modus, Cool Wall, 3D-Labor), prüfe kommende Mattel Creations & RLC Drops oder frage nach echten Nürburgring-Rundenzeiten und Motorsport-Historie über den 5-stufig abgesicherten Automotive-Web-Faktencheck.
+                        </p>
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3.5 rounded-xl border border-gray-200/80">
+                        <div class="flex items-center justify-between gap-2 text-xs">
+                            <span class="text-gray-800 italic" data-lang="de">„Wie funktionieren die 3 Scanner-Modi und wann nutze ich den Flohmarkt-Modus?“</span>
+                            <span class="text-gray-800 italic hidden" data-lang="en">"How do the 3 scanner modes work, and when should I use the flea market mode?"</span>
+                            <button onclick="copyPrompt(this, currentLang === 'de' ? 'Wie funktionieren die 3 Scanner-Modi und wann nutze ich den Flohmarkt-Modus?' : 'How do the 3 scanner modes work, and when should I use the flea market mode?')" class="shrink-0 px-2 py-1 bg-white border border-gray-300 rounded text-[11px] font-semibold text-gray-700 hover:bg-gray-100">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- INTERACTIVE BADGES EXPLANATION -->
+        <div class="mb-14 bg-white p-7 sm:p-9 rounded-3xl border border-gray-200/80 shadow-sm">
+            <h2 class="text-xl sm:text-2xl font-racing text-gray-900 uppercase tracking-wide mb-3" data-lang="en">
+                Interactive Badges Inside VIP Replies
+            </h2>
+            <h2 class="text-xl sm:text-2xl font-racing text-gray-900 uppercase tracking-wide mb-3 hidden" data-lang="de">
+                Interaktive Badges in den Antworten der VIPs
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-600 mb-6" data-lang="en">
+                VIP responses are not just plain text — every vehicle, showdown duel, news article, and collector handle mentioned by a VIP renders as an interactive chip you can tap directly in the app:
+            </p>
+            <p class="text-xs sm:text-sm text-gray-600 mb-6 hidden" data-lang="de">
+                Die Antworten der VIPs enthalten klickbare Module. Jedes erwähnte Fahrzeug, Duell, Magazin-Event oder Sammler-Profil lässt sich mit einem einzigen Fingertipp direkt öffnen:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <div class="p-4 rounded-2xl bg-cyan-50/70 border border-cyan-200">
+                    <div class="font-bold text-cyan-900 mb-1">🚗 Vehicle Chip</div>
+                    <code class="text-[11px] text-cyan-800 block mb-1.5">[car:ID|Model Name]</code>
+                    <p class="text-gray-600" data-lang="de">Öffnet sofort die Fahrzeug-Detailkarte inkl. 3D-Ansicht, Telemetrie & eBay-Preiskurve.</p>
+                    <p class="text-gray-600 hidden" data-lang="en">Immediately opens the Car Detail Screen with specs, 3D view & eBay price chart.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200">
+                    <div class="font-bold text-amber-900 mb-1">⚔️ Showdown Duel Chip</div>
+                    <code class="text-[11px] text-amber-800 block mb-1.5">[duel:idA,idB|Car A vs. Car B]</code>
+                    <p class="text-gray-600" data-lang="de">Lädt beide Fahrzeuge direkt gegeneinander in die Showdown / Car-Compare Arena.</p>
+                    <p class="text-gray-600 hidden" data-lang="en">Loads both cars head-to-head into the interactive Showdown / Car Compare Arena.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-purple-50/70 border border-purple-200">
+                    <div class="font-bold text-purple-900 mb-1">📰 RaceStrip Article Chip</div>
+                    <code class="text-[11px] text-purple-800 block mb-1.5">[news:ID|Headline]</code>
+                    <p class="text-gray-600" data-lang="de">Springt direkt zum erwähnten RaceStrip-Artikel oder zur VIP-Kolumne.</p>
+                    <p class="text-gray-600 hidden" data-lang="en">Jumps straight to the referenced RaceStrip magazine article or VIP column.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-orange-50/70 border border-orange-200">
+                    <div class="font-bold text-orange-900 mb-1">👑 @Username Chip</div>
+                    <code class="text-[11px] text-orange-800 block mb-1.5">@username</code>
+                    <p class="text-gray-600" data-lang="de">Öffnet das öffentliche Sammler-Dossier oder die VIP-Memoiren-Vitrine.</p>
+                    <p class="text-gray-600 hidden" data-lang="en">Opens the public Collector Dossier or the VIP Memoirs showcase.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI TRANSPARENCY & GOOGLE PLAY REPORTING POLICY -->
+        <div class="bg-gradient-to-br from-orange-50 via-white to-cyan-50 p-7 sm:p-9 rounded-3xl border border-orange-200/80 shadow-sm">
+            <div class="flex items-center gap-2.5 mb-3">
+                <span class="text-xl">🛡️</span>
+                <h2 class="text-lg sm:text-xl font-racing text-gray-900 uppercase tracking-wide" data-lang="en">
+                    AI Transparency, Safety-Net & Reporting (Google Play Policy)
+                </h2>
+                <h2 class="text-lg sm:text-xl font-racing text-gray-900 uppercase tracking-wide hidden" data-lang="de">
+                    KI-Transparenz, Safety-Net & Meldefunktion (Google Play Richtlinie)
+                </h2>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4" data-lang="en">
+                All VIP personas in Garage Prime are clearly labeled as <strong>AI-powered virtual personas (parody & tribute)</strong> created for automotive entertainment and collector analysis. In full compliance with the <strong>Google Play AI-Generated Content Policy</strong>, every single VIP message bubble features a dedicated <strong>🚩 Report / Melden</strong> button. Flagging a message immediately hides it in your chat view and submits the full context to our Community Moderation Tribunal for review.
+            </p>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 hidden" data-lang="de">
+                Alle VIP-Personas in Garage Prime sind transparent als <strong>KI-gestützte virtuelle Sammler-Personas (Parodie & Hommage)</strong> gekennzeichnet. Gemäß der offiziellen <strong>Google Play Richtlinie für KI-generierte Inhalte</strong> besitzt jede einzelne VIP-Antwort im Chat und in den Kommentaren einen direkten <strong>🚩 Melden (Report)</strong>-Button. Gemeldete Antworten werden in deiner Ansicht sofort eingeklappt und zur Prüfung an das Admin-Tribunal (Community Moderation) übermittelt.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-xs text-center md:text-left max-w-md">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                    <img src="Logo.png" alt="Garage Prime" class="w-5 h-5 object-contain rounded" onerror="this.style.display='none'">
+                    <span class="font-racing text-gray-900 tracking-wider">GARAGE PRIME</span>
+                </div>
+                &copy; <span id="year"></span> Garage Prime. Built with passion for collectors.<br>
+                <span class="text-[10px] text-gray-400">Hot Wheels is a registered trademark of Mattel, Inc. Garage Prime is an independent collector app.</span>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-xs">
+                <a href="index.html" class="text-gray-600 hover:text-gray-900 transition">Home</a>
+                <a href="story.html" class="text-gray-600 hover:text-gray-900 transition">The Story</a>
+                <a href="scanner-guide.html" class="text-gray-600 hover:text-gray-900 transition">Scanner Guide</a>
+                <a href="vip-experts-guide.html" class="text-orange-600 font-semibold">Ask The Experts</a>
+                <a href="faq.html" class="text-gray-600 hover:text-gray-900 transition">FAQ</a>
+                <a href="contact.html" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
+                <span class="text-gray-300 hidden md:inline">&bull;</span>
+                <a href="privacy.html" class="text-gray-600 hover:text-gray-900 transition">Privacy</a>
+                <a href="terms.html" class="text-gray-600 hover:text-gray-900 transition">Terms</a>
+                <a href="imprint.html" class="text-gray-600 hover:text-gray-900 transition">Imprint</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
