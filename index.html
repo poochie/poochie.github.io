@@ -145,7 +145,8 @@
                 <a href="#features" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Funktionen</a>
                 <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors" data-lang="en">The Story</a>
                 <a href="story.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors hidden" data-lang="de">Die Story</a>
-                <a href="vip-experts-guide.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Ask The Experts</a>
+                <a href="scanner-guide.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Scanner Guide</a>
+                <a href="vip-experts-guide.html" class="text-sm font-medium text-orange-600 hover:text-orange-700 font-semibold transition-colors">Ask The Experts</a>
                 <a href="faq.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
                 <a href="#roadmap" class="text-xs font-mono font-medium text-cyan-800 bg-cyan-50 border border-cyan-200/70 px-2.5 py-0.5 rounded-full">v2.0</a>
             </div>
@@ -168,6 +169,8 @@
             <a href="#features" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Funktionen</a>
             <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900" data-lang="en">The Story</a>
             <a href="story.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900 hidden" data-lang="de">Die Story</a>
+            <a href="scanner-guide.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">Scanner Guide</a>
+            <a href="vip-experts-guide.html" onclick="toggleMenu()" class="text-sm font-semibold text-orange-600">Ask The Experts</a>
             <a href="faq.html" onclick="toggleMenu()" class="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</a>
             <a href="#roadmap" onclick="toggleMenu()" class="text-xs font-mono font-medium text-cyan-800">v2.0 Roadmap</a>
         </div>
@@ -304,29 +307,37 @@
                 <!-- 1. The Scanner -->
                 <div class="md:col-span-7 bg-white rounded-2xl p-7 lg:p-8 border border-gray-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all animate-on-scroll flex flex-col justify-between">
                     <div>
-                        <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-4 text-cyan-700 bg-cyan-50 border border-cyan-100">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-9 h-9 rounded-lg flex items-center justify-center text-cyan-700 bg-cyan-50 border border-cyan-100">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <a href="scanner-guide.html" class="text-xs font-semibold text-cyan-700 hover:text-cyan-900 bg-cyan-50 border border-cyan-200/80 px-3 py-1 rounded-full transition" data-lang="en">Scanner Guide &rarr;</a>
+                            <a href="scanner-guide.html" class="text-xs font-semibold text-cyan-700 hover:text-cyan-900 bg-cyan-50 border border-cyan-200/80 px-3 py-1 rounded-full transition hidden" data-lang="de">Zum Scanner-Guide &rarr;</a>
                         </div>
-                        <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-800 font-semibold" data-lang="en">In-Store Helper</span>
-                        <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-800 font-semibold hidden" data-lang="de">Helfer im Spielzeugladen</span>
-                        <h3 class="text-xl font-bold text-gray-900 mt-1 mb-2" data-lang="en">Point & Check Instantly</h3>
-                        <h3 class="text-xl font-bold text-gray-900 mt-1 mb-2 hidden" data-lang="de">Draufhalten & Sofort Bescheid wissen</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6" data-lang="en">Standing in the toy aisle wondering if you already have that car at home? Point your camera at the blister card or loose casting. It pulls the model, release year, and alerts you if it's already in your garage.</p>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 hidden" data-lang="de">Stehst du im Laden vor der Hot-Wheels-Wand und fragst dich: <em>"Habe ich den schon zuhause?"</em> Kamera auf den Blister oder das lose Auto halten – die App erkennt das Modell, das Baujahr und warnt vor Doppelkäufen.</p>
+                        <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-800 font-semibold" data-lang="en">4 Specialized Vision Engines + Live HUD</span>
+                        <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-800 font-semibold hidden" data-lang="de">4 Spezial-Scanner + Echtzeit-Klassen-HUD</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1 mb-2" data-lang="en">Point & Check Instantly (Online & 100% Offline)</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1 mb-2 hidden" data-lang="de">Draufhalten & Sofort Erkennen (Online & 100% Offline)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" data-lang="en">Choose the right engine for every situation: <strong>Gemma Live Scanner</strong> (100% offline NPU stream with live color-coded reticle tracking for Mainline, Silver Series, Premium & Treasure Hunts), <strong>Classic ML-Kit OCR</strong> for blister Toy-IDs, <strong>Batch Multi-Shot Queue</strong> for big unboxings, or <strong>Cloud Vision</strong> for loose showcase models & AI artwork.</p>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6 hidden" data-lang="de">Für jede Situation der perfekte Scanner: <strong>Gemma Live Scanner</strong> (100% offline mit Echtzeit-Klassen-HUD für Mainline, Silver Series, Premium & Treasure Hunts), <strong>Classic ML-Kit OCR</strong> für Blisterkarten & Toy-IDs, <strong>Batch Multi-Shot</strong> für große Unboxings oder <strong>Cloud Vision</strong> für lose Vitrinen-Modelle. Inklusive sofortiger <em>IN GARAGE / FEHLT</em> Warnung gegen Doppelkäufe!</p>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 text-center">
+                    <div class="grid grid-cols-4 gap-2 pt-4 border-t border-gray-100 text-center">
                         <div class="bg-gray-50 p-2 rounded-lg border border-gray-100">
-                            <div class="text-xs font-semibold text-gray-800">OVP Blister</div>
-                            <div class="text-[10px] text-gray-500">Toy Code OCR</div>
+                            <div class="text-xs font-semibold text-gray-800">Gemma Live</div>
+                            <div class="text-[10px] text-gray-500">100% Offline HUD</div>
                         </div>
                         <div class="bg-gray-50 p-2 rounded-lg border border-gray-100">
-                            <div class="text-xs font-semibold text-gray-800">Loose Cars</div>
-                            <div class="text-[10px] text-gray-500">Visual match</div>
+                            <div class="text-xs font-semibold text-gray-800">Classic OCR</div>
+                            <div class="text-[10px] text-gray-500">Blister Toy-ID</div>
+                        </div>
+                        <div class="bg-gray-50 p-2 rounded-lg border border-gray-100">
+                            <div class="text-xs font-semibold text-gray-800">Batch Queue</div>
+                            <div class="text-[10px] text-gray-500">Mass Unboxing</div>
                         </div>
                         <div class="bg-gray-50 p-2 rounded-lg border border-gray-100">
                             <div class="text-xs font-semibold text-gray-800">Duplicate Shield</div>
-                            <div class="text-[10px] text-gray-500">No double buys</div>
+                            <div class="text-[10px] text-gray-500">In Garage Check</div>
                         </div>
                     </div>
                 </div>
@@ -389,6 +400,37 @@
                     </div>
                 </div>
 
+                <!-- 5. Ask The Experts (1-on-1 VIP AI Lounge) -->
+                <div class="md:col-span-12 bg-gradient-to-br from-amber-50/70 via-white to-cyan-50/50 rounded-2xl p-7 lg:p-8 border border-amber-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all animate-on-scroll flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <div class="lg:w-2/3">
+                        <div class="flex items-center gap-2.5 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-amber-100/90 text-amber-900 font-mono text-[11px] font-bold uppercase tracking-wider">👑 NEW • ASK THE EXPERTS</span>
+                            <span class="text-xs font-mono text-cyan-800 bg-cyan-50 border border-cyan-200 px-2.5 py-0.5 rounded-full">20 Live Tools</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2" data-lang="en">1-on-1 VIP AI Lounge: Telemetry, DNA Forecasts & Live eBay Market Radar</h3>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 hidden" data-lang="de">1-on-1 VIP KI-Lounge: Telemetrie-Rekorde, Sammler-DNA & Live eBay-Preisradar</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4" data-lang="en">
+                            Chat directly with our autonomous VIP collector personas. Connected to <strong>20 real-time tools</strong>, they analyze which car in your garage has the most HP or biggest displacement, compute your Collector DNA & 12-month fleet forecast, check live & historical eBay market values (USD/CHF/EUR), verify Hot Wheels Set Numbers & Premium/Real Riders specs, burst in with live guest cameos when you mention a fellow <code>@vip</code>, and challenge you to direct Car Compare duels!
+                        </p>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 hidden" data-lang="de">
+                            Chatte im direkten 1-on-1 Dialog mit unseren autonomen VIP-Experten. Über <strong>20 Echtzeit-Tools</strong> ermitteln sie deine PS- und Hubraum-Rekorde, berechnen deine Sammler-DNA samt 12-Monats-Prognose, prüfen Live- und historische eBay-Marktwerte (USD/CHF/EUR), kontrollieren Hot-Wheels Set-Nummern & Premium-Merkmale (Real Riders, Metal/Metal), schalten sich per <code>@vip</code> als Live-Gast-Einwurf dazu und fordern dich direkt zum Showdown-Duell heraus!
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-700">
+                            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md">🏎️ Garage Superlatives</span>
+                            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md">🧬 12-Month DNA Forecast</span>
+                            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md">💰 Live eBay Prices</span>
+                            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md">📚 Wiki Set Numbers</span>
+                            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md">🎙️ Live VIP Cameos</span>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 flex lg:justify-end w-full">
+                        <a href="vip-experts-guide.html" class="w-full sm:w-auto text-center bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3.5 rounded-xl transition shadow-sm shadow-orange-200 text-xs sm:text-sm">
+                            <span data-lang="en">Explore VIP Experts Guide &rarr;</span>
+                            <span data-lang="de" class="hidden">Zum Ask The Experts Handbuch &rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -433,6 +475,22 @@
             </div>
             
             <div class="space-y-3">
+                <!-- NEW: Ask The Experts & Multi-Engine Vision HUD -->
+                <div class="flex items-start gap-4 bg-amber-50/50 p-5 rounded-xl border border-amber-200/80 animate-on-scroll">
+                    <div class="w-7 h-7 rounded-lg bg-orange-600 text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                        👑
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-0.5">
+                            <h4 class="font-bold text-gray-900 text-sm" data-lang="en">Ask The Experts Lounge, 20 Live VIP Tools & Live Class HUD</h4>
+                            <h4 class="font-bold text-gray-900 text-sm hidden" data-lang="de">Ask The Experts KI-Lounge, 20 Live-Tools & Echtzeit-Scanner-HUD</h4>
+                            <span class="text-[10px] font-mono bg-orange-100 text-orange-800 px-2 py-0.5 rounded font-bold">NEW RELEASE</span>
+                        </div>
+                        <p class="text-xs text-gray-600" data-lang="en">1-on-1 VIP Expert Chat with 20 live tools (car telemetry superlatives, Collector DNA & 12-month forecasts, live & historical eBay price radar, Wiki set-number verification, live guest cameos) plus the upgraded Scanner Viewfinder HUD with real-time class detection (Mainline, Silver Series, Premium, Treasure Hunt).</p>
+                        <p class="text-xs text-gray-600 hidden" data-lang="de">Direkter 1-on-1 VIP-Experten-Chat mit 20 Live-Tools (PS-/Hubraum-Superlative, Sammler-DNA & 12-Monats-Prognosen, Live- & historische eBay-Preise, Set-Nummern-Prüfung, Live-Gast-Cameos) sowie das neue Kamera-Sucher-HUD mit Echtzeit-Klassenerkennung (Mainline, Silver Series, Premium, Treasure Hunt).</p>
+                    </div>
+                </div>
+
                 <!-- Live v2.0 -->
                 <div class="flex items-start gap-4 bg-cyan-50/40 p-5 rounded-xl border border-cyan-200/70 animate-on-scroll">
                     <div class="w-7 h-7 rounded-lg bg-cyan-700 text-white font-bold flex items-center justify-center shrink-0 text-xs">
@@ -498,6 +556,8 @@
             
             <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-xs">
                 <a href="story.html" class="text-gray-600 hover:text-gray-900 transition">The Story</a>
+                <a href="scanner-guide.html" class="text-gray-600 hover:text-gray-900 transition">Scanner Guide</a>
+                <a href="vip-experts-guide.html" class="text-orange-600 font-semibold hover:text-orange-700 transition">Ask The Experts</a>
                 <a href="faq.html" class="text-gray-600 hover:text-gray-900 transition">FAQ</a>
                 <a href="contact.html" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
                 <a href="https://ko-fi.com/garageprime" target="_blank" class="text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 hover:bg-amber-100 transition font-medium">☕ Support</a>
